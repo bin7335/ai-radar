@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko" class="antialiased text-gray-900 bg-white dark:bg-zinc-950 dark:text-zinc-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Radar - News & Insights</title>
+    <!-- Tailwind CSS (가장 가벼운 CDN 방식) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 고급스러운 타이포그래피를 위한 Pretendard 폰트 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <script>
+        tailwind.config = {
+            darkMode: 'media', // 사용자의 OS 설정(라이트/다크)에 자동으로 맞춤
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 커스텀 스크롤바 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 4px; }
+        @media (prefers-color-scheme: dark) {
+            ::-webkit-scrollbar-thumb { background: #3f3f46; }
+        }
+        
+        /* 절제된 호버 애니메이션 (Linear 스타일) */
+        .arrow-icon {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.2s ease-out;
+        }
+        .feed-row:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900 dark:selection:bg-blue-900 dark:selection:text-white">
+    <main class="max-w-3xl w-full mx-auto px-6 py-20 flex-1">
+        <header class="mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-8">
+            <h1 class="text-3xl font-bold tracking-tight mb-3">AI Radar</h1>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm">에이전트, 바이브코딩, 오픈소스 생태계 핵심 브리핑</p>
+        </header>
+
+        <div id="feed-container" class="flex flex-col">
+            <div class="animate-pulse text-zinc-400 text-sm">최신 데이터를 불러오는 중...</div>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-xs text-zinc-400 dark:text-zinc-600">
+        Powered by GitHub Actions & Gemini API
+    </footer>
+
+    <script>
+        // Gemini가 쓴 마크다운 텍스트에서 '한 줄 요약'과 '시사점'만 예쁘게 파싱해내는 함수
+        function parseSummary(markdown) {
+            const lines = markdown.split('\n');
+            let oneLine = "";
+            let implication = "";
+            
+            lines.forEach(line => {
+                if (line.includes('한 줄 요약**:')) oneLine = line.split('**:')[1]?.trim() || line.replace('**- 한 줄 요약**:', '').trim();
+                if (line.includes('업무 시사점**:')) implication = line.split('**:')[1]?.trim() || line.replace('**- 업무 시사점**:', '').trim();
+            });
+            
+            return { oneLine, implication, raw: markdown };
+        }
+
+        // '2시간 전', '1일 전' 같은 포맷으로 변환
+        function relativeTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}분 전`;
+            if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}시간 전`;
+            return `${Math.floor(diffInSeconds / 86400)}일 전`;
+        }
+
+        async function loadFeed() {
+            const container = document.getElementById('feed-container');
+            try {
+                // 브라우저 캐시 무시하고 최신 JSON 가져오기
+                const response = await fetch(`data/feed.json?t=${new Date().getTime()}`);
+                if (!response.ok) throw new Error('Data not found');
+                
+                const data = await response.json();
+                container.innerHTML = '';
+                
+                if (data.length === 0) {
+                    container.innerHTML = '<p class="text-zinc-500 text-sm">아직 수집된 뉴스가 없습니다.</p>';
+                    return;
+                }
+
+                data.forEach(item => {
+                    const parsed = parseSummary(item.summary_md);
+                    const timeAgo = relativeTime(item.fetched_at);
+                    
+                    const el = document.createElement('a');
+                    el.href = item.url;
+                    el.target = "_blank";
+                    el.rel = "noopener noreferrer";
+                    
+                    // 핵심: 그림자와 둥근 테두리를 뺀 순수 리스트 뷰 + 투명한 호버 효과
+                    el.className = "feed-row group block py-6 border-b border-zinc-100 dark:border-zinc-800/60 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors -mx-4 px-4 sm:-mx-6 sm:px-6";
+                    
+                    el.innerHTML = `
+                        <div class="flex justify-between items-start gap-4">
+                            <div class="flex-1 space-y-3">
+                                <!-- 메타 데이터 (출처, 시간) -->
+                                <div class="flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+                                    <span class="font-semibold text-zinc-700 dark:text-zinc-300 tracking-wide">${item.source || 'Unknown'}</span>
+                                    <span>•</span>
+                                    <span>${timeAgo}</span>
+                                </div>
+                                
+                                <!-- 메인 제목 (Pretendard Bold) -->
+                                <h2 class="text-xl font-bold leading-snug text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    ${item.title.replace(/^\[.*?\]\s*/, '')}
+                                </h2>
+                                
+                                <!-- 한 줄 요약 -->
+                                ${parsed.oneLine ? `<p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">${parsed.oneLine}</p>` : ''}
+                                
+                                <!-- 업무 시사점 (인용구 스타일) -->
+                                ${parsed.implication ? `
+                                <div class="mt-5 pl-4 border-l-2 border-zinc-200 dark:border-zinc-700">
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 italic">" ${parsed.implication} "</p>
+                                </div>
+                                ` : ''}
+                            </div>
+                            
+                            <!-- 호버 시 나타나는 화살표 애니메이션 -->
+                            <div class="mt-1 pt-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                                <svg class="w-5 h-5 text-zinc-400 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
+            } catch (error) {
+                container.innerHTML = '<p class="text-red-500 text-sm">데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.</p>';
+            }
+        }
+
+        loadFeed();
+    </script>
+</body>
+</html>
