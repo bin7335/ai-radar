@@ -1,5 +1,7 @@
 # AI Radar
 
+🌐 **Live Demo**: [https://bin7335.github.io/ai-radar/](https://bin7335.github.io/ai-radar/)
+
 A fully automated, zero-cost AI news aggregator and curator. 
 Fetches the latest AI agent, open-source, and vibe-coding trends, synthesizes them using LLMs, and deploys as a static feed.
 
