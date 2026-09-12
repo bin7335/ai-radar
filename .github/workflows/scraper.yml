@@ -1,0 +1,44 @@
+name: AI Radar News Scraper
+
+on:
+  schedule:
+    # 한국 시간(KST) 오전 6시, 낮 12시, 오후 6시, 자정에 실행 (UTC 기준 21, 3, 9, 15)
+    - cron: '0 21,3,9,15 * * *' 
+  workflow_dispatch: # GitHub 웹사이트에서 수동으로 버튼을 눌러 실행할 수 있게 함
+
+permissions:
+  contents: write # 스크립트가 feed.json을 업데이트하고 다시 커밋할 수 있도록 쓰기 권한 부여
+
+jobs:
+  scrape-and-summarize:
+    runs-on: ubuntu-latest
+    # 10분 이상 걸리면 에러로 간주하고 강제 종료 (무료 시간 낭비 방지)
+    timeout-minutes: 10 
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip' # 패키지 설치 시간 절약을 위해 캐시 사용
+
+      - name: Install Dependencies
+        run: pip install -r src/requirements.txt
+
+      - name: Run Scraper & AI Summarizer
+        env:
+          # GitHub Secrets에 저장된 API 키를 파이썬 스크립트로 주입! (절대 코드에 노출 안 됨)
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python src/main.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/feed.json
+          git commit -m "🤖 Auto-update AI news feed" || exit 0
+          git push
+
