@@ -4,20 +4,18 @@ import datetime
 import requests
 import time
 from google import genai
+from bs4 import BeautifulSoup
 
 # ---------------------------------------------------------
 # 1. 초기 세팅 및 인증
 # ---------------------------------------------------------
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
-    print("❌ 환경변수에 GEMINI_API_KEY가 없습니다!")
+    print("환경변수에 GEMINI_API_KEY가 없습니다!")
     exit(1)
 
-# 최신 google-genai 라이브러리 클라이언트 생성
 client = genai.Client(api_key=API_KEY)
-
 OUTPUT_FILE = "data/feed.json"
-# data 폴더가 없으면 에러가 나므로(빈 폴더는 git에 안 올라감) 명시적으로 생성
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
 def load_feed():
@@ -34,7 +32,7 @@ def save_feed(feed_data):
         json.dump(feed_data, f, ensure_ascii=False, indent=2)
 
 # ---------------------------------------------------------
-# 2. Gemini AI 요약 함수 (PRD 반영)
+# 2. 일괄 요약 (Batch Summarization) 로직
 # ---------------------------------------------------------
 def summarize_batch(items):
     prompt = "선생님은 교육전문직을 위한 'AI 뉴스 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 작성합니다.\n\n"
@@ -52,25 +50,25 @@ def summarize_batch(items):
 > - **출처**: {출처} ({원문 URL})
 ---
 """
-    try:
-        response = client.models.generate_content(
-            model='gemini-3.6-flash',
-            contents=prompt,
-        )
-        return response.text.split('---')
-    except Exception as e:
-        print(f"Error during batch summarization: {e}")
-        return []
-
-
-from bs4 import BeautifulSoup
+    # 일시적인 429 Throttle 방어용 재시도 로직
+    for attempt in range(3):
+        try:
+            response = client.models.generate_content(
+                model='gemini-3.6-flash',
+                contents=prompt,
+            )
+            # '---' 구분자로 파싱 (빈 문자열 제거)
+            return [x.strip() for x in response.text.split('---') if x.strip()]
+        except Exception as e:
+            print(f"Error during batch summarization (Attempt {attempt+1}/3): {e}")
+            time.sleep(3)
+    return []
 
 # ---------------------------------------------------------
 # 3. 크롤링 함수 (Hacker News + GitHub Trending)
 # ---------------------------------------------------------
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
-    # 최신성보다 '핫한(Hot)' 순서를 위해 search 엔드포인트 유지
     url = "https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=7"
     try:
         data = requests.get(url).json()
@@ -106,7 +104,6 @@ def scrape_github_trending():
             title = title_el.text.strip().replace('\n', '').replace(' ', '')
             desc = desc_el.text.strip() if desc_el else ""
             
-            # AI, Agent 관련 레포지토리만 필터링
             text_for_search = (title + " " + desc).lower()
             if "ai " not in text_for_search and "agent" not in text_for_search and "llm" not in text_for_search:
                 continue
@@ -118,7 +115,7 @@ def scrape_github_trending():
                 "points": "Hot",
                 "comments": "N/A"
             })
-            if len(results) >= 5: break # 최대 5개
+            if len(results) >= 5: break
             
         return results
     except Exception as e:
@@ -131,12 +128,12 @@ def scrape_github_trending():
 if __name__ == "__main__":
     feed = load_feed()
     
-    # 핫한 이슈들 조합 (HN 7개 + GitHub 5개 중 중복 제외하고 TOP 10개 추출)
     new_items = scrape_hackernews() + scrape_github_trending()
     items_to_summarize = []
     
     for item in new_items:
-        if any(f["url"] == item["url"] for f in feed):
+        # url 기준으로 중복 검사
+        if any(f.get("url") == item["url"] for f in feed):
             print(f"⏩ 이미 처리됨 (스킵): {item['title']}")
         else:
             items_to_summarize.append(item)
@@ -146,7 +143,12 @@ if __name__ == "__main__":
         summaries = summarize_batch(items_to_summarize)
         
         for i, item in enumerate(items_to_summarize):
-            summary_md = summaries[i].strip() if i < len(summaries) and summaries[i].strip() else f"카테고리: 오픈소스\n> **[🔥AI/에이전트] {item['title']}**\n> - **한 줄 요약**: 요약 실패 (API 오류)\n> - **업무 시사점**: 없음\n> - **출처**: {item['source']} ({item['url']})"
+            # API가 실패했거나 파싱 결과가 부족할 경우의 안전망(Fallback)
+            if i < len(summaries) and summaries[i]:
+                summary_md = summaries[i]
+            else:
+                fallback_cat = "오픈소스" if "GitHub" in item["source"] else "뉴스"
+                summary_md = f"카테고리: {fallback_cat}\n> **[🔥AI/에이전트] {item['title']}**\n> - **한 줄 요약**: 요약 실패 (API 통신 오류)\n> - **업무 시사점**: 없음\n> - **출처**: {item['source']} ({item['url']})"
             
             feed.insert(0, {
                 "title": item["title"],
@@ -156,6 +158,7 @@ if __name__ == "__main__":
                 "fetched_at": datetime.datetime.now().isoformat()
             })
             
+    # 최근 50개만 보존하여 용량 관리
     feed = feed[:50]
     save_feed(feed)
     print("✅ 피드 업데이트 완료!")
