@@ -37,3 +37,4 @@
 ### ⚠️ D. UI/UX 확장성
 - 현재 `index.html`은 CDN을 이용해 TailwindCSS를 불러오고 있습니다.
 - 모바일(반응형)에서는 4열이 1열 또는 2열로 자연스럽게 접히도록 `grid-cols-1 md:grid-cols-2 xl:grid-cols-4` 로직을 짜두었으나, 실제 스마트폰에서 텍스트가 잘리는지(truncate) 뷰포트 검토가 필요합니다.
+
