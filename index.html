@@ -43,10 +43,19 @@
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900 dark:selection:bg-blue-900 dark:selection:text-white">
     <main class="max-w-3xl w-full mx-auto px-6 py-20 flex-1">
-        <header class="mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-8">
+        <header class="mb-8 border-b border-zinc-200 dark:border-zinc-800 pb-8">
             <h1 class="text-3xl font-bold tracking-tight mb-3">AI Radar</h1>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm">에이전트, 바이브코딩, 오픈소스 생태계 핵심 브리핑</p>
         </header>
+
+        <!-- 카테고리 필터 탭 -->
+        <div id="filter-tabs" class="flex gap-6 mb-8 border-b border-zinc-100 dark:border-zinc-800/80 pb-0 text-sm font-medium overflow-x-auto hide-scrollbar">
+            <button data-filter="all" class="filter-btn text-zinc-900 dark:text-zinc-100 border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 -mb-[2px] whitespace-nowrap">전체</button>
+            <button data-filter="오픈소스" class="filter-btn text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 pb-3 border-b-2 border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 -mb-[2px] transition-all whitespace-nowrap">오픈소스</button>
+            <button data-filter="뉴스" class="filter-btn text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 pb-3 border-b-2 border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 -mb-[2px] transition-all whitespace-nowrap">뉴스</button>
+            <button data-filter="정보" class="filter-btn text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 pb-3 border-b-2 border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 -mb-[2px] transition-all whitespace-nowrap">꿀팁/정보</button>
+            <button data-filter="커뮤니티" class="filter-btn text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 pb-3 border-b-2 border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 -mb-[2px] transition-all whitespace-nowrap">커뮤니티</button>
+        </div>
 
         <div id="feed-container" class="flex flex-col">
             <div class="animate-pulse text-zinc-400 text-sm">최신 데이터를 불러오는 중...</div>
@@ -58,21 +67,26 @@
     </footer>
 
     <script>
-        // Gemini가 쓴 마크다운 텍스트에서 '한 줄 요약'과 '시사점'만 예쁘게 파싱해내는 함수
+        let allFeedData = [];
+
         function parseSummary(markdown) {
             const lines = markdown.split('\n');
             let oneLine = "";
             let implication = "";
+            let category = "뉴스";
             
             lines.forEach(line => {
                 if (line.includes('한 줄 요약**:')) oneLine = line.split('**:')[1]?.trim() || line.replace('**- 한 줄 요약**:', '').trim();
                 if (line.includes('업무 시사점**:')) implication = line.split('**:')[1]?.trim() || line.replace('**- 업무 시사점**:', '').trim();
+                if (line.includes('카테고리:')) category = line.split('카테고리:')[1]?.trim() || "뉴스";
             });
             
-            return { oneLine, implication, raw: markdown };
+            // Clean up category string just in case
+            category = category.replace(/\[|\]/g, '').trim();
+            
+            return { oneLine, implication, category, raw: markdown };
         }
 
-        // '2시간 전', '1일 전' 같은 포맷으로 변환
         function relativeTime(dateString) {
             const date = new Date(dateString);
             const now = new Date();
@@ -83,75 +97,98 @@
             return `${Math.floor(diffInSeconds / 86400)}일 전`;
         }
 
+        function renderFeed(data, filter = 'all') {
+            const container = document.getElementById('feed-container');
+            container.innerHTML = '';
+
+            const filteredData = filter === 'all' 
+                ? data 
+                : data.filter(item => parseSummary(item.summary_md).category.includes(filter));
+
+            if (filteredData.length === 0) {
+                container.innerHTML = '<p class="text-zinc-500 text-sm mt-8 text-center">해당 카테고리의 뉴스가 없습니다.</p>';
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const parsed = parseSummary(item.summary_md);
+                const timeAgo = relativeTime(item.fetched_at);
+                
+                let domain = "";
+                try { domain = new URL(item.url).hostname.replace('www.', ''); } catch(e) {}
+                const sourceText = item.source ? `${item.source} • ${domain}` : domain;
+                
+                const el = document.createElement('a');
+                el.href = item.url;
+                el.target = "_blank";
+                el.rel = "noopener noreferrer";
+                el.className = "feed-row group block py-6 border-b border-zinc-100 dark:border-zinc-800/60 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors -mx-4 px-4 sm:-mx-6 sm:px-6";
+                
+                el.innerHTML = `
+                    <div class="flex justify-between items-start gap-4">
+                        <div class="flex-1 space-y-3">
+                            <div class="flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+                                <span class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-medium tracking-wide">${parsed.category}</span>
+                                <span class="font-semibold text-zinc-700 dark:text-zinc-300 tracking-wide">${sourceText}</span>
+                                <span>•</span>
+                                <span>${timeAgo}</span>
+                            </div>
+                            
+                            <h2 class="text-xl font-bold leading-snug text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                ${item.title.replace(/^\[.*?\]\s*/, '')}
+                            </h2>
+                            
+                            ${parsed.oneLine ? `<p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">${parsed.oneLine}</p>` : ''}
+                            
+                            ${parsed.implication ? `
+                            <div class="mt-5 pl-4 border-l-2 border-zinc-200 dark:border-zinc-700">
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 italic">" ${parsed.implication} "</p>
+                            </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="mt-1 pt-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                            <svg class="w-5 h-5 text-zinc-400 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
         async function loadFeed() {
             const container = document.getElementById('feed-container');
             try {
-                // 브라우저 캐시 무시하고 최신 JSON 가져오기
                 const response = await fetch(`data/feed.json?t=${new Date().getTime()}`);
                 if (!response.ok) throw new Error('Data not found');
                 
-                const data = await response.json();
-                container.innerHTML = '';
+                allFeedData = await response.json();
+                renderFeed(allFeedData, 'all');
                 
-                if (data.length === 0) {
-                    container.innerHTML = '<p class="text-zinc-500 text-sm">아직 수집된 뉴스가 없습니다.</p>';
-                    return;
-                }
-
-                data.forEach(item => {
-                    const parsed = parseSummary(item.summary_md);
-                    const timeAgo = relativeTime(item.fetched_at);
-                    
-                    const el = document.createElement('a');
-                    el.href = item.url;
-                    el.target = "_blank";
-                    el.rel = "noopener noreferrer";
-                    
-                    // 핵심: 그림자와 둥근 테두리를 뺀 순수 리스트 뷰 + 투명한 호버 효과
-                    el.className = "feed-row group block py-6 border-b border-zinc-100 dark:border-zinc-800/60 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors -mx-4 px-4 sm:-mx-6 sm:px-6";
-                    
-                    el.innerHTML = `
-                        <div class="flex justify-between items-start gap-4">
-                            <div class="flex-1 space-y-3">
-                                <!-- 메타 데이터 (출처, 시간) -->
-                                <div class="flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
-                                    <span class="font-semibold text-zinc-700 dark:text-zinc-300 tracking-wide">${item.source || 'Unknown'}</span>
-                                    <span>•</span>
-                                    <span>${timeAgo}</span>
-                                </div>
-                                
-                                <!-- 메인 제목 (Pretendard Bold) -->
-                                <h2 class="text-xl font-bold leading-snug text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                    ${item.title.replace(/^\[.*?\]\s*/, '')}
-                                </h2>
-                                
-                                <!-- 한 줄 요약 -->
-                                ${parsed.oneLine ? `<p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">${parsed.oneLine}</p>` : ''}
-                                
-                                <!-- 업무 시사점 (인용구 스타일) -->
-                                ${parsed.implication ? `
-                                <div class="mt-5 pl-4 border-l-2 border-zinc-200 dark:border-zinc-700">
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 italic">" ${parsed.implication} "</p>
-                                </div>
-                                ` : ''}
-                            </div>
-                            
-                            <!-- 호버 시 나타나는 화살표 애니메이션 -->
-                            <div class="mt-1 pt-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
-                                <svg class="w-5 h-5 text-zinc-400 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    `;
-                    container.appendChild(el);
-                });
             } catch (error) {
                 container.innerHTML = '<p class="text-red-500 text-sm">데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.</p>';
             }
         }
 
+        // 탭 클릭 이벤트 설정
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // UI 업데이트
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.className = "filter-btn text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 pb-3 border-b-2 border-transparent hover:border-zinc-300 dark:hover:border-zinc-700 -mb-[2px] transition-all whitespace-nowrap";
+                });
+                e.target.className = "filter-btn text-zinc-900 dark:text-zinc-100 border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 -mb-[2px] whitespace-nowrap";
+                
+                // 데이터 필터링
+                const filter = e.target.getAttribute('data-filter');
+                renderFeed(allFeedData, filter);
+            });
+        });
+
         loadFeed();
     </script>
 </body>
 </html>
+

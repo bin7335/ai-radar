@@ -46,7 +46,8 @@ def summarize(title, url, source, points="N/A", comments="N/A"):
 - 원문 URL: {url}
 - 호응도(포인트): {points}, 댓글 수: {comments}
 
-[출력 형식] (반드시 아래 마크다운 형식을 그대로 지켜주세요)
+[출력 형식] (반드시 아래 형식을 그대로 지켜주세요)
+카테고리: [여기에 '오픈소스', '뉴스', '정보', '커뮤니티' 중 가장 적절한 것 1개만 작성]
 > **[🔥AI/에이전트] {title}**
 > - **한 줄 요약**: (비개발자도 이해하기 쉽게 1줄 요약)
 > - **업무 시사점**: (단순 반복 행정, 업무 자동화, 바이브코딩에 대체 적용 가능한지 시사점 1줄)
@@ -60,7 +61,7 @@ def summarize(title, url, source, points="N/A", comments="N/A"):
         return response.text
     except Exception as e:
         print(f"Error during summarization: {e}")
-        return f"요약 실패: {title}"
+        return f"카테고리: 뉴스\n> **[🔥AI/에이전트] {title}**\n> - **한 줄 요약**: 요약 실패\n> - **업무 시사점**: 없음\n> - **출처**: {source} ({url})"
 
 
 # ---------------------------------------------------------
@@ -111,6 +112,7 @@ if __name__ == "__main__":
         feed.insert(0, {
             "title": item["title"],
             "url": item["url"],
+            "source": item["source"],
             "summary_md": summary,
             "fetched_at": datetime.datetime.now().isoformat()
         })
