@@ -139,8 +139,8 @@ if __name__ == "__main__":
             print(f"⏩ 이미 처리됨 (스킵): {item['title']}")
             continue
             
-        print(f"✨ 새로운 뉴스 요약 중: {item['title']}")
-        time.sleep(4) 
+        # 구글 API 무료 티어 Rate Limit 방지용 딜레이 (429 에러 방지)
+        time.sleep(6) 
         
         summary = summarize(
             title=item["title"], 
