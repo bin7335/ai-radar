@@ -46,8 +46,7 @@ def summarize(title, url, source, points="N/A", comments="N/A"):
 - 원문 URL: {url}
 - 호응도(포인트): {points}, 댓글 수: {comments}
 
-[출력 형식] (반드시 아래 형식을 그대로 지켜주세요)
-카테고리: [여기에 '오픈소스', '뉴스', '정보', '커뮤니티' 중 가장 적절한 것 1개만 작성]
+[출력 형식] (반드시 아래 마크다운 형식을 그대로 지켜주세요)
 > **[🔥AI/에이전트] {title}**
 > - **한 줄 요약**: (비개발자도 이해하기 쉽게 1줄 요약)
 > - **업무 시사점**: (단순 반복 행정, 업무 자동화, 바이브코딩에 대체 적용 가능한지 시사점 1줄)
@@ -61,15 +60,18 @@ def summarize(title, url, source, points="N/A", comments="N/A"):
         return response.text
     except Exception as e:
         print(f"Error during summarization: {e}")
-        return f"카테고리: 뉴스\n> **[🔥AI/에이전트] {title}**\n> - **한 줄 요약**: 요약 실패\n> - **업무 시사점**: 없음\n> - **출처**: {source} ({url})"
+        return f"요약 실패: {title}"
 
+
+from bs4 import BeautifulSoup
 
 # ---------------------------------------------------------
-# 3. 크롤링 함수
+# 3. 크롤링 함수 (Hacker News + GitHub Trending)
 # ---------------------------------------------------------
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
-    url = "https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=10"
+    # 최신성보다 '핫한(Hot)' 순서를 위해 search 엔드포인트 유지
+    url = "https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=7"
     try:
         data = requests.get(url).json()
         results = []
@@ -86,12 +88,51 @@ def scrape_hackernews():
         print(f"HN Scraping failed: {e}")
         return []
 
+def scrape_github_trending():
+    print("🔍 GitHub Trending 크롤링 시작...")
+    url = "https://github.com/trending"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+    try:
+        html = requests.get(url, headers=headers).text
+        soup = BeautifulSoup(html, "html.parser")
+        repos = soup.select("article.Box-row")
+        results = []
+        
+        for repo in repos:
+            title_el = repo.select_one("h2 a")
+            desc_el = repo.select_one("p")
+            
+            if not title_el: continue
+            title = title_el.text.strip().replace('\n', '').replace(' ', '')
+            desc = desc_el.text.strip() if desc_el else ""
+            
+            # AI, Agent 관련 레포지토리만 필터링
+            text_for_search = (title + " " + desc).lower()
+            if "ai " not in text_for_search and "agent" not in text_for_search and "llm" not in text_for_search:
+                continue
+                
+            results.append({
+                "title": f"{title}: {desc}",
+                "url": f"https://github.com/{title}",
+                "source": "GitHub Trending",
+                "points": "Hot",
+                "comments": "N/A"
+            })
+            if len(results) >= 5: break # 최대 5개
+            
+        return results
+    except Exception as e:
+        print(f"GH Scraping failed: {e}")
+        return []
+
 # ---------------------------------------------------------
 # 4. 메인 실행 로직
 # ---------------------------------------------------------
 if __name__ == "__main__":
     feed = load_feed()
-    new_items = scrape_hackernews()
+    
+    # 핫한 이슈들 조합 (HN 7개 + GitHub 5개 중 중복 제외하고 TOP 10개 추출)
+    new_items = scrape_hackernews() + scrape_github_trending()
     
     for item in new_items:
         if any(f["url"] == item["url"] for f in feed):
@@ -112,7 +153,6 @@ if __name__ == "__main__":
         feed.insert(0, {
             "title": item["title"],
             "url": item["url"],
-            "source": item["source"],
             "summary_md": summary,
             "fetched_at": datetime.datetime.now().isoformat()
         })
