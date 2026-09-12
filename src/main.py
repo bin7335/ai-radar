@@ -36,6 +36,25 @@ def save_feed(feed_data):
 # ---------------------------------------------------------
 # 2. Gemini AI 요약 함수 (PRD 반영)
 # ---------------------------------------------------------
+# 사용 가능한 모델 자동 감지 (버전 호환성 문제 해결)
+AVAILABLE_MODEL = None
+try:
+    for m in client.models.list():
+        if "generateContent" in m.supported_actions:
+            if "flash" in m.name:
+                AVAILABLE_MODEL = m.name
+                break
+    if not AVAILABLE_MODEL:
+        for m in client.models.list():
+            if "generateContent" in m.supported_actions:
+                AVAILABLE_MODEL = m.name
+                break
+except Exception as e:
+    print(f"Model list fetch failed: {e}")
+    AVAILABLE_MODEL = 'gemini-2.5-flash' # fallback
+
+print(f"✅ Selected Model: {AVAILABLE_MODEL}")
+
 def summarize(title, url, source, points="N/A", comments="N/A"):
     prompt = f"""
 선생님은 교육전문직을 위한 'AI 뉴스 큐레이터'입니다.
@@ -54,13 +73,14 @@ def summarize(title, url, source, points="N/A", comments="N/A"):
 """
     try:
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model=AVAILABLE_MODEL,
             contents=prompt,
         )
         return response.text
     except Exception as e:
         print(f"Error during summarization: {e}")
         return f"요약 실패: {title}"
+
 
 # ---------------------------------------------------------
 # 3. 크롤링 함수
