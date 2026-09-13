@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 import json
 import datetime
@@ -213,8 +213,8 @@ def scrape_techcrunch_ai():
         return []
 
 def scrape_github_trending():
-    print("🔍 GitHub Trending 크롤링 시작...")
-    url = "https://github.com/trending"
+    print("🚀 GitHub Trending (Weekly) 크롤링 시작...")
+    url = "https://github.com/trending?since=weekly"
     headers = {"User-Agent": "Mozilla/5.0"}
     try:
         html = requests.get(url, headers=headers, timeout=10).text
@@ -231,7 +231,10 @@ def scrape_github_trending():
             desc = desc_el.text.strip() if desc_el else ""
             
             text_for_search = (title + " " + desc).lower()
-            if "ai " not in text_for_search and "agent" not in text_for_search and "llm" not in text_for_search:
+            import re
+            is_ai = bool(re.search(r'\b(ai|agent|llm|gpt|model|machine learning|deep learning|diffusion|transformer|chatbot|genai|generative|openai|llama|vision|audio|tts|stt)\b', text_for_search))
+            
+            if not is_ai:
                 continue
                 
             stars_el = repo.select_one('a[href$="/stargazers"]')
