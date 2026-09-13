@@ -42,7 +42,7 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900 dark:selection:bg-blue-900 dark:selection:text-white">
-    <main class="max-w-7xl w-full mx-auto px-6 py-20 flex-1">
+    <main class="max-w-[1920px] w-full mx-auto px-6 py-20 flex-1 break-keep">
         <header class="mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-8">
             <h1 class="text-3xl font-bold tracking-tight mb-3">AI Radar</h1>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm">에이전트, 바이브코딩, 오픈소스 생태계 핵심 브리핑</p>
@@ -160,15 +160,15 @@
                 // 카드박스(그림자, 테두리) 대신 밑줄만 남겨 가독성 극대화
                 el.className = "group block py-5 border-b border-zinc-100 dark:border-zinc-800/60 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors -mx-3 px-3 rounded-lg sm:rounded-none";
                 
-                const pointsLabel = parseInt(item.points) > 0 ? `<span class="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-[10px] font-bold">🔥 ${item.points}</span>` : '';
+                const pointsLabel = parseInt(item.points) > 0 ? `<span class="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-[10px] font-bold whitespace-nowrap flex-shrink-0">🔥 ${item.points}</span>` : '';
 
                 el.innerHTML = `
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400">
-                            <span class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded tracking-wider">TOP ${rank}</span>
+                            <span class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded tracking-wider whitespace-nowrap flex-shrink-0">TOP ${rank}</span>
                             <span class="font-semibold text-zinc-700 dark:text-zinc-300 truncate">${sourceText}</span>
-                            <span>•</span>
-                            <span class="flex-shrink-0">${timeAgo}</span>
+                            <span class="flex-shrink-0">•</span>
+                            <span class="flex-shrink-0 whitespace-nowrap">${timeAgo}</span>
                             ${pointsLabel}
                         </div>
                         
