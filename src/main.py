@@ -31,7 +31,7 @@ os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 def clean_text(text):
     if not text: return text
     import re
-    bad_words = ['좆', '존나', '씨발', '개새', '병신', '미친', '지랄', '새끼', '썅', '개소리', '씹', '자지', '보지', '섹스', '야동']
+    bad_words = ['좆', '존나', '씨발', '개새', '병신', '미친', '지랄', '새끼', '썅', '개소리', '씹']
     for word in bad_words:
         text = re.sub(word, '★', text)
     return text
@@ -184,9 +184,9 @@ def scrape_dcinside():
 
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
-    # 50일 이내 필터링 추가
-    fifty_days_ago = int(time.time()) - (50 * 24 * 60 * 60)
-    url = f"https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{fifty_days_ago}"
+    # 30일 이내 데이터만 추출
+    thirty_days_ago = int(time.time()) - (30 * 24 * 60 * 60)
+    url = f"https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{thirty_days_ago}"
     try:
         data = requests.get(url, timeout=10).json()
         results = []
@@ -350,8 +350,8 @@ if __name__ == "__main__":
             })
             
 
-    # 50일 경과 데이터 필터링 및 포인트(핫한 순) 정렬
-    fifty_days_ago_dt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=50)
+    # 30일 경과 데이터는 삭제하여 최신 트렌드만 유지 (오픈소스 포함 전체 공통)
+    thirty_days_ago_dt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=30)
     valid_feed = []
     for item in feed:
         pub_str = item.get("published_at") or item.get("fetched_at")
@@ -361,7 +361,7 @@ if __name__ == "__main__":
                 pub_date = datetime.datetime.fromisoformat(pub_str.replace("Z", "+00:00"))
                 if pub_date.tzinfo is None:
                     pub_date = pub_date.replace(tzinfo=datetime.timezone.utc)
-                if pub_date < fifty_days_ago_dt:
+                if pub_date < thirty_days_ago_dt:
                     keep = False
             except Exception:
                 pass
