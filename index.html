@@ -96,7 +96,9 @@
             let category = "뉴스";
             
             lines.forEach(line => {
+                if (line.includes('한줄요약**:')) oneLine = line.split('**:')[1]?.trim() || line.replace('**- 한줄요약**:', '').trim();
                 if (line.includes('한 줄 요약**:')) oneLine = line.split('**:')[1]?.trim() || line.replace('**- 한 줄 요약**:', '').trim();
+                if (line.includes('인사이트**:')) implication = line.split('**:')[1]?.trim() || line.replace('**- 인사이트**:', '').trim();
                 if (line.includes('업무 시사점**:')) implication = line.split('**:')[1]?.trim() || line.replace('**- 업무 시사점**:', '').trim();
                 if (line.includes('카테고리:')) category = line.split('카테고리:')[1]?.trim() || "뉴스";
             });

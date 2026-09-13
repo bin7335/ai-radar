@@ -45,7 +45,7 @@ def save_feed(feed_data):
 # 2. 일괄 요약 (Batch Summarization) 로직
 # ---------------------------------------------------------
 def summarize_batch(items):
-    prompt = "선생님은 교육전문직을 위한 'AI 뉴스 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 작성합니다.\n\n"
+    prompt = "당신은 IT 및 AI 최신 동향을 분석하는 '수석 AI 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 핵심만 작성합니다.\n\n"
     for i, item in enumerate(items):
         desc = item.get('description', '')
         desc_text = f"\n- 부가 설명: {desc}" if desc else ""
@@ -63,8 +63,8 @@ def summarize_batch(items):
 [출력 형식]
 카테고리: [위 4가지 기준 중 가장 적합한 단 1개만 선택하여 작성 (예: 정보)]
 > **[🔥AI/에이전트] {기사 제목}**
-> - **한 줄 요약**: (비개발자도 이해하기 쉽게 1줄 요약)
-> - **업무 시사점**: (단순 반복 행정, 업무 자동화 등에 대체 적용 가능한지 시사점 1줄)
+> - **한 줄 요약**: (비개발자도 이해하기 쉽게 핵심만 1줄 요약)
+> - **인사이트**: (업무 생산성 향상, 자동화 적용, 또는 기술적 레퍼런스 관점에서의 가치를 1줄로 제시)
 > - **출처**: {출처} ({원문 URL})
 ---
 """
@@ -248,7 +248,7 @@ if __name__ == "__main__":
                 summary_md = summaries[i]
             else:
                 fallback_cat = "오픈소스" if "GitHub" in item["source"] else "뉴스"
-                summary_md = f"카테고리: {fallback_cat}\n> **[🔥AI/에이전트] {item['title']}**\n> - **한 줄 요약**: 요약 실패 (API 통신 오류)\n> - **업무 시사점**: 없음\n> - **출처**: {item['source']} ({item['url']})"
+                summary_md = f"카테고리: {fallback_cat}\n> **[🔥AI/에이전트] {item['title']}**\n> - **한 줄 요약**: 요약 실패 (API 통신 오류)\n> - **인사이트**: 없음\n> - **출처**: {item['source']} ({item['url']})"
             
             feed.insert(0, {
                 "title": item["title"],
