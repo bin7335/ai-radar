@@ -1,5 +1,14 @@
 [
   {
+    "title": "affaan-m/ECC",
+    "url": "https://github.com/affaan-m/ECC",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] affaan-m/ECC**\n> - **한 줄 요약**: Agent harness performance optimization system for Claude Code, Codex, and other AI coding tools.\n> - **인사이트**: Improves efficiency and reliability of AI coding agents through systematic optimization.\n> - **출처**: {출처} (https://github.com/affaan-m/ECC)",
+    "points": 257313,
+    "published_at": "2026-09-13T08:23:13.324184+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209588+00:00"
+  },
+  {
     "title": "Shubhamsaboo/awesome-llm-apps",
     "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
     "source": "GitHub Trending",
@@ -7,6 +16,15 @@
     "points": 137769,
     "published_at": "2026-09-13T08:07:07.826388+00:00",
     "fetched_at": "2026-09-13T08:14:16.431701+00:00"
+  },
+  {
+    "title": "DietrichGebert/ponytail",
+    "url": "https://github.com/DietrichGebert/ponytail",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] DietrichGebert/ponytail**\n> - **한 줄 요약**: AI agent tool that refactors code to match lazy senior developer standards.\n> - **인사이트**: Promotes clean, optimized code generation by teaching agents to produce minimal effective solutions.\n> - **출처**: {출처} (https://github.com/DietrichGebert/ponytail)",
+    "points": 136853,
+    "published_at": "2026-09-13T08:23:13.324698+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209595+00:00"
   },
   {
     "title": "asgeirtj/system_prompts_leaks",
@@ -18,6 +36,42 @@
     "fetched_at": "2026-09-13T08:14:16.431695+00:00"
   },
   {
+    "title": "tt-a1i/archify",
+    "url": "https://github.com/tt-a1i/archify",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] tt-a1i/archify**\n> - **한 줄 요약**: Agent skill generating verified architecture and workflow diagrams in self-contained HTML.\n> - **인사이트**: Provides visual documentation for AI-driven software design processes.\n> - **출처**: {출처} (https://github.com/tt-a1i/archify)",
+    "points": 60052,
+    "published_at": "2026-09-13T08:23:13.325377+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209600+00:00"
+  },
+  {
+    "title": "blader/humanizer",
+    "url": "https://github.com/blader/humanizer",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] blader/humanizer**\n> - **한 줄 요약**: AI text normalization tool removing artificial patterns from generated content.\n> - **인사이트**: Improves readability and authenticity of AI-generated documents for professional contexts.\n> - **출처**: {출처} (https://github.com/blader/humanizer)",
+    "points": 47446,
+    "published_at": "2026-09-13T08:23:13.326282+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209605+00:00"
+  },
+  {
+    "title": "ayghri/i-have-adhd",
+    "url": "https://github.com/ayghri/i-have-adhd",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] ayghri/i-have-adhd**\n> - **한 줄 요약**: ADHD-friendly coding agent skill that prevents answers from being buried.\n> - **인사이트**: Helps maintain clear, visible outputs in AI-assisted coding workflows.\n> - **출처**: {출처} (https://github.com/ayghri/i-have-adhd}",
+    "points": 43702,
+    "published_at": "2026-09-13T08:23:13.323829+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209572+00:00"
+  },
+  {
+    "title": "openai/skills",
+    "url": "https://github.com/openai/skills",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] openai/skills**\n> - **한 줄 요약**: Official OpenAI skills catalog for Codex providing standardized AI capabilities.\n> - **인사이트**: Enables consistent deployment of specialized AI functions across different applications.\n> - **출처**: {출처} (https://github.com/openai/skills)",
+    "points": 27040,
+    "published_at": "2026-09-13T08:23:13.325594+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209603+00:00"
+  },
+  {
     "title": "vxcontrol/pentagi",
     "url": "https://github.com/vxcontrol/pentagi",
     "source": "GitHub Trending",
@@ -25,6 +79,15 @@
     "points": 23598,
     "published_at": "2026-09-13T08:07:07.827038+00:00",
     "fetched_at": "2026-09-13T08:14:16.431708+00:00"
+  },
+  {
+    "title": "mksglu/context-mode",
+    "url": "https://github.com/mksglu/context-mode",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] mksglu/context-mode**\n> - **한 줄 요약**: Context window optimization tool reducing sandbox output size by 98% while maintaining session memory.\n> - **인사이트**: Enhances AI coding agent performance through efficient context management across multiple platforms.\n> - **출처**: {출처} (https://github.com/mksglu/context-mode)",
+    "points": 22459,
+    "published_at": "2026-09-13T08:23:13.324965+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209597+00:00"
   },
   {
     "title": "multimodal-art-projection/YuE",
@@ -43,6 +106,15 @@
     "points": 7361,
     "published_at": "2026-09-13T08:07:07.826907+00:00",
     "fetched_at": "2026-09-13T08:14:16.431706+00:00"
+  },
+  {
+    "title": "openai/plugins",
+    "url": "https://github.com/openai/plugins",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] openai/plugins**\n> - **한 줄 요약**: Official OpenAI plugin framework enabling custom extensions for ChatGPT applications.\n> - **인사이트**: Standardizes how developers integrate third-party capabilities into LLM interfaces.\n> - **출처**: {출처} (https://github.com/openai/plugins)",
+    "points": 6564,
+    "published_at": "2026-09-13T08:23:13.324422+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209592+00:00"
   },
   {
     "title": "jihe520/MathModelAgent",
@@ -297,6 +369,24 @@
     "fetched_at": "2026-09-13T08:19:23.879276+00:00"
   },
   {
+    "title": "뽀글이 글 안읽은 새끼들 존나 많네",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1416527&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티  \n> **[🔥AI/에이전트] 뽀글이 글 안읽은 새끼들 존나 많네**  \n- **한 줄 요약**: DC Inside '특이점이 온다' 갤러리에서 특정 게시글 미읽자 수가 급증한 상황 확인.  \n- **인사이트**: 커뮤니티 내 콘텐츠 소비 패턴 저하 및 사용자 참여율 저하 지표가 됨.  \n- **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1416527&exception_mode=recommend&page=1)",
+    "points": 45,
+    "published_at": "2026-09-13T08:23:16.546389+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209611+00:00"
+  },
+  {
+    "title": "뽀글이 글 안읽은 새끼들 존나 많네",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1416527&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티  \n> **[🔥AI/에이전트] 뽀글이 글 안읽은 새끼들 존나 많네**  \n- **한 줄 요약**: DC Inside '특이점이 온다' 갤러리에서 특정 게시글 미읽자 수가 급증한 상황 확인.  \n- **인사이트**: 커뮤니티 내 콘텐츠 소비 패턴 저하 및 사용자 참여율 저하 지표가 됨.  \n- **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1416527&exception_mode=recommend&page=1)",
+    "points": 45,
+    "published_at": "2026-09-13T08:23:14.984408+00:00",
+    "fetched_at": "2026-09-13T08:27:40.209608+00:00"
+  },
+  {
     "title": "그냥 ㄹㅇ 이새끼들이 GOAT라니까",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417544&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -358,32 +448,5 @@
     "points": 24,
     "published_at": "2026-09-13T08:07:11.074616+00:00",
     "fetched_at": "2026-09-13T08:14:16.431741+00:00"
-  },
-  {
-    "title": "\"프론티어 발전속도를 늦춰야 합니다.\"",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417939&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] \"프론티어 발전속도를 늦춰야 합니다.\"**\n> - **한 줄 요약**: 인공지능 프론티어의 발전 속도가 너무 빠르다는 주장이다.\n> - **인사이트**: 기술 진보 속도 조절이 사회적 영향과 안정성을 위해 중요하다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417939&exception_mode=recommend&page=1)",
-    "points": 24,
-    "published_at": "2026-09-13T08:07:09.714756+00:00",
-    "fetched_at": "2026-09-13T08:14:16.431731+00:00"
-  },
-  {
-    "title": "아스트라+2.5) 도트아트 변환",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417983&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] 아스트라+2.5) 도트아트 변환**\n> - **한 줄 요약**: 이미지를 도트 아트 스타일로 변환하는 AI 도구 소개\n> - **인사이트**: 이미지 생성 및 스타일 변환 작업의 자동화 및 창의적 활용 가능성\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417983&exception_mode=recommend&page=1)",
-    "points": 12,
-    "published_at": "2026-09-13T08:07:11.074502+00:00",
-    "fetched_at": "2026-09-13T08:14:16.431739+00:00"
-  },
-  {
-    "title": "아스트라+2.5) 도트아트 변환",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417983&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] 아스트라+2.5) 도트아트 변환**\n> - **한 줄 요약**: 특정 시스템의 변환 과정을 설명하는 기술적 내용이다.\n> - **인사이트**: 복잡한 시스템 변환 전략이 실제 업무 효율화에 활용될 수 있다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417983&exception_mode=recommend&page=1)",
-    "points": 12,
-    "published_at": "2026-09-13T08:07:09.714644+00:00",
-    "fetched_at": "2026-09-13T08:14:16.431729+00:00"
   }
 ]
