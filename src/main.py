@@ -5,20 +5,26 @@ import datetime
 import requests
 import time
 from openai import OpenAI
+from google import genai
 from bs4 import BeautifulSoup
 
 # ---------------------------------------------------------
 # 1. 초기 세팅 및 인증
 # ---------------------------------------------------------
-API_KEY = os.environ.get("GH_MODELS_TOKEN")
-if not API_KEY:
-    print("환경변수에 GH_MODELS_TOKEN이 없습니다!")
-    exit(1)
+GH_API_KEY = os.environ.get("GH_MODELS_TOKEN")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-client = OpenAI(
-    base_url="https://models.inference.ai.azure.com",
-    api_key=API_KEY
-)
+gh_client = None
+if GH_API_KEY:
+    gh_client = OpenAI(
+        base_url="https://models.inference.ai.azure.com",
+        api_key=GH_API_KEY
+    )
+
+gemini_client = None
+if GEMINI_API_KEY:
+    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+
 OUTPUT_FILE = "data/feed.json"
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
@@ -63,18 +69,34 @@ def summarize_batch(items):
 ---
 """
     for attempt in range(3):
-        try:
-            response = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            text = response.choices[0].message.content
-            return [x.strip() for x in text.split('---') if x.strip()]
-        except Exception as e:
-            print(f"Error during batch summarization (Attempt {attempt+1}/3): {e}")
-            time.sleep(3)
+        # 1. 1순위: GitHub Models (gpt-4o-mini) 시도
+        if gh_client:
+            try:
+                print(f"🤖 [엔진 1] GitHub Models 시도 중... (Attempt {attempt+1}/3)")
+                response = gh_client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[{"role": "user", "content": prompt}]
+                )
+                text = response.choices[0].message.content
+                return [x.strip() for x in text.split('---') if x.strip()]
+            except Exception as e:
+                print(f"❌ GitHub Models 실패: {e}")
+
+        # 2. 2순위: Google Gemini (gemini-3.6-flash) 폴백 시도
+        if gemini_client:
+            try:
+                print(f"🤖 [엔진 2] Google Gemini 시도 중... (Attempt {attempt+1}/3)")
+                response = gemini_client.models.generate_content(
+                    model='gemini-3.6-flash',
+                    contents=prompt,
+                )
+                return [x.strip() for x in response.text.split('---') if x.strip()]
+            except Exception as e:
+                print(f"❌ Gemini 실패: {e}")
+                
+        print("⚠️ 모든 AI 엔진이 실패했습니다. 3초 후 재시도...")
+        time.sleep(3)
+        
     return []
 
 # ---------------------------------------------------------
