@@ -288,6 +288,31 @@ if __name__ == "__main__":
                 "fetched_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
             })
             
-    feed = feed[:50]
+
+    # 50일 경과 데이터 필터링 및 포인트(핫한 순) 정렬
+    fifty_days_ago_dt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=50)
+    valid_feed = []
+    for item in feed:
+        pub_str = item.get("published_at") or item.get("fetched_at")
+        keep = True
+        if pub_str:
+            try:
+                pub_date = datetime.datetime.fromisoformat(pub_str.replace("Z", "+00:00"))
+                if pub_date.tzinfo is None:
+                    pub_date = pub_date.replace(tzinfo=datetime.timezone.utc)
+                if pub_date < fifty_days_ago_dt:
+                    keep = False
+            except Exception:
+                pass
+        if keep:
+            valid_feed.append(item)
+            
+    def get_points(x):
+        try: return int(x.get("points", 0))
+        except: return 0
+        
+    valid_feed.sort(key=get_points, reverse=True)
+    feed = valid_feed[:50]
+
     save_feed(feed)
     print("✅ 피드 업데이트 완료!")
