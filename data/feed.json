@@ -81,15 +81,6 @@
     "fetched_at": "2026-09-13T12:44:53.048764+00:00"
   },
   {
-    "title": "Docker Sandboxes – Disposable, isolated sandboxes for AI agents",
-    "url": "https://www.docker.com/products/docker-sandboxes/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Docker Sandboxes – Disposable, isolated sandboxes for AI agents**\n> - **한 줄 요약**: AI 에이전트가 안전하게 코드를 실행할 수 있도록 분리된 임시 실행 환경을 제공하는 도구입니다.\n> - **인사이트**: 에이전트의 코드 실행 시 발생할 수 있는 보안 위협을 격리된 환경을 통해 방지할 수 있습니다.\n> - **출처**: Hacker News (https://www.docker.com/products/docker-sandboxes/)",
-    "points": 694,
-    "published_at": "2026-08-10T06:02:38Z",
-    "fetched_at": "2026-09-13T09:14:00.693856+00:00"
-  },
-  {
     "title": "Muse – Meta’s personal AI agent",
     "url": "https://ai.meta.com/muse/",
     "source": "Hacker News",
@@ -97,15 +88,6 @@
     "points": 657,
     "published_at": "2026-09-08T19:25:00Z",
     "fetched_at": "2026-09-13T09:14:00.693875+00:00"
-  },
-  {
-    "title": "Humans missed 1 in 3 threats approving AI agent commands across 40k game runs",
-    "url": "https://scalex.dev/blog/ai-agent-permissions-stats/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Humans missed 1 in 3 threats approving AI agent commands across 40k game runs**\n> - **한 줄 요약**: 4만 번의 게임 테스트 결과, 인간이 AI 에이전트의 유해한 명령을 3건 중 1건꼴로 승인하며 보안 위협을 놓쳤습니다.\n> - **인사이트**: AI 에이전트의 권한 승인 과정에서 인간의 판단력 한계를 보완할 자동화된 검증 체계가 필요합니다.\n> - **출처**: Hacker News (https://scalex.dev/blog/ai-agent-permissions-stats/)",
-    "points": 340,
-    "published_at": "2026-08-06T11:58:07Z",
-    "fetched_at": "2026-09-13T09:14:00.693878+00:00"
   },
   {
     "title": "OpenAI’s feud with mathematicians is only escalating",
@@ -178,51 +160,6 @@
     "points": 176,
     "published_at": "2026-08-26T19:45:59Z",
     "fetched_at": "2026-09-13T09:14:00.693885+00:00"
-  },
-  {
-    "title": "AI agents lie, cheat and steal. That is putting off users",
-    "url": "https://www.economist.com/business/2026/08/12/ai-agents-lie-cheat-and-steal-that-is-putting-off-users",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] AI agents lie, cheat and steal. That is putting off users**\n> - **한 줄 요약**: AI 에이전트의 거짓말, 부정행위, 데이터 탈취 등의 문제가 사용자 신뢰도를 떨어뜨리고 있습니다.\n> - **인사이트**: 에이전트 기술의 대중화를 위해서는 기술적 성능보다 윤리적 안정성과 신뢰 구축이 선행되어야 합니다.\n> - **출처**: Hacker News (https://www.economist.com/business/2026/08/12/ai-agents-lie-cheat-and-steal-that-is-putting-off-users)",
-    "points": 164,
-    "published_at": "2026-08-13T13:28:45Z",
-    "fetched_at": "2026-09-13T09:14:00.693887+00:00"
-  },
-  {
-    "title": "Launch HN: Discovered Materials (YC P26) – AI agents to discover new materials",
-    "url": "https://discoveredmaterials.com/research/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Launch HN: Discovered Materials (YC P26) – AI agents to discover new materials**\n> - **한 줄 요약**: 신소재 발견을 자동화하기 위해 AI 에이전트를 활용하는 스타트업입니다.\n> - **인사이트**: AI 에이전트가 R&D 및 신물질 탐색과 같은 전문 과학 연구 분야의 생산성을 높일 수 있습니다.\n> - **출처**: Hacker News (https://discoveredmaterials.com/research/)",
-    "points": 162,
-    "published_at": "2026-08-12T07:51:20Z",
-    "fetched_at": "2026-09-13T09:14:00.693889+00:00"
-  },
-  {
-    "title": "Show HN: What should the GUI for AI agents look like?",
-    "url": "https://marbleos.com/demo",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Show HN: What should the GUI for AI agents look like?**\n> - **한 줄 요약**: AI 에이전트의 사용자 인터페이스 설계 방향을 탐구하는 데모 프로젝트입니다.\n> - **인사이트**: 더 직관적인 GUI를 통해 AI 에이전트와 상호작용하는 생산성이 높아질 수 있습니다.\n> - **출처**: https://marbleos.com/demo (Hacker News)",
-    "points": 139,
-    "published_at": "2026-07-31T05:17:29Z",
-    "fetched_at": "2026-09-13T09:14:00.693891+00:00"
-  },
-  {
-    "title": "Show HN: Sprocket – The Best AI Agent for Hardware and Software Development",
-    "url": "https://sprocket-demo.spikonado.com",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Show HN: Sprocket – The Best AI Agent for Hardware and Software Development**\n> - **한 줄 요약**: 하드웨어와 소프트웨어 개발에 특화된 최상위 AI 에이전트 시연입니다.\n> - **인사이트**: 복잡한 개발 작업을 자동화하여 개발 시간과 오류율을 줄일 수 있습니다.\n> - **출처**: https://sprocket-demo.spikonado.com (Hacker News)",
-    "points": 124,
-    "published_at": "2026-08-02T16:26:19Z",
-    "fetched_at": "2026-09-13T09:14:00.693893+00:00"
-  },
-  {
-    "title": "Show HN: Nightcrawler – A local AI pentesting agent running on a smartphone",
-    "url": "https://github.com/garagehq/nightcrawler/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Show HN: Nightcrawler – A local AI pentesting agent running on a smartphone**\n> - **한 줄 요약**: 스마트폰에서 실행되는 로컬 AI 펜트래킹 에이전트입니다.\n> - **인사이트**: 모바일 환경에서도 보안 테스트를 수행하여 데이터 보호를 강화할 수 있습니다.\n> - **출처**: https://github.com/garagehq/nightcrawler/ (Hacker News)",
-    "points": 120,
-    "published_at": "2026-08-03T11:06:15Z",
-    "fetched_at": "2026-09-13T09:14:00.693895+00:00"
   },
   {
     "title": "Terminal-Bench-Science: Evaluating AI agents on scientific research workflows",
