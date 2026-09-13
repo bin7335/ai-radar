@@ -84,7 +84,7 @@ def summarize_batch(items):
                     print(f"🤖 [엔진 1] OpenRouter ({model_name}) 시도 중... (Attempt {attempt+1}/3)")
                     response = or_client.chat.completions.create(
                         model=model_name,
-                        messages=[{"role": "user", "content": prompt}]
+                        messages=[{"role": "user", "content": prompt}], timeout=30.0
                     )
                     text = response.choices[0].message.content
                     parsed = [x.strip() for x in text.split('---') if x.strip()]
