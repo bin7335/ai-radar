@@ -263,7 +263,7 @@ def scrape_github_trending():
 if __name__ == "__main__":
     feed = load_feed()
     
-    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai() + scrape_dcinside() + scrape_dcinside()
+    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai() + scrape_dcinside()
     items_to_summarize = []
     
     for item in new_items:
