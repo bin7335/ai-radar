@@ -9,6 +9,69 @@
     "fetched_at": "2026-09-13T09:14:00.693907+00:00"
   },
   {
+    "title": "tt-a1i/archify",
+    "url": "https://github.com/tt-a1i/archify",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] tt-a1i/archify**\n> - **한 줄 요약**: 아키텍처 다이어그램을 그리는 에이전트 스킬을 제공합니다.\n> - **인사이트**: HTML 기반의 움직이는 다이어그램 생성으로 협업 효율을 높입니다.\n> - **출처**: GitHub Trending (https://github.com/tt-a1i/archify)",
+    "points": 60197,
+    "published_at": "2026-09-13T12:20:45.312263+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908212+00:00"
+  },
+  {
+    "title": "ayghri/i-have-adhd",
+    "url": "https://github.com/ayghri/i-have-adhd",
+    "source": "GitHub Trending",
+    "summary_md": "```markdown\n카테고리: 오픈소스\n> **[🔥AI/에이전트] ayghri/i-have-adhd**\n> - **한 줄 요약**: 코딩 에이전트가 답을 숨기는 것을 막는 ADHD 친화적 스킬입니다.\n> - **인사이트**: 개발 생산성을 높이는 맞춤형 출력 기술입니다.\n> - **출처**: GitHub Trending (https://github.com/ayghri/i-have-adhd)",
+    "points": 43810,
+    "published_at": "2026-09-13T12:20:43.074861+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908170+00:00"
+  },
+  {
+    "title": "THU-MAIC/OpenMAIC",
+    "url": "https://github.com/THU-MAIC/OpenMAIC",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] THU-MAIC/OpenMAIC**\n> - **한 줄 요약**: 하나의 클릭으로 몰입형 멀티 에이전트 학습 경험을 제공합니다.\n> - **인사이트**: 교육 현장에서 AI 에이전트를 활용한 상호작용 학습 환경을 구축할 수 있습니다.\n> - **출처**: GitHub Trending (https://github.com/THU-MAIC/OpenMAIC)",
+    "points": 36330,
+    "published_at": "2026-09-13T12:20:46.462334+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908220+00:00"
+  },
+  {
+    "title": "bilawalsidhu/gods-eye-view",
+    "url": "https://github.com/bilawalsidhu/gods-eye-view",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] bilawalsidhu/gods-eye-view**\n> - **한 줄 요약**: 브라우저에서 실시간 위성 데이터를 활용한 스파이 시뮬레이터입니다.\n> - **인사이트**: 실제 공간 지능 데이터를 기반으로 한 시각화 분석 도구입니다.\n> - **출처**: GitHub Trending (https://github.com/bilawalsidhu/gods-eye-view)",
+    "points": 30979,
+    "published_at": "2026-09-13T12:20:44.251671+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908203+00:00"
+  },
+  {
+    "title": "earthtojake/text-to-cad",
+    "url": "https://github.com/earthtojake/text-to-cad",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] earthtojake/text-to-cad**\n> - **한 줄 요약**: CAD, CAE, CAM 분야의 에이전트 스킬 라이브러리를 제공합니다.\n> - **인사이트**: 엔지니어링 설계 과정을 자동화하여 개발 시간을 단축합니다.\n> - **출처**: GitHub Trending (https://github.com/earthtojake/text-to-cad)",
+    "points": 15505,
+    "published_at": "2026-09-13T12:20:47.969104+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908228+00:00"
+  },
+  {
+    "title": "petergyang/no-ai-slop",
+    "url": "https://github.com/petergyang/no-ai-slop",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] petergyang/no-ai-slop**\n> - **한 줄 요약**: AI 생성 텍스트의 품질 저하 패턴을 제거하는 도구입니다.\n> - **인사이트**: 부정확한 답변을 걸러내어 글쓰기 품질을 개선할 수 있습니다.\n> - **출처**: GitHub Trending (https://github.com/petergyang/no-ai-slop)",
+    "points": 8947,
+    "published_at": "2026-09-13T12:20:48.321978+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908235+00:00"
+  },
+  {
+    "title": "openai/plugins",
+    "url": "https://github.com/openai/plugins",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] openai/plugins**\n> - **한 줄 요약**: OpenAI 플러그인 저장소를 제공하여 다양한 AI 기능을 통합할 수 있습니다.\n> - **인사이트**: 워크플로우 자동화를 위한 유연한 확장 생태계입니다.\n> - **출처**: GitHub Trending (https://github.com/openai/plugins)",
+    "points": 6575,
+    "published_at": "2026-09-13T12:20:43.875182+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908194+00:00"
+  },
+  {
     "title": "Docker Sandboxes – Disposable, isolated sandboxes for AI agents",
     "url": "https://www.docker.com/products/docker-sandboxes/",
     "source": "Hacker News",
@@ -180,6 +243,15 @@
     "fetched_at": "2026-09-13T09:14:00.693942+00:00"
   },
   {
+    "title": "/goal 돈벌어와 후기",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=67179&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] /goal 돈벌어와 후기**\n> - **한 줄 요약**: AI 활용을 통한 수익 창출 방법과 후기를 공유합니다.\n> - **인사이트**: 실질적인 업무 효율성과 시간 절약을 통해 경제적 이익을 얻을 수 있습니다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=67179&exception_mode=recommend&page=1)\n```",
+    "points": 57,
+    "published_at": "2026-09-13T12:20:50.452078+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908243+00:00"
+  },
+  {
     "title": "속보) 오픈AI 연구원 : 짜고치는 규제 포획으로 보일 수 있다",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1416158&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -187,6 +259,15 @@
     "points": 57,
     "published_at": "2026-09-13T09:06:00.861519+00:00",
     "fetched_at": "2026-09-13T09:14:00.693944+00:00"
+  },
+  {
+    "title": "이 스캠기업은 뭐지…",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=67761&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "summary_md": "**카테고리**: 뉴스  \n> **[🔥AI/에이전트] 이 스캠기업은 뭐지…**  \n> - **한 줄 요약**: 특정 기업의 스캔들 사태와 정체에 대한 보도가 나옵니다.  \n> - **인사이트**: 기업의 부정적 이슈는 투명한 정보 공개와 신속한 대응이 생산성 회복에 필수적입니다.  \n> - **출처**: DCInside (AI 활용) (https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=67761&exception_mode=recommend&page=1)",
+    "points": 56,
+    "published_at": "2026-09-13T12:20:50.450554+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908253+00:00"
   },
   {
     "title": "그냥 ㄹㅇ 이★들이 GOAT라니까",
@@ -198,6 +279,24 @@
     "fetched_at": "2026-09-13T09:14:00.693946+00:00"
   },
   {
+    "title": "[부활] 아스트라 어택 풀체인지 정식 런치",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=67069&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "summary_md": "**카테고리**: 뉴스  \n> **[🔥AI/에이전트] [부활] 아스트라 어택 풀체인지 정식 런치**  \n> - **한 줄 요약**: 아스트라 어택의 완전한 업데이트가 공식적으로 출시되었습니다.  \n> - **인사이트**: 소프트웨어 업데이트는 기능 개선을 통해 업무 효율성과 자동화를 높이는 대표적인 사례입니다.  \n> - **출처**: DCInside (AI 활용) (https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=67069&exception_mode=recommend&page=1)",
+    "points": 48,
+    "published_at": "2026-09-13T12:20:50.452452+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908261+00:00"
+  },
+  {
+    "title": "난 프로젝트 파일에 내 자지 사진 1개씩 넣어놓음",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=64801&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "summary_md": "**카테고리**: 커뮤니티  \n> **[🔥AI/에이전트] 난 프로젝트 파일에 내 자지 사진 1개씩 넣어놓음**  \n> - **한 줄 요약**: 개인적으로 프로젝트 파일에 노골적 이미지를 첨부하는 실수를 공유한 내용입니다.  \n> - **인사이트**: 업무 환경에서 적절한 콘텐츠 관리 없이는 협업 효율성이 급격히 저하될 수 있습니다.  \n> - **출처**: DCInside (AI 활용) (https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=64801&exception_mode=recommend&page=1)",
+    "points": 45,
+    "published_at": "2026-09-13T12:20:50.454458+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908271+00:00"
+  },
+  {
     "title": "뽀글이 글 안읽은 ★들 ★ 많네",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1416527&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -205,5 +304,14 @@
     "points": 45,
     "published_at": "2026-09-13T09:06:00.861399+00:00",
     "fetched_at": "2026-09-13T09:14:00.693948+00:00"
+  },
+  {
+    "title": "클로드가 비싼 이유 유추해봄",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=66946&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "summary_md": "**카테고리**: 커뮤니티  \n> **[🔥AI/에이전트] 클로드가 비싼 이유 유추해봄**  \n> - **한 줄 요약**: 클라우드 모델인 클로드의 높은 가격 책정 원인을 사용자들이 추측하며 논의한 글입니다.  \n> - **인사이트**: AI 모델의 가격 결정은 비용 최적화와 서비스 품질 사이의 균형을 반영합니다.  \n> - **출처**: DCInside (AI 활용) (https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=66946&exception_mode=recommend&page=1)",
+    "points": 35,
+    "published_at": "2026-09-13T12:20:50.452576+00:00",
+    "fetched_at": "2026-09-13T12:23:58.908279+00:00"
   }
 ]
