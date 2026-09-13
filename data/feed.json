@@ -1,14 +1,5 @@
 [
   {
-    "title": "affaan-m/ECC",
-    "url": "https://github.com/affaan-m/ECC",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] affaan-m/ECC**\n> - **한 줄 요약**: Claude Code, Codex 등 다양한 AI 에이전트의 성능을 최적화하는 시스템입니다.\n> - **인사이트**: 기억력, 보안, 연구 중심 개발 등을 통해 에이전트의 전반적인 능력을 높일 수 있습니다.\n> - **출처**: https://github.com/affaan-m/ECC (GitHub Trending)",
-    "points": 257325,
-    "published_at": "2026-09-13T09:05:57.624710+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693902+00:00"
-  },
-  {
     "title": "DietrichGebert/ponytail",
     "url": "https://github.com/DietrichGebert/ponytail",
     "source": "GitHub Trending",
@@ -16,60 +7,6 @@
     "points": 136866,
     "published_at": "2026-09-13T09:05:57.625071+00:00",
     "fetched_at": "2026-09-13T09:14:00.693907+00:00"
-  },
-  {
-    "title": "tt-a1i/archify",
-    "url": "https://github.com/tt-a1i/archify",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] TT-A1I 아치파이**\n> - **한 줄 요약**: 복잡한 시스템의 아키텍처와 데이터 흐름을 아름답게 시각화하고 검증할 수 있는 자정형 HTML 도구를 제공합니다.\n> - **인사이트**: 아키텍처 설계 과정을 자동화하여 오류를 줄이고 협업 효율성을 높이는 데 기여합니다.\n> - **출처**: https://github.com/tt-a1i/archify (https://github.com/tt-a1i/archify)",
-    "points": 60075,
-    "published_at": "2026-09-13T09:05:57.625468+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693911+00:00"
-  },
-  {
-    "title": "blader/humanizer",
-    "url": "https://github.com/blader/humanizer",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] 오피닝 스킬스**\n> - **한 줄 요약**: 코데кс 기반 AI 모델의 다양한 기술 스킬을 한곳에 정리한 자정형 카탈로그입니다.\n> - **인사이트**: AI 모델의 역량 목록을 명확히 하여 개발자가 필요한 기능을 빠르게 찾고 활용할 수 있습니다.\n> - **출처**: https://github.com/openai/skills (https://github.com/openai/skills)",
-    "points": 47452,
-    "published_at": "2026-09-13T09:05:57.625963+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693915+00:00"
-  },
-  {
-    "title": "ayghri/i-have-adhd",
-    "url": "https://github.com/ayghri/i-have-adhd",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] ayghri/i-have-adhd**\n> - **한 줄 요약**: 코딩 에이전트가 답변을 숨기는 것을 방지하는 ADHD 친화형 스킬입니다.\n> - **인사이트**: 집중력을 유지하면서 정확한 답변을 얻을 수 있어 개발 생산성이 향상됩니다.\n> - **출처**: https://github.com/ayghri/i-have-adhd (GitHub Trending)",
-    "points": 43717,
-    "published_at": "2026-09-13T09:05:57.624388+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693900+00:00"
-  },
-  {
-    "title": "openai/skills",
-    "url": "https://github.com/openai/skills",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] 블라더 하이유니저**\n> - **한 줄 요약**: AI로 생성된 글의 인공적인 흔적을 제거하여 인간처럼 자연스러운 문장으로 변환하는 에이전트입니다.\n> - **인사이트**: 텍스트 생성 품질을 향상시켜 사용자 경험을 개선하고 신뢰도를 높이는 데 효과적입니다.\n> - **출처**: https://github.com/blader/humanizer (https://github.com/blader/humanizer)",
-    "points": 27041,
-    "published_at": "2026-09-13T09:05:57.625598+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693913+00:00"
-  },
-  {
-    "title": "mksglu/context-mode",
-    "url": "https://github.com/mksglu/context-mode",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] 맥스글루 컨텍스트 모드**\n> - **한 줄 요약**: AI 코딩 에이전트의 컨텍스트 창을 크게 줄이고 메모리를 보존하며 17 플랫폼에서 안정적으로 작동하도록 최적화했습니다.\n> - **인사이트**: 코딩 에이전트의 작업 효율을 높이고 메모리 누수를 방지하는 데 유용한 기술입니다.\n> - **출처**: https://github.com/mksglu/context-mode (https://github.com/mksglu/context-mode)",
-    "points": 22466,
-    "published_at": "2026-09-13T09:05:57.625229+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693908+00:00"
-  },
-  {
-    "title": "openai/plugins",
-    "url": "https://github.com/openai/plugins",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] openai/plugins**\n> - **한 줄 요약**: OpenAI 플러그인 생태계를 위한 공개 도구 모음입니다.\n> - **인사이트**: 다양한 AI 모델과의 통합을 가능하게 하여 개발 효율성을 극대화합니다.\n> - **출처**: https://github.com/openai/plugins (GitHub Trending)",
-    "points": 6565,
-    "published_at": "2026-09-13T09:05:57.624894+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693904+00:00"
   },
   {
     "title": "Docker Sandboxes – Disposable, isolated sandboxes for AI agents",

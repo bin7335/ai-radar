@@ -1,4 +1,4 @@
-﻿name: AI Radar News Scraper
+name: AI Radar News Scraper
 
 on:
   schedule:
@@ -33,6 +33,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           PYTHONUNBUFFERED: 1
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python src/main.py
 
       - name: Commit and Push Changes

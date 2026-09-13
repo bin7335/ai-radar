@@ -28,6 +28,14 @@ if GEMINI_API_KEY:
 OUTPUT_FILE = "data/feed.json"
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
+def clean_text(text):
+    if not text: return text
+    import re
+    bad_words = ['좆', '존나', '씨발', '개새', '병신', '미친', '지랄', '새끼', '썅', '개소리', '씹']
+    for word in bad_words:
+        text = re.sub(word, '★', text)
+    return text
+
 def load_feed():
     if os.path.exists(OUTPUT_FILE):
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
@@ -123,44 +131,50 @@ def summarize_batch(items):
 # ---------------------------------------------------------
 
 def scrape_dcinside():
-    print("🚀 특이점이 온다 갤러리 핫(Hot) 크롤링 시작...")
+    print("🕸️ 디시인사이드 (특이점이 온다 & AI 활용 갤러리) 크롤링 시작...")
     import requests
     from bs4 import BeautifulSoup
     import datetime
-    url = "https://gall.dcinside.com/mgallery/board/lists/?id=thesingularity&exception_mode=recommend"
+    
+    galleries = [
+        {"id": "thesingularity", "name": "특이점이 온다"},
+        {"id": "ai_utilize", "name": "AI 활용"}
+    ]
+    
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
-        all_posts = []
-        for tr in soup.select('tr.us-post'):
-            num_tag = tr.select_one('.gall_num')
-            if num_tag and not num_tag.text.strip().isdigit(): continue
-            a_tag = tr.select_one('.gall_tit a:not(.reply_numbox)')
-            if not a_tag: continue
+    all_posts = []
+    
+    for gal in galleries:
+        url = f"https://gall.dcinside.com/mgallery/board/lists/?id={gal['id']}&exception_mode=recommend"
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            soup = BeautifulSoup(response.text, 'html.parser')
             
-            title = a_tag.text.strip()
-            link = "https://gall.dcinside.com" + a_tag['href']
+            for tr in soup.select('tr.us-post'):
+                num_tag = tr.select_one('.gall_num')
+                if num_tag and not num_tag.text.strip().isdigit(): continue
+                a_tag = tr.select_one('.gall_tit a:not(.reply_numbox)')
+                if not a_tag: continue
+                
+                title = a_tag.text.strip()
+                link = "https://gall.dcinside.com" + a_tag['href']
+                
+                points_tag = tr.select_one('.gall_recommend')
+                points = int(points_tag.text.strip()) if points_tag and points_tag.text.strip().isdigit() else 0
+                
+                all_posts.append({
+                    "title": title,
+                    "url": link,
+                    "source": f"DCInside ({gal['name']})",
+                    "points": points,
+                    "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
+                })
+        except Exception as e:
+            print(f"DC Scraping failed for {gal['name']}: {e}")
             
-            points_tag = tr.select_one('.gall_recommend')
-            points = int(points_tag.text.strip()) if points_tag and points_tag.text.strip().isdigit() else 0
-            
-            # 조회수도 수집해서 보정치로 활용 가능하나 일단 추천수(points) 기준 정렬
-            all_posts.append({
-                "title": title,
-                "url": link,
-                "source": "DCInside (특이점이 온다)",
-                "points": points,
-                "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
-            })
-            
-        # 첫 페이지의 개념글 중 추천수(points)가 가장 높은 상위 5개만 추출
-        all_posts.sort(key=lambda x: x['points'], reverse=True)
-        return all_posts[:5]
-    except Exception as e:
-        print(f"DC Scraping failed: {e}")
-        return []
+    # 전체 취합 후 포인트 순 정렬하여 상위 5개만 반환
+    all_posts.sort(key=lambda x: x['points'], reverse=True)
+    return all_posts[:5]
 
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
@@ -237,6 +251,28 @@ def scrape_github_trending():
             if not is_ai:
                 continue
                 
+            # 생성일 4개월(120일) 경과 프로젝트 필터링
+            repo_api_url = f"https://api.github.com/repos/{title}"
+            api_headers = {"User-Agent": "Mozilla/5.0"}
+            github_token = os.environ.get("GITHUB_TOKEN")
+            if github_token:
+                api_headers["Authorization"] = f"token {github_token}"
+                
+            try:
+                import datetime
+                repo_resp = requests.get(repo_api_url, headers=api_headers, timeout=10)
+                if repo_resp.status_code == 200:
+                    repo_data = repo_resp.json()
+                    created_at_str = repo_data.get("created_at")
+                    if created_at_str:
+                        created_at = datetime.datetime.fromisoformat(created_at_str.replace("Z", "+00:00"))
+                        four_months_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=120)
+                        if created_at < four_months_ago:
+                            print(f"?? 필터링됨: {title} (생성일 {created_at_str}, 4개월 경과)")
+                            continue
+            except Exception as e:
+                print(f"?? 생성일 확인 실패 {title}: {e}")
+                
             stars_el = repo.select_one('a[href$="/stargazers"]')
             stars = 0
             if stars_el:
@@ -264,6 +300,9 @@ if __name__ == "__main__":
     feed = load_feed()
     
     new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai() + scrape_dcinside()
+    for item in new_items:
+        item["title"] = clean_text(item["title"])
+        
     items_to_summarize = []
     
     for item in new_items:
@@ -289,10 +328,10 @@ if __name__ == "__main__":
         
         for i, item in enumerate(items_to_summarize):
             if i < len(summaries) and summaries[i]:
-                summary_md = summaries[i]
+                summary_md = clean_text(summaries[i])
             else:
                 fallback_cat = "오픈소스" if "GitHub" in item["source"] else "뉴스"
-                summary_md = f"카테고리: {fallback_cat}\n> **[🔥AI/에이전트] {item['title']}**\n> - **한 줄 요약**: 요약 실패 (API 통신 오류)\n> - **인사이트**: 없음\n> - **출처**: {item['source']} ({item['url']})"
+                summary_md = f"카테고리: {fallback_cat}\n> **[💡AI/에이전트] {item['title']}**\n> - **한줄요약**: 요약 실패 (API 통신 오류)\n> - **인사이트**: 없음\n> - **출처**: {item['source']} ({item['url']})"
             
             feed.insert(0, {
                 "title": item["title"],
