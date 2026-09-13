@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 import json
 import datetime
@@ -171,7 +171,7 @@ def scrape_hackernews():
         print(f"HN Scraping failed: {e}")
         return []
 
-def scrape_techcrunch_ai() + scrape_dcinside():
+def scrape_techcrunch_ai():
     print("🔍 TechCrunch AI 크롤링 시작...")
     import xml.etree.ElementTree as ET
     import urllib.request
