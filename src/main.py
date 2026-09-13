@@ -142,7 +142,7 @@ def scrape_dcinside():
     ]
     
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
-    all_posts = []
+    final_posts = []
     
     for gal in galleries:
         url = f"https://gall.dcinside.com/mgallery/board/lists/?id={gal['id']}&exception_mode=recommend"
@@ -150,6 +150,7 @@ def scrape_dcinside():
             response = requests.get(url, headers=headers, timeout=10)
             soup = BeautifulSoup(response.text, 'html.parser')
             
+            all_posts = []
             for tr in soup.select('tr.us-post'):
                 num_tag = tr.select_one('.gall_num')
                 if num_tag and not num_tag.text.strip().isdigit(): continue
@@ -169,12 +170,15 @@ def scrape_dcinside():
                     "points": points,
                     "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
                 })
+            
+            # 각 갤러리별로 추천수(points)가 높은 상위 5개만 최종 리스트에 추가
+            all_posts.sort(key=lambda x: x['points'], reverse=True)
+            final_posts.extend(all_posts[:5])
+            
         except Exception as e:
             print(f"DC Scraping failed for {gal['name']}: {e}")
             
-    # 전체 취합 후 포인트 순 정렬하여 상위 5개만 반환
-    all_posts.sort(key=lambda x: x['points'], reverse=True)
-    return all_posts[:5]
+    return final_posts
 
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
