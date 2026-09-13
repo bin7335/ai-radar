@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import os
 import json
 import datetime
@@ -121,6 +121,34 @@ def summarize_batch(items):
 # ---------------------------------------------------------
 # 3. 크롤링 함수 (Hacker News + TechCrunch + GitHub Trending)
 # ---------------------------------------------------------
+
+def scrape_dcinside():
+    print("🚀 특이점이 온다 갤러리 크롤링 시작...")
+    import requests
+    from bs4 import BeautifulSoup
+    import datetime
+    url = "https://gall.dcinside.com/mgallery/board/lists/?id=thesingularity&exception_mode=recommend"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        results = []
+        for tr in soup.select('tr.us-post'):
+            if len(results) >= 5: break
+            num_tag = tr.select_one('.gall_num')
+            if num_tag and not num_tag.text.strip().isdigit(): continue
+            a_tag = tr.select_one('.gall_tit a:not(.reply_numbox)')
+            if not a_tag: continue
+            title = a_tag.text.strip()
+            link = "https://gall.dcinside.com" + a_tag['href']
+            points_tag = tr.select_one('.gall_recommend')
+            points = int(points_tag.text.strip()) if points_tag and points_tag.text.strip().isdigit() else 50
+            results.append({"title": title, "url": link, "source": "DCInside (특이점이 온다)", "points": points, "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()})
+        return results
+    except Exception as e:
+        print(f"DC Scraping failed: {e}")
+        return []
+
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
     # 50일 이내 필터링 추가
@@ -136,14 +164,14 @@ def scrape_hackernews():
                 "source": "Hacker News",
                 "points": hit.get("points") or 0,
                 "comments": hit.get("num_comments") or 0,
-                "published_at": hit.get("created_at") or datetime.datetime.now().isoformat()
+                "published_at": hit.get("created_at") or datetime.datetime.now(datetime.timezone.utc).isoformat()
             })
         return results
     except Exception as e:
         print(f"HN Scraping failed: {e}")
         return []
 
-def scrape_techcrunch_ai():
+def scrape_techcrunch_ai() + scrape_dcinside():
     print("🔍 TechCrunch AI 크롤링 시작...")
     import xml.etree.ElementTree as ET
     import urllib.request
@@ -157,7 +185,7 @@ def scrape_techcrunch_ai():
             title = item.find('title').text
             link = item.find('link').text
             pubDate = item.find('pubDate')
-            pubDateStr = pubDate.text if pubDate is not None else datetime.datetime.now().isoformat()
+            pubDateStr = pubDate.text if pubDate is not None else datetime.datetime.now(datetime.timezone.utc).isoformat()
             results.append({
                 "title": title,
                 "url": link,
@@ -204,7 +232,7 @@ def scrape_github_trending():
                 "url": f"https://github.com{title_el['href']}",
                 "source": "GitHub Trending",
                 "points": stars,
-                "published_at": datetime.datetime.now().isoformat()
+                "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
             })
             if len(results) >= 8: break
             
@@ -214,12 +242,12 @@ def scrape_github_trending():
         return []
 
 # ---------------------------------------------------------
-# 4. 메인 실행 로직
+# 4. 메인 실행 블록
 # ---------------------------------------------------------
 if __name__ == "__main__":
     feed = load_feed()
     
-    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai()
+    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai() + scrape_dcinside() + scrape_dcinside()
     items_to_summarize = []
     
     for item in new_items:
@@ -256,8 +284,8 @@ if __name__ == "__main__":
                 "source": item["source"],
                 "summary_md": summary_md,
                 "points": item.get("points", 0),
-                "published_at": item.get("published_at") or datetime.datetime.now().isoformat(),
-                "fetched_at": datetime.datetime.now().isoformat()
+                "published_at": item.get("published_at") or datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                "fetched_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
             })
             
     feed = feed[:50]
