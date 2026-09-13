@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Scraper & AI Summarizer
         env:
-          GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python src/main.py
 

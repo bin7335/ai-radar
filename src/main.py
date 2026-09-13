@@ -11,14 +11,14 @@ from bs4 import BeautifulSoup
 # ---------------------------------------------------------
 # 1. 초기 세팅 및 인증
 # ---------------------------------------------------------
-GH_API_KEY = os.environ.get("GH_MODELS_TOKEN")
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-gh_client = None
-if GH_API_KEY:
-    gh_client = OpenAI(
-        base_url="https://models.inference.ai.azure.com",
-        api_key=GH_API_KEY
+or_client = None
+if OPENROUTER_API_KEY:
+    or_client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=OPENROUTER_API_KEY
     )
 
 gemini_client = None
@@ -69,18 +69,18 @@ def summarize_batch(items):
 ---
 """
     for attempt in range(3):
-        # 1. 1순위: GitHub Models (gpt-4o-mini) 시도
-        if gh_client:
+        # 1. 1순위: OpenRouter 무료 모델 (Llama 3.1 8B) 시도
+        if or_client:
             try:
-                print(f"🤖 [엔진 1] GitHub Models 시도 중... (Attempt {attempt+1}/3)")
-                response = gh_client.chat.completions.create(
-                    model="gpt-4o-mini",
+                print(f"🤖 [엔진 1] OpenRouter 시도 중... (Attempt {attempt+1}/3)")
+                response = or_client.chat.completions.create(
+                    model="meta-llama/llama-3.1-8b-instruct:free",
                     messages=[{"role": "user", "content": prompt}]
                 )
                 text = response.choices[0].message.content
                 return [x.strip() for x in text.split('---') if x.strip()]
             except Exception as e:
-                print(f"❌ GitHub Models 실패: {e}")
+                print(f"❌ OpenRouter 실패: {e}")
 
         # 2. 2순위: Google Gemini (gemini-3.6-flash) 폴백 시도
         if gemini_client:
