@@ -45,7 +45,7 @@ def save_feed(feed_data):
 # 2. 일괄 요약 (Batch Summarization) 로직
 # ---------------------------------------------------------
 def summarize_batch(items):
-    prompt = "당신은 IT 및 AI 최신 동향을 분석하는 '수석 AI 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 핵심만 작성합니다.\n\n"
+    prompt = "당신은 IT 및 AI 최신 동향을 분석하는 '수석 AI 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 핵심만 작성합니다. **영어로 된 기사나 요약도 반드시 모두 자연스러운 한국어(Korean)로 번역해서 작성해주세요.**\n\n"
     for i, item in enumerate(items):
         desc = item.get('description', '')
         desc_text = f"\n- 부가 설명: {desc}" if desc else ""
@@ -328,7 +328,28 @@ if __name__ == "__main__":
         except: return 0
         
     valid_feed.sort(key=get_points, reverse=True)
-    feed = valid_feed[:50]
+    
+    category_counts = {}
+    new_feed = []
+    
+    for item in valid_feed:
+        cat = "뉴스"
+        summary_md = item.get("summary_md", "")
+        for line in summary_md.split("\n"):
+            if "카테고리:" in line:
+                cat = line.split("카테고리:")[1].strip()
+                break
+                
+        target = '뉴스'
+        if '오픈소스' in cat: target = '오픈소스'
+        elif '정보' in cat or '꿀팁' in cat: target = '정보'
+        elif '커뮤니티' in cat: target = '커뮤니티'
+        
+        category_counts[target] = category_counts.get(target, 0) + 1
+        if category_counts[target] <= 20:
+            new_feed.append(item)
+            
+    feed = new_feed
 
     save_feed(feed)
     print("✅ 피드 업데이트 완료!")
