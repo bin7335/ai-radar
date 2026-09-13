@@ -69,18 +69,29 @@ def summarize_batch(items):
 ---
 """
     for attempt in range(3):
-        # 1. 1순위: OpenRouter 무료 모델 (Llama 3.1 8B) 시도
+        # 1. 1순위: OpenRouter 무료 모델 로테이션 시도
         if or_client:
-            try:
-                print(f"🤖 [엔진 1] OpenRouter 시도 중... (Attempt {attempt+1}/3)")
-                response = or_client.chat.completions.create(
-                    model="meta-llama/llama-3.1-8b-instruct:free",
-                    messages=[{"role": "user", "content": prompt}]
-                )
-                text = response.choices[0].message.content
-                return [x.strip() for x in text.split('---') if x.strip()]
-            except Exception as e:
-                print(f"❌ OpenRouter 실패: {e}")
+            free_models = [
+                "meta-llama/llama-3.3-70b-instruct:free",
+                "google/gemini-2.0-flash-lite-preview-02-05:free",
+                "meta-llama/llama-3.1-8b-instruct:free",
+                "huggingfaceh4/zephyr-7b-beta:free",
+                "mistralai/mistral-7b-instruct:free"
+            ]
+            success = False
+            for model_name in free_models:
+                try:
+                    print(f"🤖 [엔진 1] OpenRouter ({model_name}) 시도 중... (Attempt {attempt+1}/3)")
+                    response = or_client.chat.completions.create(
+                        model=model_name,
+                        messages=[{"role": "user", "content": prompt}]
+                    )
+                    text = response.choices[0].message.content
+                    return [x.strip() for x in text.split('---') if x.strip()]
+                except Exception as e:
+                    print(f"❌ OpenRouter ({model_name}) 실패: {e}")
+            
+            # 모든 모델 실패 시 gemini로 넘어감
 
         # 2. 2순위: Google Gemini (gemini-3.6-flash) 폴백 시도
         if gemini_client:
@@ -104,7 +115,9 @@ def summarize_batch(items):
 # ---------------------------------------------------------
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
-    url = "https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12"
+    # 50일 이내 필터링 추가
+    fifty_days_ago = int(time.time()) - (50 * 24 * 60 * 60)
+    url = f"https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{fifty_days_ago}"
     try:
         data = requests.get(url).json()
         results = []
