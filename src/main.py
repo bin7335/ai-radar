@@ -52,7 +52,6 @@ def summarize_batch(items):
 - 커뮤니티: 사람들의 의견, 토론, 후기, 질문, 자유로운 잡담
 
 [출력 형식]
-카테고리: [여기에 '오픈소스', '뉴스', '정보', '커뮤니티' 중 가장 적절한 것 1개만 작성]
 카테고리: [위 4가지 기준 중 가장 적합한 단 1개만 선택하여 작성 (예: 정보)]
 > **[🔥AI/에이전트] {기사 제목}**
 > - **한 줄 요약**: (비개발자도 이해하기 쉽게 1줄 요약)
@@ -73,11 +72,11 @@ def summarize_batch(items):
     return []
 
 # ---------------------------------------------------------
-# 3. 크롤링 함수 (Hacker News + GitHub Trending)
+# 3. 크롤링 함수 (Hacker News + TechCrunch + GitHub Trending)
 # ---------------------------------------------------------
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
-    url = "https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=7"
+    url = "https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12"
     try:
         data = requests.get(url).json()
         results = []
@@ -86,8 +85,8 @@ def scrape_hackernews():
                 "title": hit.get("title"),
                 "url": hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}",
                 "source": "Hacker News",
-                "points": hit.get("points"),
-                "comments": hit.get("num_comments")
+                "points": hit.get("points") or 0,
+                "comments": hit.get("num_comments") or 0
             })
         return results
     except Exception as e:
@@ -104,14 +103,14 @@ def scrape_techcrunch_ai():
         xml_data = urllib.request.urlopen(req).read()
         root = ET.fromstring(xml_data)
         results = []
-        for item in root.findall('./channel/item')[:3]:
+        for item in root.findall('./channel/item')[:5]:
             title = item.find('title').text
             link = item.find('link').text
             results.append({
                 "title": title,
                 "url": link,
                 "source": "TechCrunch AI",
-                "points": "Hot",
+                "points": 300, # 뉴스는 기본 300점으로 취급하여 중간 이상에 노출되도록 함
                 "comments": "N/A"
             })
         return results
@@ -141,15 +140,24 @@ def scrape_github_trending():
             if "ai " not in text_for_search and "agent" not in text_for_search and "llm" not in text_for_search:
                 continue
                 
+            # Star 개수 추출
+            stars = 500
+            for a in repo.select("a.Link--muted"):
+                if "stargazers" in a.get("href", ""):
+                    stars_text = a.text.strip().replace(',', '')
+                    if stars_text.isdigit():
+                        stars = int(stars_text)
+                        break
+                
             results.append({
                 "title": title,
                 "description": desc,
                 "url": f"https://github.com/{title}",
                 "source": "GitHub Trending",
-                "points": "Hot",
+                "points": stars,
                 "comments": "N/A"
             })
-            if len(results) >= 5: break
+            if len(results) >= 8: break
             
         return results
     except Exception as e:
@@ -162,7 +170,7 @@ def scrape_github_trending():
 if __name__ == "__main__":
     feed = load_feed()
     
-    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai()
+    new_items = scrape_hackernews() + scrape_github_trending()
     items_to_summarize = []
     
     for item in new_items:
