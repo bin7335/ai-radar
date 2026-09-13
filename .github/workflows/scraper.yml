@@ -1,4 +1,4 @@
-name: AI Radar News Scraper
+﻿name: AI Radar News Scraper
 
 on:
   schedule:
@@ -31,6 +31,7 @@ jobs:
       - name: Run Scraper & AI Summarizer
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          PYTHONUNBUFFERED: 1
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python src/main.py
 

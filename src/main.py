@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import os
 import json
 import datetime
@@ -18,7 +18,7 @@ or_client = None
 if OPENROUTER_API_KEY:
     or_client = OpenAI(
         base_url="https://openrouter.ai/api/v1",
-        api_key=OPENROUTER_API_KEY
+        api_key=OPENROUTER_API_KEY, timeout=45.0
     )
 
 gemini_client = None
@@ -155,7 +155,7 @@ def scrape_hackernews():
     fifty_days_ago = int(time.time()) - (50 * 24 * 60 * 60)
     url = f"https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{fifty_days_ago}"
     try:
-        data = requests.get(url).json()
+        data = requests.get(url, timeout=10).json()
         results = []
         for hit in data.get('hits', []):
             results.append({
@@ -178,7 +178,7 @@ def scrape_techcrunch_ai():
     url = "https://techcrunch.com/category/artificial-intelligence/feed/"
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        xml_data = urllib.request.urlopen(req).read()
+        xml_data = urllib.request.urlopen(req, timeout=10).read()
         root = ET.fromstring(xml_data)
         results = []
         for item in root.findall('./channel/item')[:5]:
@@ -204,7 +204,7 @@ def scrape_github_trending():
     url = "https://github.com/trending"
     headers = {"User-Agent": "Mozilla/5.0"}
     try:
-        html = requests.get(url, headers=headers).text
+        html = requests.get(url, headers=headers, timeout=10).text
         soup = BeautifulSoup(html, "html.parser")
         repos = soup.select("article.Box-row")
         results = []
