@@ -72,13 +72,12 @@ def summarize_batch(items):
         # 1. 1순위: OpenRouter 무료 모델 로테이션 시도
         if or_client:
             free_models = [
-                "meta-llama/llama-3.3-70b-instruct:free",
-                "google/gemini-2.0-flash-lite-preview-02-05:free",
-                "meta-llama/llama-3.1-8b-instruct:free",
-                "huggingfaceh4/zephyr-7b-beta:free",
-                "mistralai/mistral-7b-instruct:free"
+                "openrouter/free", 
+                "google/gemma-4-31b-it:free",
+                "google/gemma-4-26b-a4b-it:free",
+                "nvidia/nemotron-3.5-lightning:free",
+                "liquid/lfm-2.5-2.6b:free"
             ]
-            success = False
             for model_name in free_models:
                 try:
                     print(f"🤖 [엔진 1] OpenRouter ({model_name}) 시도 중... (Attempt {attempt+1}/3)")
