@@ -72,12 +72,13 @@ def summarize_batch(items):
         # 1. 1순위: OpenRouter 무료 모델 로테이션 시도
         if or_client:
             free_models = [
-                "openrouter/free", 
                 "google/gemma-4-31b-it:free",
                 "google/gemma-4-26b-a4b-it:free",
                 "nvidia/nemotron-3.5-lightning:free",
-                "liquid/lfm-2.5-2.6b:free"
+                "liquid/lfm-2.5-2.6b:free",
+                "cohere/north-mini-code:free"
             ]
+            success = False
             for model_name in free_models:
                 try:
                     print(f"🤖 [엔진 1] OpenRouter ({model_name}) 시도 중... (Attempt {attempt+1}/3)")
@@ -86,9 +87,13 @@ def summarize_batch(items):
                         messages=[{"role": "user", "content": prompt}]
                     )
                     text = response.choices[0].message.content
-                    return [x.strip() for x in text.split('---') if x.strip()]
+                    parsed = [x.strip() for x in text.split('---') if x.strip()]
+                    if len(parsed) >= len(items):
+                        return parsed
+                    else:
+                        print(f"❌ OpenRouter ({model_name}) 구조적 오류: {len(parsed)}/{len(items)}개 출력")
                 except Exception as e:
-                    print(f"❌ OpenRouter ({model_name}) 실패: {e}")
+                    print(f"❌ OpenRouter ({model_name}) 통신 실패: {e}")
             
             # 모든 모델 실패 시 gemini로 넘어감
 
@@ -100,9 +105,13 @@ def summarize_batch(items):
                     model='gemini-3.6-flash',
                     contents=prompt,
                 )
-                return [x.strip() for x in response.text.split('---') if x.strip()]
+                parsed = [x.strip() for x in response.text.split('---') if x.strip()]
+                if len(parsed) >= len(items):
+                    return parsed
+                else:
+                    print(f"❌ Gemini 구조적 오류: {len(parsed)}/{len(items)}개 출력")
             except Exception as e:
-                print(f"❌ Gemini 실패: {e}")
+                print(f"❌ Gemini 통신 실패: {e}")
                 
         print("⚠️ 모든 AI 엔진이 실패했습니다. 3초 후 재시도...")
         time.sleep(3)
@@ -210,19 +219,29 @@ def scrape_github_trending():
 if __name__ == "__main__":
     feed = load_feed()
     
-    new_items = scrape_hackernews() + scrape_github_trending()
     new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai()
     items_to_summarize = []
     
     for item in new_items:
         if any(f.get("url") == item["url"] for f in feed):
-            print(f"⏩ 이미 처리됨 (스킵): {item['title']}")
+            print(f"⏭️ 이미 처리됨(스킵): {item['title']}")
         else:
             items_to_summarize.append(item)
             
     if items_to_summarize:
-        print(f"✨ {len(items_to_summarize)}개의 뉴스 일괄 요약 시작...")
-        summaries = summarize_batch(items_to_summarize)
+        print(f"🚀 {len(items_to_summarize)}개의 뉴스 일괄 요약 시작...")
+        
+        # 출력 토큰 제한(Max Tokens)으로 인한 짤림을 방지하기 위해 8개씩 청크로 나눔
+        summaries = []
+        for i in range(0, len(items_to_summarize), 8):
+            chunk = items_to_summarize[i:i+8]
+            print(f"📦 청크 요약 중 ({i+1}~{i+len(chunk)} / {len(items_to_summarize)})")
+            chunk_summaries = summarize_batch(chunk)
+            
+            # 실패 시 빈 문자열로 채워 길이 맞춤
+            if not chunk_summaries or len(chunk_summaries) < len(chunk):
+                chunk_summaries = [""] * len(chunk)
+            summaries.extend(chunk_summaries)
         
         for i, item in enumerate(items_to_summarize):
             if i < len(summaries) and summaries[i]:
