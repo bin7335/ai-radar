@@ -132,14 +132,25 @@
                 return pB - pA;
             });
 
+            // 카테고리별 순위 추적
+            const ranks = { '오픈소스': 0, '뉴스': 0, '정보': 0, '커뮤니티': 0 };
+
             sortedData.forEach(item => {
                 const parsed = parseSummary(item.summary_md);
                 const timeAgo = relativeTime(item.fetched_at);
                 
                 let domain = "";
                 try { domain = new URL(item.url).hostname.replace('www.', ''); } catch(e) {}
-                const sourceText = item.source ? `${item.source} • ${domain}` : domain;
+                const sourceText = item.source ? `${item.source} · ${domain}` : domain;
                 
+                let targetKey = '뉴스'; 
+                if (parsed.category.includes('오픈소스')) targetKey = '오픈소스';
+                else if (parsed.category.includes('정보') || parsed.category.includes('꿀팁')) targetKey = '정보';
+                else if (parsed.category.includes('커뮤니티')) targetKey = '커뮤니티';
+
+                ranks[targetKey]++;
+                const rank = ranks[targetKey];
+
                 const el = document.createElement('a');
                 el.href = item.url;
                 el.target = "_blank";
@@ -169,15 +180,14 @@
                             <p class="text-[12px] text-zinc-500 dark:text-zinc-400 italic">" ${parsed.implication} "</p>
                         </div>
                         ` : ''}
+                        
+                        <div class="mt-3 flex items-center">
+                            <span class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded tracking-wider">TOP ${rank}</span>
+                        </div>
                     </div>
                 `;
                 
-                let targetCol = cols['뉴스']; 
-                if (parsed.category.includes('오픈소스')) targetCol = cols['오픈소스'];
-                else if (parsed.category.includes('정보') || parsed.category.includes('꿀팁')) targetCol = cols['정보'];
-                else if (parsed.category.includes('커뮤니티')) targetCol = cols['커뮤니티'];
-                
-                targetCol.appendChild(el);
+                cols[targetKey].appendChild(el);
             });
 
             // 데이터가 없는 카테고리 처리
