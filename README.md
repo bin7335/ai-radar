@@ -12,43 +12,47 @@ The project is designed to operate continuously at **$0 infrastructure cost** by
 ```mermaid
 flowchart LR
     subgraph Data Sources
-        HN[Hacker News API]
+        HN[Hacker News]
         GH[GitHub Trending]
+        TC[TechCrunch AI]
     end
 
     subgraph GitHub Actions [Cron: Every 6H]
         PY[Python Scraper]
-        LLM[Gemini 3.6 Flash]
-        PY -- Fetches --> HN
-        PY -- Fetches --> GH
-        PY -- Batch Prompts --> LLM
-        LLM -- Synthesizes --> JSON[data/feed.json]
+        HA{HA Fallback}
+        LLM1[GH Models: gpt-4o-mini]
+        LLM2[Gemini 3.6 Flash]
+        PY -- Fetches --> HN & GH & TC
+        PY -- Batch Prompts --> HA
+        HA -- Primary --> LLM1
+        HA -- Secondary --> LLM2
+        LLM1 & LLM2 -- Synthesizes --> JSON[data/feed.json]
     end
 
     subgraph GitHub Pages [Static CDN]
         UI[index.html]
-        UI -- Fetches (Client-side) --> JSON
+        UI -- Render by Hotness Score --> JSON
     end
 ```
 
 ### 1. Data Ingestion & Synthesis (Backend)
 - **Trigger**: A GitHub Actions workflow (`scraper.yml`) runs on a CRON schedule (every 6 hours).
-- **Extraction**: A Python script (`src/main.py`) queries APIs and scrapes HTML to gather the latest trends from Hacker News (Hot) and GitHub Trending.
-- **Synthesis (LLM Batching)**: Sourced metadata is passed to the Gemini 3.6 Flash API. To completely bypass the strict Free-tier API rate limits (20 requests/day), all fetched articles are batched into a single prompt for one-shot summarization and categorization.
-- **Persistence**: The resulting JSON payload is committed directly back to the repository's `data/feed.json` via the CI runner. This git-backed storage acts as a headless CMS.
+- **Extraction**: Gather the hottest 25 trends from Hacker News, GitHub Trending, and TechCrunch AI RSS.
+- **Synthesis (HA LLM Batching)**: Sourced metadata is batched into a single prompt for summarization. The pipeline uses a Highly Available Multi-Model Fallback system: it attempts GitHub Models (`gpt-4o-mini`) first for free, fast inference, and falls back to Google Gemini (`gemini-3.6-flash`) if the primary endpoint fails.
+- **Strict Categorization**: The LLM is strictly instructed to differentiate between "Open Source" (tools/repos) and "Info" (money/token saving tips, free promos) to ensure high-quality curation.
+- **Persistence**: The resulting JSON payload is committed directly back to the repository's `data/feed.json`.
 
 ### 2. Presentation (Frontend)
-- **Framework-less**: To ensure instant load times and eliminate build-step bloat, the frontend is a single, pure `index.html` file.
-- **Styling**: Tailwind CSS (via CDN) is heavily utilized.
-- **Anti-Vibe-Coding UI**: Deliberately avoids generic "Card UIs" or heavy shadows. Employs a minimalist, 4-column Kanban board layout (Open Source, News, Info, Community) inspired by premium developer tools.
-- **Typography**: Strictly uses `Pretendard` for Korean legibility, with a heavily constrained grayscale color palette.
-- **Deployment**: Hosted natively on GitHub Pages, served directly from the `master` branch.
+- **Framework-less**: A single `index.html` file using Tailwind CSS (via CDN).
+- **Anti-Vibe-Coding UI**: Minimalist 4-column Kanban board layout (Open Source, News, Info, Community) with independent desktop column scrolling.
+- **Hotness Sorting**: Items are dynamically sorted in the client-side JavaScript based on their extracted community points (GitHub Stars, HN Upvotes), displaying a `🔥 [score]` badge.
+- **Deployment**: Hosted natively on GitHub Pages.
 
 ## Tech Stack
 
-- **Compute**: GitHub Actions (Ubuntu runner)
+- **Compute**: GitHub Actions
 - **Language**: Python 3.11
-- **AI/LLM**: Google Gemini 3.6 Flash (`google-genai`)
+- **AI/LLM**: GitHub Models (`openai`), Google Gemini (`google-genai`)
 - **Frontend**: Vanilla HTML5, JavaScript (ES6+), Tailwind CSS
 - **Hosting**: GitHub Pages
 
@@ -68,9 +72,9 @@ To run the pipeline locally or deploy your own instance:
    ```
 
 3. **Set environment variables**
-   Ensure you have a Gemini API key.
    ```bash
-   export GEMINI_API_KEY="your_api_key_here"
+   export GH_MODELS_TOKEN="your_github_pat_here"
+   export GEMINI_API_KEY="your_gemini_key_here" # Optional fallback
    ```
 
 4. **Execute the scraper**
