@@ -137,7 +137,7 @@
 
             sortedData.forEach(item => {
                 const parsed = parseSummary(item.summary_md);
-                const timeAgo = relativeTime(item.fetched_at);
+                const timeAgo = relativeTime(item.published_at || item.fetched_at);
                 
                 let domain = "";
                 try { domain = new URL(item.url).hostname.replace('www.', ''); } catch(e) {}
@@ -163,6 +163,7 @@
                 el.innerHTML = `
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400">
+                            <span class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded tracking-wider">TOP ${rank}</span>
                             <span class="font-semibold text-zinc-700 dark:text-zinc-300 truncate">${sourceText}</span>
                             <span>•</span>
                             <span class="flex-shrink-0">${timeAgo}</span>
@@ -180,10 +181,6 @@
                             <p class="text-[12px] text-zinc-500 dark:text-zinc-400 italic">" ${parsed.implication} "</p>
                         </div>
                         ` : ''}
-                        
-                        <div class="mt-3 flex items-center">
-                            <span class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded tracking-wider">TOP ${rank}</span>
-                        </div>
                     </div>
                 `;
                 

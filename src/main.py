@@ -114,7 +114,8 @@ def scrape_hackernews():
                 "url": hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}",
                 "source": "Hacker News",
                 "points": hit.get("points") or 0,
-                "comments": hit.get("num_comments") or 0
+                "comments": hit.get("num_comments") or 0,
+                "published_at": hit.get("created_at") or datetime.datetime.now().isoformat()
             })
         return results
     except Exception as e:
@@ -134,12 +135,15 @@ def scrape_techcrunch_ai():
         for item in root.findall('./channel/item')[:5]:
             title = item.find('title').text
             link = item.find('link').text
+            pubDate = item.find('pubDate')
+            pubDateStr = pubDate.text if pubDate is not None else datetime.datetime.now().isoformat()
             results.append({
                 "title": title,
                 "url": link,
                 "source": "TechCrunch AI",
                 "points": 300, # 뉴스는 기본 300점으로 취급하여 중간 이상에 노출되도록 함
-                "comments": "N/A"
+                "comments": "N/A",
+                "published_at": pubDateStr
             })
         return results
     except Exception as e:
@@ -168,28 +172,24 @@ def scrape_github_trending():
             if "ai " not in text_for_search and "agent" not in text_for_search and "llm" not in text_for_search:
                 continue
                 
-            # Star 개수 추출
-            stars = 500
-            for a in repo.select("a.Link--muted"):
-                if "stargazers" in a.get("href", ""):
-                    stars_text = a.text.strip().replace(',', '')
-                    if stars_text.isdigit():
-                        stars = int(stars_text)
-                        break
+            stars_el = repo.select_one('a[href$="/stargazers"]')
+            stars = 0
+            if stars_el:
+                stars = int(stars_el.text.strip().replace(',', ''))
                 
             results.append({
                 "title": title,
                 "description": desc,
-                "url": f"https://github.com/{title}",
+                "url": f"https://github.com{title_el['href']}",
                 "source": "GitHub Trending",
                 "points": stars,
-                "comments": "N/A"
+                "published_at": datetime.datetime.now().isoformat()
             })
             if len(results) >= 8: break
             
         return results
     except Exception as e:
-        print(f"GH Scraping failed: {e}")
+        print(f"GitHub Trending Scraping failed: {e}")
         return []
 
 # ---------------------------------------------------------
@@ -224,6 +224,8 @@ if __name__ == "__main__":
                 "url": item["url"],
                 "source": item["source"],
                 "summary_md": summary_md,
+                "points": item.get("points", 0),
+                "published_at": item.get("published_at") or datetime.datetime.now().isoformat(),
                 "fetched_at": datetime.datetime.now().isoformat()
             })
             
