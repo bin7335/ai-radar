@@ -4,18 +4,21 @@ import json
 import datetime
 import requests
 import time
-from google import genai
+from openai import OpenAI
 from bs4 import BeautifulSoup
 
 # ---------------------------------------------------------
 # 1. 초기 세팅 및 인증
 # ---------------------------------------------------------
-API_KEY = os.environ.get("GEMINI_API_KEY")
+API_KEY = os.environ.get("GH_MODELS_TOKEN")
 if not API_KEY:
-    print("환경변수에 GEMINI_API_KEY가 없습니다!")
+    print("환경변수에 GH_MODELS_TOKEN이 없습니다!")
     exit(1)
 
-client = genai.Client(api_key=API_KEY)
+client = OpenAI(
+    base_url="https://models.inference.ai.azure.com",
+    api_key=API_KEY
+)
 OUTPUT_FILE = "data/feed.json"
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
@@ -61,11 +64,14 @@ def summarize_batch(items):
 """
     for attempt in range(3):
         try:
-            response = client.models.generate_content(
-                model='gemini-3.6-flash',
-                contents=prompt,
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
             )
-            return [x.strip() for x in response.text.split('---') if x.strip()]
+            text = response.choices[0].message.content
+            return [x.strip() for x in text.split('---') if x.strip()]
         except Exception as e:
             print(f"Error during batch summarization (Attempt {attempt+1}/3): {e}")
             time.sleep(3)
@@ -170,6 +176,7 @@ def scrape_github_trending():
 if __name__ == "__main__":
     feed = load_feed()
     
+    new_items = scrape_hackernews() + scrape_github_trending()
     new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai()
     items_to_summarize = []
     

@@ -30,8 +30,8 @@ jobs:
 
       - name: Run Scraper & AI Summarizer
         env:
-          # GitHub Secrets에 저장된 API 키를 파이썬 스크립트로 주입! (절대 코드에 노출 안 됨)
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # GitHub Secrets에 저장된 API 토큰을 환경변수로 주입
+          GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
         run: python src/main.py
 
       - name: Commit and Push Changes

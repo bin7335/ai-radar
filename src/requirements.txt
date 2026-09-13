@@ -1,4 +1,4 @@
 requests
-google-genai
+openai
 feedparser
 beautifulsoup4
