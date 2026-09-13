@@ -142,11 +142,12 @@ def scrape_dcinside():
     ]
     
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
-    all_posts = []
     final_posts = []
     
     for gal in galleries:
         url = f"https://gall.dcinside.com/mgallery/board/lists/?id={gal['id']}&exception_mode=recommend"
+        import time
+        time.sleep(2)
         try:
             response = requests.get(url, headers=headers, timeout=10)
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -179,9 +180,6 @@ def scrape_dcinside():
         except Exception as e:
             print(f"DC Scraping failed for {gal['name']}: {e}")
             
-    # 전체 취합 후 포인트 순 정렬하여 상위 5개만 반환
-    all_posts.sort(key=lambda x: x['points'], reverse=True)
-    return all_posts[:5]
     return final_posts
 
 def scrape_hackernews():
@@ -274,9 +272,9 @@ def scrape_github_trending():
                     created_at_str = repo_data.get("created_at")
                     if created_at_str:
                         created_at = datetime.datetime.fromisoformat(created_at_str.replace("Z", "+00:00"))
-                        four_months_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=200)
+                        four_months_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=120)
                         if created_at < four_months_ago:
-                            print(f"🚫 필터링됨: {title} (생성일 {created_at_str}, 200일 경과)")
+                            print(f"?? 필터링됨: {title} (생성일 {created_at_str}, 4개월 경과)")
                             continue
             except Exception as e:
                 print(f"?? 생성일 확인 실패 {title}: {e}")
