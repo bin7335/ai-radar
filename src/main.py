@@ -46,7 +46,9 @@ def summarize(title, url, source, points="N/A", comments="N/A"):
 def summarize_batch(items):
     prompt = "선생님은 교육전문직을 위한 'AI 뉴스 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 작성합니다.\n\n"
     for i, item in enumerate(items):
-        prompt += f"[기사 {i}]\n- 기사 제목: {item['title']}\n- 원문 URL: {item['url']}\n- 출처: {item['source']}\n\n"
+        desc = item.get('description', '')
+        desc_text = f"\n- 부가 설명: {desc}" if desc else ""
+        prompt += f"[기사 {i}]\n- 기사 제목: {item['title']}\n- 원문 URL: {item['url']}\n- 출처: {item['source']}{desc_text}\n\n"
         
     prompt += """
 위 기사들을 각각 요약해주세요. [출력 형식]을 반드시 지키고, 각 기사의 요약은 '---' 로 구분해주세요.
@@ -129,7 +131,8 @@ def scrape_github_trending():
                 continue
                 
             results.append({
-                "title": f"{title}: {desc}",
+                "title": title,
+                "description": desc,
                 "url": f"https://github.com/{title}",
                 "source": "GitHub Trending",
                 "points": "Hot",
