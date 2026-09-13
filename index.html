@@ -39,7 +39,39 @@
             opacity: 1;
             transform: translateX(0);
         }
-    </style>
+    
+        /* 다이내믹 UI 효과 */
+        .col-wrapper:hover .feed-row {
+            opacity: 0.3;
+            filter: grayscale(40%);
+        }
+        .feed-row {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .col-wrapper .feed-row:hover {
+            opacity: 1 !important;
+            filter: none !important;
+            transform: translateY(-4px) scale(1.02);
+            z-index: 10;
+            background-color: var(--tw-bg-opacity, #ffffff);
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.1);
+        }
+        @media (prefers-color-scheme: dark) {
+            .col-wrapper .feed-row:hover {
+                background-color: var(--tw-bg-opacity, #09090b);
+                box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5);
+            }
+        }
+        
+        @keyframes cascadeFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-cascade {
+            animation: cascadeFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+</style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900 dark:selection:bg-blue-900 dark:selection:text-white">
     <main class="max-w-[1920px] w-full mx-auto px-6 py-20 flex-1 break-keep">
@@ -51,34 +83,118 @@
         <!-- 카테고리별 4단 레이아웃 (Kanban 보드) -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-12 xl:h-[calc(100vh-14rem)]">
             <!-- 1. 오픈소스 -->
-            <div class="flex flex-col xl:overflow-hidden">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">오픈소스</h3>
+            <div class="flex flex-col xl:overflow-hidden col-wrapper relative">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0 sticky top-0 z-20 bg-white/75 dark:bg-[#09090b]/75 backdrop-blur-md pt-2 -mt-2">오픈소스</h3>
                 <div id="col-opensource" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
+                    
+                    <!-- Skeleton Loader -->
+                    <div class="flex flex-col gap-4 mt-2">
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-3/4"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded"></div>
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-5/6"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg opacity-50">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-2/3"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             
             <!-- 2. 뉴스 -->
-            <div class="flex flex-col xl:overflow-hidden">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">뉴스</h3>
+            <div class="flex flex-col xl:overflow-hidden col-wrapper relative">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0 sticky top-0 z-20 bg-white/75 dark:bg-[#09090b]/75 backdrop-blur-md pt-2 -mt-2">뉴스</h3>
                 <div id="col-news" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
+                    
+                    <!-- Skeleton Loader -->
+                    <div class="flex flex-col gap-4 mt-2">
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-3/4"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded"></div>
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-5/6"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg opacity-50">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-2/3"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             
             <!-- 3. 정보/꿀팁 -->
-            <div class="flex flex-col xl:overflow-hidden">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">꿀팁/정보</h3>
+            <div class="flex flex-col xl:overflow-hidden col-wrapper relative">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0 sticky top-0 z-20 bg-white/75 dark:bg-[#09090b]/75 backdrop-blur-md pt-2 -mt-2">꿀팁/정보</h3>
                 <div id="col-info" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
+                    
+                    <!-- Skeleton Loader -->
+                    <div class="flex flex-col gap-4 mt-2">
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-3/4"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded"></div>
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-5/6"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg opacity-50">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-2/3"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             
             <!-- 4. 커뮤니티 -->
-            <div class="flex flex-col xl:overflow-hidden">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">커뮤니티</h3>
+            <div class="flex flex-col xl:overflow-hidden col-wrapper relative">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0 sticky top-0 z-20 bg-white/75 dark:bg-[#09090b]/75 backdrop-blur-md pt-2 -mt-2">커뮤니티</h3>
                 <div id="col-community" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
+                    
+                    <!-- Skeleton Loader -->
+                    <div class="flex flex-col gap-4 mt-2">
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-3/4"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded"></div>
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-5/6"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animate-pulse flex space-x-4 p-4 border border-zinc-100 dark:border-zinc-800 rounded-lg opacity-50">
+                            <div class="flex-1 space-y-4 py-1">
+                                <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-2/3"></div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -158,7 +274,8 @@
                 el.target = "_blank";
                 el.rel = "noopener noreferrer";
                 // 카드박스(그림자, 테두리) 대신 밑줄만 남겨 가독성 극대화
-                el.className = "group block py-5 border-b border-zinc-100 dark:border-zinc-800/60 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors -mx-3 px-3 rounded-lg sm:rounded-none";
+                el.className = "feed-row animate-cascade group block py-5 border-b border-zinc-100 dark:border-zinc-800/60 transition-colors -mx-3 px-3 rounded-xl sm:rounded-lg bg-white dark:bg-[#09090b]";
+                el.style.animationDelay = (rank * 0.08) + 's';
                 
                 const pointsLabel = parseInt(item.points) > 0 ? `<span class="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-[10px] font-bold whitespace-nowrap flex-shrink-0">🔥 ${item.points}</span>` : '';
 

@@ -1,4 +1,4 @@
-name: AI Radar News Scraper
+﻿name: AI Radar News Scraper
 
 on:
   schedule:
