@@ -11,15 +11,15 @@ The project is designed to operate continuously at **$0 infrastructure cost** by
 flowchart LR
     subgraph Data Sources
         HN[Hacker News API]
-        DC[Community HTML]
         GH[GitHub Trending]
     end
 
     subgraph GitHub Actions [Cron: Every 6H]
         PY[Python Scraper]
-        LLM[Gemini 1.5 Flash]
+        LLM[Gemini 3.6 Flash]
         PY -- Fetches --> HN
-        PY -- Prompts --> LLM
+        PY -- Fetches --> GH
+        PY -- Batch Prompts --> LLM
         LLM -- Synthesizes --> JSON[data/feed.json]
     end
 
@@ -31,14 +31,14 @@ flowchart LR
 
 ### 1. Data Ingestion & Synthesis (Backend)
 - **Trigger**: A GitHub Actions workflow (`scraper.yml`) runs on a CRON schedule (every 6 hours).
-- **Extraction**: A Python script (`src/main.py`) queries APIs and scrapes HTML to gather the latest trends.
-- **Synthesis (LLM)**: Sourced metadata is passed to the Gemini 1.5 Flash API with a strict system prompt. The model generates concise, highly objective summaries and extracts key business implications.
+- **Extraction**: A Python script (`src/main.py`) queries APIs and scrapes HTML to gather the latest trends from Hacker News (Hot) and GitHub Trending.
+- **Synthesis (LLM Batching)**: Sourced metadata is passed to the Gemini 3.6 Flash API. To completely bypass the strict Free-tier API rate limits (20 requests/day), all fetched articles are batched into a single prompt for one-shot summarization and categorization.
 - **Persistence**: The resulting JSON payload is committed directly back to the repository's `data/feed.json` via the CI runner. This git-backed storage acts as a headless CMS.
 
 ### 2. Presentation (Frontend)
 - **Framework-less**: To ensure instant load times and eliminate build-step bloat, the frontend is a single, pure `index.html` file.
 - **Styling**: Tailwind CSS (via CDN) is heavily utilized.
-- **Anti-Vibe-Coding UI**: Deliberately avoids generic "Card UIs" or heavy shadows. Employs a minimalist, typography-driven "List/Row" layout inspired by premium developer tools (e.g., Linear, Vercel).
+- **Anti-Vibe-Coding UI**: Deliberately avoids generic "Card UIs" or heavy shadows. Employs a minimalist, 4-column Kanban board layout (Open Source, News, Info, Community) inspired by premium developer tools.
 - **Typography**: Strictly uses `Pretendard` for Korean legibility, with a heavily constrained grayscale color palette.
 - **Deployment**: Hosted natively on GitHub Pages, served directly from the `master` branch.
 
@@ -46,7 +46,7 @@ flowchart LR
 
 - **Compute**: GitHub Actions (Ubuntu runner)
 - **Language**: Python 3.11
-- **AI/LLM**: Google Gemini 1.5 Flash (`google-generativeai`)
+- **AI/LLM**: Google Gemini 3.6 Flash (`google-genai`)
 - **Frontend**: Vanilla HTML5, JavaScript (ES6+), Tailwind CSS
 - **Hosting**: GitHub Pages
 
