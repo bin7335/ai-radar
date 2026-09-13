@@ -52,6 +52,7 @@ def summarize_batch(items):
 - 커뮤니티: 사람들의 의견, 토론, 후기, 질문, 자유로운 잡담
 
 [출력 형식]
+카테고리: [여기에 '오픈소스', '뉴스', '정보', '커뮤니티' 중 가장 적절한 것 1개만 작성]
 카테고리: [위 4가지 기준 중 가장 적합한 단 1개만 선택하여 작성 (예: 정보)]
 > **[🔥AI/에이전트] {기사 제목}**
 > - **한 줄 요약**: (비개발자도 이해하기 쉽게 1줄 요약)
@@ -91,6 +92,31 @@ def scrape_hackernews():
         return results
     except Exception as e:
         print(f"HN Scraping failed: {e}")
+        return []
+
+def scrape_techcrunch_ai():
+    print("🔍 TechCrunch AI 크롤링 시작...")
+    import xml.etree.ElementTree as ET
+    import urllib.request
+    url = "https://techcrunch.com/category/artificial-intelligence/feed/"
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        xml_data = urllib.request.urlopen(req).read()
+        root = ET.fromstring(xml_data)
+        results = []
+        for item in root.findall('./channel/item')[:3]:
+            title = item.find('title').text
+            link = item.find('link').text
+            results.append({
+                "title": title,
+                "url": link,
+                "source": "TechCrunch AI",
+                "points": "Hot",
+                "comments": "N/A"
+            })
+        return results
+    except Exception as e:
+        print(f"TechCrunch Scraping failed: {e}")
         return []
 
 def scrape_github_trending():
@@ -136,7 +162,7 @@ def scrape_github_trending():
 if __name__ == "__main__":
     feed = load_feed()
     
-    new_items = scrape_hackernews() + scrape_github_trending()
+    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai()
     items_to_summarize = []
     
     for item in new_items:
