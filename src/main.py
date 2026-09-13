@@ -31,7 +31,7 @@ os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 def clean_text(text):
     if not text: return text
     import re
-    bad_words = ['좆', '존나', '씨발', '개새', '병신', '미친', '지랄', '새끼', '썅', '개소리', '씹']
+    bad_words = ['좆', '존나', '씨발', '개새', '병신', '미친', '지랄', '새끼', '썅', '개소리', '씹', '자지', '보지', '섹스', '야동']
     for word in bad_words:
         text = re.sub(word, '★', text)
     return text
