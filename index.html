@@ -48,37 +48,37 @@
             <p class="text-zinc-500 dark:text-zinc-400 text-sm">에이전트, 바이브코딩, 오픈소스 생태계 핵심 브리핑</p>
         </header>
 
-        <!-- 카테고리별 4열 레이아웃 (Kanban 스타일) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-12">
+        <!-- 카테고리별 4단 레이아웃 (Kanban 보드) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-12 xl:h-[calc(100vh-14rem)]">
             <!-- 1. 오픈소스 -->
-            <div class="flex flex-col">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2">오픈소스</h3>
-                <div id="col-opensource" class="flex flex-col">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터를 불러오는 중...</div>
+            <div class="flex flex-col xl:overflow-hidden">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">오픈소스</h3>
+                <div id="col-opensource" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
+                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
                 </div>
             </div>
             
             <!-- 2. 뉴스 -->
-            <div class="flex flex-col">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2">뉴스</h3>
-                <div id="col-news" class="flex flex-col">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터를 불러오는 중...</div>
+            <div class="flex flex-col xl:overflow-hidden">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">뉴스</h3>
+                <div id="col-news" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
+                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
                 </div>
             </div>
             
             <!-- 3. 정보/꿀팁 -->
-            <div class="flex flex-col">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2">꿀팁/정보</h3>
-                <div id="col-info" class="flex flex-col">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터를 불러오는 중...</div>
+            <div class="flex flex-col xl:overflow-hidden">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">꿀팁/정보</h3>
+                <div id="col-info" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
+                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
                 </div>
             </div>
             
             <!-- 4. 커뮤니티 -->
-            <div class="flex flex-col">
-                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2">커뮤니티</h3>
-                <div id="col-community" class="flex flex-col">
-                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터를 불러오는 중...</div>
+            <div class="flex flex-col xl:overflow-hidden">
+                <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest border-b-2 border-zinc-900 dark:border-zinc-100 pb-3 mb-2 shrink-0">커뮤니티</h3>
+                <div id="col-community" class="flex flex-col xl:overflow-y-auto pr-1 pb-8">
+                    <div class="animate-pulse text-zinc-400 text-xs mt-4">데이터 불러오는 중...</div>
                 </div>
             </div>
         </div>
