@@ -123,7 +123,7 @@ def summarize_batch(items):
 # ---------------------------------------------------------
 
 def scrape_dcinside():
-    print("🚀 특이점이 온다 갤러리 크롤링 시작...")
+    print("🚀 특이점이 온다 갤러리 핫(Hot) 크롤링 시작...")
     import requests
     from bs4 import BeautifulSoup
     import datetime
@@ -132,19 +132,32 @@ def scrape_dcinside():
     try:
         response = requests.get(url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.text, 'html.parser')
-        results = []
+        
+        all_posts = []
         for tr in soup.select('tr.us-post'):
-            if len(results) >= 5: break
             num_tag = tr.select_one('.gall_num')
             if num_tag and not num_tag.text.strip().isdigit(): continue
             a_tag = tr.select_one('.gall_tit a:not(.reply_numbox)')
             if not a_tag: continue
+            
             title = a_tag.text.strip()
             link = "https://gall.dcinside.com" + a_tag['href']
+            
             points_tag = tr.select_one('.gall_recommend')
-            points = int(points_tag.text.strip()) if points_tag and points_tag.text.strip().isdigit() else 50
-            results.append({"title": title, "url": link, "source": "DCInside (특이점이 온다)", "points": points, "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()})
-        return results
+            points = int(points_tag.text.strip()) if points_tag and points_tag.text.strip().isdigit() else 0
+            
+            # 조회수도 수집해서 보정치로 활용 가능하나 일단 추천수(points) 기준 정렬
+            all_posts.append({
+                "title": title,
+                "url": link,
+                "source": "DCInside (특이점이 온다)",
+                "points": points,
+                "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
+            })
+            
+        # 첫 페이지의 개념글 중 추천수(points)가 가장 높은 상위 5개만 추출
+        all_posts.sort(key=lambda x: x['points'], reverse=True)
+        return all_posts[:5]
     except Exception as e:
         print(f"DC Scraping failed: {e}")
         return []
