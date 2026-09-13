@@ -232,7 +232,7 @@ def scrape_github_trending():
             
             text_for_search = (title + " " + desc).lower()
             import re
-            is_ai = bool(re.search(r'\b(ai|agent|llm|gpt|model|machine learning|deep learning|diffusion|transformer|chatbot|genai|generative|openai|llama|vision|audio|tts|stt)\b', text_for_search))
+            is_ai = bool(re.search(r'\b(ai|agent|llm|gpt|model|machine learning|deep learning|diffusion|transformer|chatbot|genai|generative|openai|llama|vision|audio|tts|stt|skill|intelligence)\b', text_for_search))
             
             if not is_ai:
                 continue
