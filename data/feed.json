@@ -171,6 +171,15 @@
     "fetched_at": "2026-09-13T09:14:00.693897+00:00"
   },
   {
+    "title": "The worst spam emails: iLands AI agent hustle",
+    "url": "https://tedium.co/2026/09/11/ilands-agents-email-spam-kaixin-tang/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] The worst spam emails: iLands AI agent hustle**\n> - **한 줄 요약**: AI 에이전트가 복잡한 스팸 메일을 처리하는 과정을 다룬 사례입니다.\n> - **인사이트**: AI 에이전트를 활용하면 이메일 필터링을 자동화하여 업무 시간을 획기적으로 줄일 수 있습니다.\n> - **출처**: Hacker News (https://tedium.co/2026/09/11/ilands-agents-email-spam-kaixin-tang/)",
+    "points": 114,
+    "published_at": "2026-09-12T11:13:38Z",
+    "fetched_at": "2026-09-13T13:47:55.511654+00:00"
+  },
+  {
     "title": "뉴비 가이드)gpt 뭐 써야 해요? 특이점이 뭐에요? (250818)",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=571617&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -189,6 +198,15 @@
     "fetched_at": "2026-09-13T09:14:00.693942+00:00"
   },
   {
+    "title": "OKF Agent Memory – Git-native persistent memory for AI coding agents",
+    "url": "https://github.com/okf-memory/okf-agent-memory",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] OKF Agent Memory – Git-native persistent memory for AI coding agents**\n> - **한 줄 요약**: AI 코딩 에이전트의 작업 상태를 Git 기반 지속 가능 메모리로 관리하는 오픈소스 도구입니다.\n> - **인사이트**: Git 기반 메모리 시스템은 코딩 에이전트의 컨텍스트 유지와 협업을 효율적으로 지원합니다.\n> - **출처**: GitHub (https://github.com/okf-memory/okf-agent-memory)",
+    "points": 80,
+    "published_at": "2026-09-05T22:15:52Z",
+    "fetched_at": "2026-09-13T13:47:55.511680+00:00"
+  },
+  {
     "title": "죽어가는 사람들을 위해 가속 <- 참기 힘들게 역겨움",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1418094&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -196,6 +214,51 @@
     "points": 75,
     "published_at": "2026-09-13T12:42:26.171261+00:00",
     "fetched_at": "2026-09-13T12:44:53.048792+00:00"
+  },
+  {
+    "title": "AgentsDock: An IDE designed for agentic AI research",
+    "url": "https://agentsdock.net/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] AgentsDock: An IDE designed for agentic AI research**\n> - **한 줄 요약**: 에이전트 중심 AI 연구를 위한 통합 개발 환경(IDE)으로 설계된 프로젝트입니다.\n> - **인사이트**: 에이전트형 AI 개발을 위한 통합 개발 환경은 연구 생산성을 크게 향상시킵니다.\n> - **출처**: AgentsDock (https://agentsdock.net/)",
+    "points": 72,
+    "published_at": "2026-09-12T23:45:58Z",
+    "fetched_at": "2026-09-13T13:47:55.511693+00:00"
+  },
+  {
+    "title": "Yadda 3.0.0: BDD in the Age of AI Agents",
+    "url": "http://www.stephen-cresswell.com/2026/08/15/Yadda-3.0.0-BDD-in-the-Age-of-AI-Agents.html",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Yadda 3.0.0: BDD in the Age of AI Agents**\n> - **한 줄 요약**: AI 에이전트 시대에 BDD(행동 지향 테스트)를 적용하는 3.0.0 버전입니다.\n> - **인사이트**: AI 에이전트와 협업하는 테스트 자동화를 지원하는 유틸리티입니다.\n> - **출처**: Stephen Cresswell 블로그 (http://www.stephen-cresswell.com/2026/08/15/Yadda-3.0.0-BDD-in-the-Age-of-AI-Agents.html)",
+    "points": 66,
+    "published_at": "2026-08-15T13:43:46Z",
+    "fetched_at": "2026-09-13T13:47:55.511705+00:00"
+  },
+  {
+    "title": "We must not grant AI agents legal personhood",
+    "url": "https://www.ft.com/content/b8cc4bf4-6d3c-4974-8428-9a091983c473",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] We must not grant AI agents legal personhood**\n> - **한 줄 요약**: AI 에이전트에게 법적 개인성을 부여하지 말아야 한다는 논평과 경고를 담은 기사입니다.\n> - **인사이트**: AI 에이전트의 권리 문제는 법적 프레임워크 재설계가 필요한 중요한 과제를 제시합니다.\n> - **출처**: Financial Times (https://www.ft.com/content/b8cc4bf4-6d3c-4974-8428-9a091983c473)",
+    "points": 62,
+    "published_at": "2026-08-23T17:25:03Z",
+    "fetched_at": "2026-09-13T13:47:55.511716+00:00"
+  },
+  {
+    "title": "Meta Security Researcher's AI Agent Accidentally Deleted Her Emails",
+    "url": "https://au.pcmag.com/ai/116091/meta-security-researchers-ai-agent-accidentally-deleted-her-emails",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Meta Security Researcher's AI Agent Accidentally Deleted Her Emails**\n> - **한 줄 요약**: 메타 보안 연구원이 자신의 AI 에이전트가 우연히 이메일을 삭제하는 사고를 당한 사례입니다.\n> - **인사이트**: AI 에이전트의 오작동 위험을 경계해야 하며 안전 장치가 필수적임을 시사합니다.\n> - **출처**: PCMag (https://au.pcmag.com/ai/116091/meta-security-researchers-ai-agent-accidentally-deleted-her-emails)",
+    "points": 60,
+    "published_at": "2026-08-31T07:23:47Z",
+    "fetched_at": "2026-09-13T13:47:55.511728+00:00"
+  },
+  {
+    "title": "WebMCP: Teaching Your Website to Talk to AI Agents",
+    "url": "https://sreenathmenon.com/blog/2026-08-04-webmcp-teaching-websites-to-talk-to-ai-agents/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] WebMCP: Teaching Your Website to Talk to AI Agents**\n> - **한 줄 요약**: 웹사이트가 AI 에이전트와 대화할 수 있도록 학습시키는 프로젝트입니다.\n> - **인사이트**: 웹과 AI 에이전트 간의 자동화된 상호작용을 가능하게 하여 업무 흐름을 최적화합니다.\n> - **출처**: Sreenath Menon 블로그 (https://sreenathmenon.com/blog/2026-08-04-webmcp-teaching-websites-to-talk-to-ai-agents/)",
+    "points": 57,
+    "published_at": "2026-08-26T15:02:15Z",
+    "fetched_at": "2026-09-13T13:47:55.511739+00:00"
   },
   {
     "title": "/goal 돈벌어와 후기",
