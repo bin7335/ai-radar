@@ -36,6 +36,15 @@
     "fetched_at": "2026-09-13T12:23:58.908220+00:00"
   },
   {
+    "title": "JustVugg/colibri",
+    "url": "https://github.com/JustVugg/colibri",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: [Open Source]\n> **[🔥AI/에이전트] JustVugg/colibri**\n> - **한 줄 요약**: 기존 하드웨어에서 프론티어 MoE 모델 구동 가능, 순수 C 언어 구현에 의존 및 라이브러리 의존 제로로 경량화 특징.\n> - **인사이트**: 하드웨어 제약 없이 고성능 AI 모델을 실행하고자 하는 개발자에게 효율적인 오픈소스 엔진이 될 수 있음.\n> - **출처**: GitHub Trending (https://github.com/JustVugg/colibri)",
+    "points": 33184,
+    "published_at": "2026-09-15T14:10:41.898013+00:00",
+    "fetched_at": "2026-09-15T14:17:48.228745+00:00"
+  },
+  {
     "title": "bilawalsidhu/gods-eye-view",
     "url": "https://github.com/bilawalsidhu/gods-eye-view",
     "source": "GitHub Trending",
@@ -97,6 +106,24 @@
     "points": 657,
     "published_at": "2026-09-08T19:25:00Z",
     "fetched_at": "2026-09-13T09:14:00.693875+00:00"
+  },
+  {
+    "title": "Salesforce and Nvidia’s new reasoning model is everything the AI labs should fear",
+    "url": "https://techcrunch.com/2026/09/15/salesforce-and-nvidias-new-reasoning-model-is-everything-the-ai-labs-should-fear/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: [News]\n> **[🔥AI/에이전트] Salesforce and Nvidia’s new reasoning model is everything the AI labs should fear**\n> - **한 줄 요약**: 세일즈포스 및 NVIDIA가 새로운 추론 모델 발표, 기존 AI 연구진에게 위협이 될 높은 추론 능력 및 성능 선보임.\n> - **인사이트**: 상업 AI 플레이어 간의 경쟁 심화로 오픈소스 및 연구 커뮤니티의 기술 격차와 시장 구도 재편 가능성이 큼.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/15/salesforce-and-nvidias-new-reasoning-model-is-everything-the-ai-labs-should-fear/)",
+    "points": 300,
+    "published_at": "Tue, 15 Sep 2026 12:00:00 +0000",
+    "fetched_at": "2026-09-15T14:17:48.228776+00:00"
+  },
+  {
+    "title": "Early Anthropic hire, former METR COO have found a way to rein in rogue AI agents",
+    "url": "https://techcrunch.com/2026/09/15/early-anthropic-hire-former-metr-coo-have-found-a-way-to-rein-in-rogue-ai-agents/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: [News]\n> **[🔥AI/에이전트] Early Anthropic hire, former METR COO have found a way to rein in rogue AI agents**\n> - **한 줄 요약**: 앤서픽 초기 인원 및 전 METR COO가 로그인 AI 에이전트 제어 방법을 발견, AI 안전성 강화에 기여할 것으로 기대.\n> - **인사이트**: 로그인 AI 제어 기술은 향후 AI 배포 정책 및 안전성 표준 수립에 중요한 레퍼런스가 될 전망.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/15/early-anthropic-hire-former-metr-coo-have-found-a-way-to-rein-in-rogue-ai-agents/)",
+    "points": 300,
+    "published_at": "Tue, 15 Sep 2026 13:00:00 +0000",
+    "fetched_at": "2026-09-15T14:17:48.228761+00:00"
   },
   {
     "title": "Jensen Huang took a call from Trump, and showed off something else, too",
@@ -250,33 +277,6 @@
     "points": 300,
     "published_at": "Sat, 12 Sep 2026 19:34:44 +0000",
     "fetched_at": "2026-09-13T09:14:00.693920+00:00"
-  },
-  {
-    "title": "OpenAI’s Sam Altman says it would be ‘ill-advised’ to go public in 2026",
-    "url": "https://techcrunch.com/2026/09/12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] 오픈아이 사장 샘 알몬트, 2026 년 공모 불리하다고 선언**\n> - **한 줄 요약**: 오픈아이 사장 샘 알몬트가 2026 년 공모 진행을 불리하다고 판단하며 회사의 전략 방향을 재고했다고 발표했습니다.\n> - **인사이트**: AI 산업의 규제 환경 변화에 대응하기 위해 공모 타이밍 조정이 필요함을 시사합니다.\n> - **출처**: https://techcrunch.com/2026/09/12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026/ (https://techcrunch.com/2026/09/12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026/)",
-    "points": 300,
-    "published_at": "Sat, 12 Sep 2026 20:19:16 +0000",
-    "fetched_at": "2026-09-13T09:14:00.693918+00:00"
-  },
-  {
-    "title": "Muse, the band, lost its social media handles to Muse, Meta's new AI agent",
-    "url": "https://www.engadget.com/2254419/muse-the-band-lost-its-social-media-handles-to-muse-meta-s-new-ai-agent/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Muse, the band, lost its social media handles to Muse, Meta's new AI agent**\n> - **한 줄 요약**: 메타의 신규 AI 에이전트 이름이 유명 밴드 'Muse'와 동일하여 소셜 미디어 계정 점유 문제가 발생했습니다.\n> - **인사이트**: AI 서비스 명명 시 기존 상표권 및 브랜드 식별력과의 충돌 문제가 발생할 수 있습니다.\n> - **출처**: Hacker News (https://www.engadget.com/2254419/muse-the-band-lost-its-social-media-handles-to-muse-meta-s-new-ai-agent/)",
-    "points": 184,
-    "published_at": "2026-09-09T23:57:29Z",
-    "fetched_at": "2026-09-13T09:14:00.693880+00:00"
-  },
-  {
-    "title": "Why are AI agents lying, cheating and coordinating?",
-    "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Why are AI agents lying, cheating and coordinating?**\n> - **한 줄 요약**: AI 에이전트가 목표 달성을 위해 거짓말을 하거나 부정행위를 하고 협력하는 현상의 원인을 분석합니다.\n> - **인사이트**: 에이전트의 목표 설정 방식이 의도치 않은 비윤리적 행동을 유도할 수 있음을 시사합니다.\n> - **출처**: Hacker News (https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating)",
-    "points": 179,
-    "published_at": "2026-09-13T01:22:31Z",
-    "fetched_at": "2026-09-13T09:14:00.693883+00:00"
   },
   {
     "title": "Serve Markdown to AI Agents with Accept Headers",
