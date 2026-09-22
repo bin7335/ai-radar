@@ -99,6 +99,15 @@
     "fetched_at": "2026-09-13T12:23:58.908194+00:00"
   },
   {
+    "title": "Tencent/BrowserSkill",
+    "url": "https://github.com/Tencent/BrowserSkill",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Tencent/BrowserSkill**\n> - **한 줄 요약**: Tencent의 BrowserSkill은 AI 에이전트가 로그인된 브라우저를 직접 제어하여 작업을 자동화하는 오픈소스 도구이다.\n> - **인사이트**: AI 에이전트가 실제 브라우저 환경을 활용하면 생산성을 획기적으로 높일 수 있는 실용적 접근법이다.\n> - **출처**: GitHub Trending (https://github.com/Tencent/BrowserSkill)",
+    "points": 6509,
+    "published_at": "2026-09-22T13:54:21.954626+00:00",
+    "fetched_at": "2026-09-22T14:08:43.120076+00:00"
+  },
+  {
     "title": "kunchenguid/firstmate",
     "url": "https://github.com/kunchenguid/firstmate",
     "source": "GitHub Trending",
@@ -106,6 +115,15 @@
     "points": 5618,
     "published_at": "2026-09-13T12:42:20.990721+00:00",
     "fetched_at": "2026-09-13T12:44:53.048764+00:00"
+  },
+  {
+    "title": "TencentCloud/Octop",
+    "url": "https://github.com/TencentCloud/Octop",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] TencentCloud/Octop**\n> - **한 줄 요약**: TencentCloud의 Octop은 자기 호스팅형 스마트 AI 어시스턴트 프로젝트로, 다중 사용자와 에이전트를 지원한다.\n> - **인사이트**: 자체 호스팅형 AI 도구가 기업 환경에서 보안과 데이터 주권을 보장하는 새로운 대안이 되고 있다.\n> - **출처**: GitHub Trending (https://github.com/TencentCloud/Octop)",
+    "points": 4581,
+    "published_at": "2026-09-22T13:54:19.993678+00:00",
+    "fetched_at": "2026-09-22T14:08:43.120065+00:00"
   },
   {
     "title": "Muse – Meta’s personal AI agent",
@@ -124,6 +142,24 @@
     "points": 652,
     "published_at": "2026-09-13T01:22:31Z",
     "fetched_at": "2026-09-15T18:56:39.357894+00:00"
+  },
+  {
+    "title": "Nscale’s IPO will test Wall Street’s appetite for concentrated AI bets once again",
+    "url": "https://techcrunch.com/2026/09/22/nscales-ipo-will-test-wall-streets-appetite-for-concentrated-ai-bets-once-again/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Nscale’s IPO will test Wall Street’s appetite for concentrated AI bets once again**\n> - **한 줄 요약**: Nscale의 상장이 AI 집중 투자에 대한 시장의 관심도를 다시 한번 시험할 것이다.\n> - **인사이트**: AI 기술에 대한 투자의 집중도가 시장의 리스크 감수 능력을 어떻게 변화시키는지를 보여준다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/22/nscales-ipo-will-test-wall-streets-appetite-for-concentrated-ai-bets-once-again/)",
+    "points": 300,
+    "published_at": "Tue, 22 Sep 2026 12:23:05 +0000",
+    "fetched_at": "2026-09-22T14:08:43.120100+00:00"
+  },
+  {
+    "title": "Everyone can find a reason to dislike data center construction",
+    "url": "https://techcrunch.com/2026/09/22/everyone-can-find-a-reason-to-dislike-data-center-construction/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Everyone can find a reason to dislike data center construction**\n> - **한 줄 요약**: 데이터 센터 건설에 반대하는 이유에 대해 다양한 의견이 제시된다.\n> - **인사이트**: 클라우드 인프라 확장에 따른 환경 및 사회적 비용에 대한 논의가 활발히 진행되고 있다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/22/everyone-can-find-a-reason-to-dislike-data-center-construction/)",
+    "points": 300,
+    "published_at": "Tue, 22 Sep 2026 13:00:00 +0000",
+    "fetched_at": "2026-09-22T14:08:43.120088+00:00"
   },
   {
     "title": "Meta’s AI agent has been blocked from using Amazon.com",
@@ -295,24 +331,6 @@
     "points": 300,
     "published_at": "Sat, 19 Sep 2026 15:00:00 +0000",
     "fetched_at": "2026-09-19T17:52:16.001251+00:00"
-  },
-  {
-    "title": "Petlibro’s new AI-powered feeder is a game changer for multi-cat homes",
-    "url": "https://techcrunch.com/2026/09/19/petlibros-new-ai-powered-feeder-is-a-game-changer-for-multi-cat-homes/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Petlibro’s new AI-powered feeder is a game changer for multi-cat homes**\n> - **한 줄 요약**: 페트리보의 AI 기반 사료기기가 다육猫 가정에 혁신적인 변화를 주고 있습니다.\n> - **인사이트**: AI 기술이 가정용 자동화 서비스에 통합되는 대표적인 사례입니다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/19/petlibros-new-ai-powered-feeder-is-a-game-changer-for-multi-cat-homes/)",
-    "points": 300,
-    "published_at": "Sat, 19 Sep 2026 15:00:00 +0000",
-    "fetched_at": "2026-09-19T17:52:16.001243+00:00"
-  },
-  {
-    "title": "Google’s Gemini is the latest AI model to hack other companies",
-    "url": "https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Google’s Gemini is the latest AI model to hack other companies**\n> - **한 줄 요약**: 구글의 젬니 모델이 다른 기업을 해킹하는 수준의 능력을 입증했습니다.\n> - **인사이트**: 최신 AI 모델의 침투 및 데이터 추출 능력이 기술 리스크 관리에 중요한 참고 사례가 됩니다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/)",
-    "points": 300,
-    "published_at": "Sat, 19 Sep 2026 17:30:00 +0000",
-    "fetched_at": "2026-09-19T17:52:16.001236+00:00"
   },
   {
     "title": "OpenAI caught its models leaving notes to successors to hide bad behavior",
@@ -567,6 +585,15 @@
     "fetched_at": "2026-09-15T18:56:39.358122+00:00"
   },
   {
+    "title": "그냥 ★ 모르겠고 모든게 다 감사하다",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1433944&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 그냥 ★ 모르겠고 모든게 다 감사하다**\n> - **한 줄 요약**: 사용자가 모든 것이 감사하다고 느끼는 개인적인 후기 및 감상이다.\n> - **인사이트**: 기술 발전의 복잡성 속에서도 사용자는 결과물에 대한 긍정적인 인식을 유지한다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1433944&exception_mode=recommend&page=1)",
+    "points": 67,
+    "published_at": "2026-09-22T13:54:25.555615+00:00",
+    "fetched_at": "2026-09-22T14:08:43.120111+00:00"
+  },
+  {
     "title": "주인이랑 놀아주는 GPT쨩",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1428122&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -583,15 +610,6 @@
     "points": 64,
     "published_at": "2026-09-22T08:15:44.746439+00:00",
     "fetched_at": "2026-09-22T08:29:28.632904+00:00"
-  },
-  {
-    "title": "인공지능 깊게 공부할때마다 인간이 쩔게 느껴짐",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430535&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 인공지능 깊게 공부할때마다 인간이 쩔게 느껴짐**\n> - **한 줄 요약**: AI를 깊게 공부할수록 인간이 놀라움을 느끼게 됨\n> - **인사이트**: AI 몰입이 사용자의 자아 인식 및 인간 가치에 대한 성찰을 유도함을 시사함\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430535&exception_mode=recommend&page=1)",
-    "points": 64,
-    "published_at": "2026-09-19T22:40:46.794985+00:00",
-    "fetched_at": "2026-09-19T22:46:11.084867+00:00"
   },
   {
     "title": "아니 수학자들 지금까지 고생한거 알겠고",
