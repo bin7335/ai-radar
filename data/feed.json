@@ -126,6 +126,15 @@
     "fetched_at": "2026-09-22T14:08:43.120065+00:00"
   },
   {
+    "title": "superdesigndev/treg",
+    "url": "https://github.com/superdesigndev/treg",
+    "source": "GitHub Trending",
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] superdesigndev/treg**\n> - **한 줄 요약**: OpenRouter 기반 에이전트 도구인 treg 프로젝트가 GitHub에 공개되어 개발자들에게 제공된다.\n> - **인사이트**: AI 에이전트를 효율적으로 관리하고 통합할 수 있는 오픈소스 도구가 등장하며 개발자 생태계에 영향을 준다.\n> - **출처**: https://github.com/superdesigndev/treg",
+    "points": 2522,
+    "published_at": "2026-09-23T14:05:06.331671+00:00",
+    "fetched_at": "2026-09-23T14:17:56.948794+00:00"
+  },
+  {
     "title": "Muse – Meta’s personal AI agent",
     "url": "https://ai.meta.com/muse/",
     "source": "Hacker News",
@@ -142,6 +151,33 @@
     "points": 652,
     "published_at": "2026-09-13T01:22:31Z",
     "fetched_at": "2026-09-15T18:56:39.357894+00:00"
+  },
+  {
+    "title": "Ema raises $77M as AI starts eating into enterprise software and services",
+    "url": "https://techcrunch.com/2026/09/23/ema-raises-77m-as-ai-starts-eating-into-enterprise-software-and-services/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] Ema raises $77M as AI starts eating into enterprise software and services**\n> - **한 줄 요약**: AI 기업 EMA가 엔터프라이즈 소프트웨어 시장에서 투자 유치 성공을 기록했다.\n> - **인사이트**: AI 기술이 기존 기업 솔루션을 대체하면서 스타트업에 대한 투자 관심도가 급증하고 있다.\n> - **출처**: https://techcrunch.com/2026/09/23/ema-raises-77m-as-ai-starts-eating-into-enterprise-software-and-services/",
+    "points": 300,
+    "published_at": "Wed, 23 Sep 2026 12:00:00 +0000",
+    "fetched_at": "2026-09-23T14:17:56.948835+00:00"
+  },
+  {
+    "title": "Spotify’s is giving you the keys to its recommendation algorithm with US launch of ‘Taste Profile’",
+    "url": "https://techcrunch.com/2026/09/23/spotify-is-giving-you-the-keys-to-its-recommendation-algorithm-with-u-s-launch-of-taste-profile/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Spotify’s is giving you the keys to its recommendation algorithm with US launch of ‘Taste Profile’**\n> - **한 줄 요약**: 스포티파이가 미국 시장에서 Taste Profile 기능을 통해 추천 알고리즘에 직접 접근할 수 있게 되었다.\n> - **인사이트**: 기업들이 사용자에게 추천 시스템을 투명하게 공개함으로써 신뢰를 높이고 사용자 경험을 개선하려는 움직임이다.\n> - **출처**: https://techcrunch.com/2026/09/23/spotify-is-giving-you-the-keys-to-its-recommendation-algorithm-with-u-s-launch-of-taste-profile/",
+    "points": 300,
+    "published_at": "Wed, 23 Sep 2026 13:00:00 +0000",
+    "fetched_at": "2026-09-23T14:17:56.948822+00:00"
+  },
+  {
+    "title": "3 days left to save up to $200 and make impactful connections at TechCrunch Disrupt 2026",
+    "url": "https://techcrunch.com/2026/09/23/3-days-left-to-save-up-to-200-and-make-impactful-connections-at-techcrunch-disrupt-2026/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] 3 days left to save up to $200 and make impactful connections at TechCrunch Disrupt 2026**\n> - **한 줄 요약**: 테크 크루치 디스 랙트 2026 컨퍼런스 준비 기간 중 예산 절감과 네트워킹 기회를 강조한다.\n> - **인사이트**: 대규모 기술 컨퍼런스는 업계 트렌드와 네트워킹에 중요한 역할을 하며, 참여자들은 실질적 이익을 얻을 수 있다.\n> - **출처**: https://techcrunch.com/2026/09/23/3-days-left-to-save-up-to-200-and-make-impactful-connections-at-techcrunch-disrupt-2026/",
+    "points": 300,
+    "published_at": "Wed, 23 Sep 2026 14:00:00 +0000",
+    "fetched_at": "2026-09-23T14:17:56.948808+00:00"
   },
   {
     "title": "‘We’re already fighting yesterday’s battle’: Greece’s prime minister gets candid about AI",
@@ -277,24 +313,6 @@
     "points": 300,
     "published_at": "Mon, 21 Sep 2026 19:25:00 +0000",
     "fetched_at": "2026-09-21T23:53:55.938913+00:00"
-  },
-  {
-    "title": "OpenAI forms math advisory group as its AI resolves more than 100 open problems",
-    "url": "https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] OpenAI, 수학 자문단 구성 및 AI가 100개 이상 미해결 문제 해결**\n> - **한 줄 요약**: OpenAI가 수학 자문단을 출범시키고 AI가 100개가 넘는 수학 문제를 해결했다고 발표\n> - **인사이트**: AI 수학적 추론 능력이 급진전 중이며 핵심 연구 개발 경쟁이 심화됨\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/21/openai-forms-math-advisory-group-as-its-ai-resolves-more-than-100-open-problems/)",
-    "points": 300,
-    "published_at": "Mon, 21 Sep 2026 20:15:58 +0000",
-    "fetched_at": "2026-09-21T23:53:55.938901+00:00"
-  },
-  {
-    "title": "The man who built Apple’s stores doesn’t buy Silicon Valley’s bet on AI shopping",
-    "url": "https://techcrunch.com/2026/09/21/the-man-who-built-apples-stores-doesnt-buy-silicon-valleys-bet-on-ai-shopping/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] 애플 매장을 만든 남자가 실리콘밸리 AI 쇼핑 베팅을 신뢰하지 않아**\n> - **한 줄 요약**: 애플 스토어 설계 전문가가 AI 기반 쇼핑 트렌드에 대해 전적 신뢰를 표시하지 않음\n> - **인사이트**: 전통 리테일 전문 지식과 AI 자동화 쇼핑 사이의 간극 및 현장 시각의 중요성 부각\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/21/the-man-who-built-apples-stores-doesnt-buy-silicon-valleys-bet-on-ai-shopping/)",
-    "points": 300,
-    "published_at": "Mon, 21 Sep 2026 23:44:28 +0000",
-    "fetched_at": "2026-09-21T23:53:55.938889+00:00"
   },
   {
     "title": "From first users to billions: Google’s Robby Stein joins TechCrunch Disrupt 2026",
@@ -549,6 +567,24 @@
     "fetched_at": "2026-09-13T13:47:55.511693+00:00"
   },
   {
+    "title": "오푸스 5.5 프론트 진짜 말이 안된다..",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1436137&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 오푸스 5.5 프론트 진짜 말이 안된다..**\n> - **한 줄 요약**: 오푸스 5.5 프론트 엔드 동작에 대한 사용자 불만 제기.\n> - **인사이트**: 프론트엔드 사용성 피드백은 모델 개선 로드맵에 직접 반영되는 핵심 지표가 된다.\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1436137&exception_mode=recommend&page=1)",
+    "points": 71,
+    "published_at": "2026-09-23T14:05:09.743974+00:00",
+    "fetched_at": "2026-09-23T14:17:56.948860+00:00"
+  },
+  {
+    "title": "요즘 영상 AI 재밌노 ㅋㅋ 영화도 조만간일듯",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1435739&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 요즘 영상 AI 재밌노 ㅋㅋ 영화도 조만간일듯**\n> - **한 줄 요약**: 현재의 비디오 AI 기술에 대한 대중의 반응이 긍정적이고 접근성이 높아진다는 의견이 공유된다.\n> - **인사이트**: AI 기술의 발전 속도에 따라 대중의 인식과 활용 방식이 빠르게 변화하고 있다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1435739&exception_mode=recommend&page=1",
+    "points": 71,
+    "published_at": "2026-09-23T14:05:09.742184+00:00",
+    "fetched_at": "2026-09-23T14:17:56.948848+00:00"
+  },
+  {
     "title": "걍 한국에서 태어난걸 감사하게 생각하셈",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432439&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -592,24 +628,6 @@
     "points": 67,
     "published_at": "2026-09-22T13:54:25.555615+00:00",
     "fetched_at": "2026-09-22T14:08:43.120111+00:00"
-  },
-  {
-    "title": "주인이랑 놀아주는 GPT쨩",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1428122&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 주인이랑 놀아주는 GPT쨩**\n> - **한 줄 요약**: 사용자가 GPT쨩 AI 어시스턴트를 통해 일상 업무를 돕는 경험담입니다.\n> - **인사이트**: 한국어 LLM을 활용한 개인 맞춤형 생산성 향상이 가능함을 보여줍니다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1428122&exception_mode=recommend&page=1",
-    "points": 66,
-    "published_at": "2026-09-17T18:49:35.379785+00:00",
-    "fetched_at": "2026-09-17T18:54:09.737980+00:00"
-  },
-  {
-    "title": "★공감) 특슬람이라면 한번쯤 해본 생각 ㅋㅋ",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1433573&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] ★공감) 특슬람이라면 한번쯤 해본 생각 ㅋㅋ**\n> - **한 줄 요약**: SleekLM AI 어시스턴트 사용 후 공감을 표하는 글이다.\n> - **인사이트**: 실제 AI 도구 사용 경험을 통해 서비스 품질을 평가할 수 있다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1433573&exception_mode=recommend&page=1",
-    "points": 64,
-    "published_at": "2026-09-22T08:15:44.746439+00:00",
-    "fetched_at": "2026-09-22T08:29:28.632904+00:00"
   },
   {
     "title": "아니 수학자들 지금까지 고생한거 알겠고",
@@ -675,15 +693,6 @@
     "fetched_at": "2026-09-18T23:07:55.996493+00:00"
   },
   {
-    "title": "코덱스 펫 재발명? 해왔음",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=68032&exception_mode=recommend&page=1",
-    "source": "DCInside (AI 활용)",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] 코덱스 펫 재발견? 해왔음**\n> - **한 줄 요약**: 구글의 코덱스 펫 모델이 오픈소스 AI의 진화 단계인지에 대한 분석이 진행된다.\n> - **인사이트**: 오픈소스 언어 모델의 현재 상태와 미래 전망에 대한 통찰을 제공한다.\n> - **출처**: DCInside (AI 활용) (https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=68032&exception_mode=recommend&page=1)",
-    "points": 38,
-    "published_at": "2026-09-14T15:40:25.429568+00:00",
-    "fetched_at": "2026-09-14T15:45:06.198364+00:00"
-  },
-  {
     "title": "★창년",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=81001&exception_mode=recommend&page=1",
     "source": "DCInside (AI 활용)",
@@ -709,14 +718,5 @@
     "points": 35,
     "published_at": "2026-09-20T17:58:15.011942+00:00",
     "fetched_at": "2026-09-20T18:19:05.339298+00:00"
-  },
-  {
-    "title": "이렇게 사용량 짜치게 되면 29일 기대감 줄어드는데",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=78917&exception_mode=recommend&page=1",
-    "source": "DCInside (AI 활용)",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] 이렇게 사용량 짜치게 되면 29일 기대감 줄어들는데**\n> - **한 줄 요약**: 토큰 사용량 최적화를 통해 29일 이후의 기대감을 낮추는 전략적 팁을 제시한다.\n> - **인사이트**: API 비용 관리와 사용량 제어가 경제적 이익을 극대화하는 핵심 요소이다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=78917&exception_mode=recommend&page=1",
-    "points": 32,
-    "published_at": "2026-09-22T18:30:32.306315+00:00",
-    "fetched_at": "2026-09-22T18:42:37.202425+00:00"
   }
 ]
