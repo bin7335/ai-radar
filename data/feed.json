@@ -153,6 +153,33 @@
     "fetched_at": "2026-09-15T18:56:39.357894+00:00"
   },
   {
+    "title": "There are no \"rogue\" AI agents",
+    "url": "https://eoinhiggins.substack.com/p/there-are-no-rogue-ai-agents",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] There are no \"rogue\" AI agents**\n> - **한 줄 요약**: 현재 연구에 따르면 실제 독립적인 로그 AI 에이전트는 존재하지 않는다.\n> - **인사이트**: AI 안전성 논쟁에서 과장된 '로그' 개념이 사실상 부정확함을 보여준다.\n> - **출처**: Hacker News (https://eoinhiggins.substack.com/p/there-are-no-rogue-ai-agents)",
+    "points": 322,
+    "published_at": "2026-09-27T16:19:46Z",
+    "fetched_at": "2026-09-27T23:45:17.202947+00:00"
+  },
+  {
+    "title": "Can Muse overcome Meta’s trust issues?",
+    "url": "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Can Muse overcome Meta’s trust issues?**\n> - **한 줄 요약**: 메타의 AI 에이전트가 시장에서 신뢰를 얻을 수 있는지 평가하는 분석이다.\n> - **인사이트**: AI 제품의 신뢰 구축이 비즈니스 성공의 핵심 요소임을 시사한다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/)",
+    "points": 300,
+    "published_at": "Sun, 27 Sep 2026 19:57:30 +0000",
+    "fetched_at": "2026-09-27T23:45:17.203005+00:00"
+  },
+  {
+    "title": "Anthropic’s CEO is about to have dinner with President Trump",
+    "url": "https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Anthropic’s CEO is about to have dinner with President Trump**\n> - **한 줄 요약**: 안드로픽 CEO가 정치 지도자와 만나는 사건이 보도되었다.\n> - **인사이트**: AI 기업의 리더십이 정치권과 연결되는 양상을 보여준다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump/)",
+    "points": 300,
+    "published_at": "Sun, 27 Sep 2026 20:34:28 +0000",
+    "fetched_at": "2026-09-27T23:45:17.202998+00:00"
+  },
+  {
     "title": "Anthropic’s Dario Amodei gets the SNL treatment",
     "url": "https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/",
     "source": "TechCrunch AI",
@@ -306,15 +333,6 @@
     "fetched_at": "2026-09-25T08:34:36.402510+00:00"
   },
   {
-    "title": "PrismML brings its tiny LLMs to Qualcomm-powered smart glasses",
-    "url": "https://techcrunch.com/2026/09/24/prismml-brings-its-tiny-llms-to-qualcomm-powered-smart-glasses/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] 프리즘ML, 퀄컴 기반 스마트 글라서에 소형 LLM 탑재**\n> - **한 줄 요약**: 프리즘ML이 퀄컴 플랫폼 탑재 스마트 글라서에 경량 Large Language Model을 통합하여 디바이스 내 AI 기능을 구현함.\n> - **인사이트**: 경량 LLM과 엣지 하드웨어의 결합은 배터리 효율과 지연 시간을 고려한 실시간 개인 비서 및 AR 애플리케이션 구현을 가능하게 함.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/24/prismml-brings-its-tiny-llms-to-qualcomm-powered-smart-glasses/)",
-    "points": 300,
-    "published_at": "Thu, 24 Sep 2026 19:00:42 +0000",
-    "fetched_at": "2026-09-24T23:53:44.133345+00:00"
-  },
-  {
     "title": "Bring your co-founder, partner, or colleague and get 50% off a second TechCrunch Disrupt 2026 pass",
     "url": "https://techcrunch.com/2026/09/24/bring-your-co-founder-partner-or-colleague-and-get-50-off-a-second-techcrunch-disrupt-2026-pass/",
     "source": "TechCrunch AI",
@@ -322,24 +340,6 @@
     "points": 300,
     "published_at": "Thu, 24 Sep 2026 19:15:00 +0000",
     "fetched_at": "2026-09-24T23:53:44.133333+00:00"
-  },
-  {
-    "title": "ElevenLabs’ CEO on margins, IPO timing, and telling customers they’re talking to a bot",
-    "url": "https://techcrunch.com/2026/09/24/twenty-minutes-with-the-ceo-of-elevenlabs-now-reportedly-valued-at-22-billion/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News  \n> **[🔥AI/에이전트] 일레븐랩스 CEO, 마진·IPO 시·고객이 봇과 대화한다는 사실 알리기**  \n> - **한 줄 요약**: 일레븐랩스 CEO가 마진, IPO 시점, 그리고 고객이 봇과 대화한다는 사실을 투명하게 알리는 전략에 대해 언급함.  \n> - **인사이트**: 생성형 AI 기업이 수익 모델과 사용자 투명성 사이에서 균형을 맞추는 사례가 증가하고 있음.  \n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/24/twenty-minutes-with-the-ceo-of-elevenlabs-now-reportedly-valued-at-22-billion/)",
-    "points": 300,
-    "published_at": "Thu, 24 Sep 2026 16:35:13 +0000",
-    "fetched_at": "2026-09-24T18:57:16.377475+00:00"
-  },
-  {
-    "title": "TechCrunch Founder Summit 2026: Everything you need to know ",
-    "url": "https://techcrunch.com/2026/09/24/techcrunch-founder-summit-2026-everything-you-need-to-know/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News  \n> **[🔥AI/에이전트] 테크크런치 파운더 서밋 2026: 알아야 할 모든 것**  \n> - **한 줄 요약**: 테크크런치 파운더 서밋 2026에서 주요 스타트업 및 AI 트렌드가 총망라돼 공개됨.  \n> - **인사이트**: 연례 행사를 통해 현재 AI 스타트업 투자 흐름과 기술 방향성을 파악할 수 있음.  \n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/24/techcrunch-founder-summit-2026-everything-you-need-to-know/)",
-    "points": 300,
-    "published_at": "Thu, 24 Sep 2026 16:46:47 +0000",
-    "fetched_at": "2026-09-24T18:57:16.377467+00:00"
   },
   {
     "title": "YouTube will let you build your own algorithm with AI",
@@ -468,6 +468,15 @@
     "fetched_at": "2026-09-17T14:12:24.291282+00:00"
   },
   {
+    "title": "Muse, the band, lost its social media handles to Muse, Meta's new AI agent",
+    "url": "https://www.engadget.com/2254419/muse-the-band-lost-its-social-media-handles-to-muse-meta-s-new-ai-agent/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Muse, the band, lost its social media handles to Muse, Meta's new AI agent**\n> - **한 줄 요약**: 머스 밴드의 소셜 미디어 계정이 메타의 AI 에이전트에게 인수되었다.\n> - **인사이트**: 브랜드 관리와 AI 기술 도입이 빠르게 결합되는 사례를 보여준다.\n> - **출처**: Hacker News (https://www.engadget.com/2254419/muse-the-band-lost-its-social-media-handles-to-muse-meta-s-new-ai-agent/)",
+    "points": 184,
+    "published_at": "2026-09-09T23:57:29Z",
+    "fetched_at": "2026-09-27T23:45:17.202978+00:00"
+  },
+  {
     "title": "The worst spam emails: iLands AI agent hustle",
     "url": "https://tedium.co/2026/09/11/ilands-agents-email-spam-kaixin-tang/",
     "source": "Hacker News",
@@ -502,6 +511,15 @@
     "points": 105,
     "published_at": "2026-09-13T09:06:00.857299+00:00",
     "fetched_at": "2026-09-13T09:14:00.693940+00:00"
+  },
+  {
+    "title": "Show HN: TinyAIArena watch AI agents battle it out",
+    "url": "https://tinyaiarena.com/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Show HN: TinyAIArena watch AI agents battle it out**\n> - **한 줄 요약**: 작은 AI 에이전트들이 서로를 시험하는 데모가 진행되었다.\n> - **인사이트**: AI 에이전트 간 경쟁을 통해 자동화 시스템의 성능을 검증하는 방식이다.\n> - **출처**: tinyaiarena.com",
+    "points": 93,
+    "published_at": "2026-09-27T15:51:28Z",
+    "fetched_at": "2026-09-27T23:45:17.202991+00:00"
   },
   {
     "title": "솔직히 ai위험 ★도 체감안되면 개추 ㅋㅋ",
@@ -603,6 +621,15 @@
     "fetched_at": "2026-09-13T12:44:53.048792+00:00"
   },
   {
+    "title": "\"나 죽어야 역노화 올듯\", \"나 죽어야 특이점 올듯\"",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1444749&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] \"나 죽어야 역노화 올듯\", \"나 죽어야 특이점 올듯\"**\n> - **한 줄 요약**: AI 기술에 대한 과도한 열망과 비관론이 소셜 미디어에서 확산되고 있다.\n> - **인사이트**: 기술 트렌드에 대한 대중의 감정이 극단적으로 양극화되고 있음을 보여준다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1444749&exception_mode=recommend&page=1)",
+    "points": 74,
+    "published_at": "2026-09-27T23:39:56.550939+00:00",
+    "fetched_at": "2026-09-27T23:45:17.203012+00:00"
+  },
+  {
     "title": "트럼프 \"AI 개발 늦추지 마라\"…중국 때문에 감속론 사실상 거부",
     "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1420498&exception_mode=recommend&page=1",
     "source": "DCInside (특이점이 온다)",
@@ -637,33 +664,6 @@
     "points": 71,
     "published_at": "2026-09-26T08:19:42.826666+00:00",
     "fetched_at": "2026-09-26T08:22:09.925818+00:00"
-  },
-  {
-    "title": "오푸스 5.5 프론트 진짜 말이 안된다..",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1436137&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 오푸스 5.5 프론트 진짜 말이 안된다..**\n> - **한 줄 요약**: 오푸스 5.5 프론트 엔드 동작에 대한 사용자 불만 제기.\n> - **인사이트**: 프론트엔드 사용성 피드백은 모델 개선 로드맵에 직접 반영되는 핵심 지표가 된다.\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1436137&exception_mode=recommend&page=1)",
-    "points": 71,
-    "published_at": "2026-09-23T14:05:09.743974+00:00",
-    "fetched_at": "2026-09-23T14:17:56.948860+00:00"
-  },
-  {
-    "title": "요즘 영상 AI 재밌노 ㅋㅋ 영화도 조만간일듯",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1435739&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 요즘 영상 AI 재밌노 ㅋㅋ 영화도 조만간일듯**\n> - **한 줄 요약**: 현재의 비디오 AI 기술에 대한 대중의 반응이 긍정적이고 접근성이 높아진다는 의견이 공유된다.\n> - **인사이트**: AI 기술의 발전 속도에 따라 대중의 인식과 활용 방식이 빠르게 변화하고 있다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1435739&exception_mode=recommend&page=1",
-    "points": 71,
-    "published_at": "2026-09-23T14:05:09.742184+00:00",
-    "fetched_at": "2026-09-23T14:17:56.948848+00:00"
-  },
-  {
-    "title": "걍 한국에서 태어난걸 감사하게 생각하셈",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432439&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 걍 한국에서 태어난걸 감사하게 생각하셈**\n> - **한 줄 요약**: 한국에서 태어난다는 점에 감사함을 표현한 게시글이다.\n> - **인사이트**: 문화적 정체성과 국산 기술에 대한 긍정적 반응을 보여준다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432439&exception_mode=recommend&page=1",
-    "points": 71,
-    "published_at": "2026-09-22T08:15:44.751130+00:00",
-    "fetched_at": "2026-09-22T08:29:28.632893+00:00"
   },
   {
     "title": "M5 Ultra Mac Studio Review: The Dream Mac for Local AI Agents",
