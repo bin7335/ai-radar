@@ -36,6 +36,38 @@ def clean_text(text):
         text = re.sub(word, '★', text)
     return text
 
+
+def filter_with_jev(items):
+    print(f"\n🕵️‍♂️ Jev 필터링 시작: 총 {len(items)}개 기사 스캔 중...")
+    try:
+        # API 키 없이 로컬에서 돌아가는 Open-Jev (오픈소스) 모델 로드
+        import open_jev
+        # GitHub Actions 환경을 고려하여 가장 가벼운 2B 모델 사용 권장
+        jev_model = open_jev.load_model("ZefanCai/Open-Jev-2B") 
+    except Exception as e:
+        print("⚠️ Open-Jev 로드 오류 (필터 패스):", e)
+        return items
+        
+    filtered = []
+    for item in items:
+        try:
+            # 로컬 메모리에서 직접 추론 (비용 $0)
+            res = jev_model.noul(
+                context=f"Title: {item['title']}\nDescription: {item.get('description', '')}",
+                question="Is this article highly relevant and useful regarding Artificial Intelligence, LLMs, Open-source tools, or Software development? Answer YES only if it's important."
+            )
+            if res.is_yes and res.probability >= 0.7:
+                print(f"✅ [PASS] {item['title']} (확신도: {res.probability:.2f})")
+                filtered.append(item)
+            else:
+                print(f"🗑️ [DROP] Jev 필터 통과 실패: {item['title']}")
+        except Exception as e:
+            print(f"⚠️ Jev 에러 (PASS 처리): {e}")
+            filtered.append(item)
+            
+    print(f"🎉 Jev 필터링 완료: {len(items)}개 중 {len(filtered)}개 생존!\n")
+    return filtered
+
 def load_feed():
     if os.path.exists(OUTPUT_FILE):
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
@@ -316,6 +348,13 @@ if __name__ == "__main__":
             print(f"⏭️ 이미 처리됨(스킵): {item['title']}")
         else:
             items_to_summarize.append(item)
+            
+    # [신규] JEV를 이용한 쓰레기 기사 필터링 적용
+            
+    items_to_summarize = filter_with_jev(items_to_summarize)
+            
+    
+
             
     if items_to_summarize:
         print(f"🚀 {len(items_to_summarize)}개의 뉴스 일괄 요약 시작...")

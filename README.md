@@ -5,6 +5,11 @@
 A fully automated, zero-cost AI news aggregator and curator. 
 Fetches the latest AI agent, open-source, and vibe-coding trends, synthesizes them using LLMs, and deploys as a static feed.
 
+## Features
+
+- **Open-Jev Zero-cost Filtering**: Uses the open-source `open-jev` model to locally screen and discard non-AI or low-quality articles in milliseconds before they hit the LLM APIs, saving tokens and improving feed quality.
+- **HA Fallback Synthesis**: Relies on robust LLM APIs for summarization.
+
 ## Architecture & Build Pipeline
 
 The project is designed to operate continuously at **$0 infrastructure cost** by leveraging serverless CI/CD and edge static hosting. It completely eliminates traditional database and backend server dependencies.
@@ -23,7 +28,8 @@ flowchart LR
         LLM1[GH Models: gpt-4o-mini]
         LLM2[Gemini 3.6 Flash]
         PY -- Fetches --> HN & GH & TC
-        PY -- Batch Prompts --> HA
+        PY -- Open-Jev Filter --> HA
+        HA -- Batch Prompts --> LLM1
         HA -- Primary --> LLM1
         HA -- Secondary --> LLM2
         LLM1 & LLM2 -- Synthesizes --> JSON[data/feed.json]

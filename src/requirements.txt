@@ -3,3 +3,4 @@ openai
 google-genai
 feedparser
 beautifulsoup4
+open-jev
