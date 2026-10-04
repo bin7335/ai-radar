@@ -78,6 +78,7 @@
         <header class="mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-8">
             <h1 class="text-3xl font-bold tracking-tight mb-3">AI Radar</h1>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm">오픈소스, 에이전트 생태계, 인사이트 Briefing</p>
+            <p id="feed-status" class="text-xs text-zinc-500 mt-3" role="status">갱신 상태 확인 중...</p>
         </header>
 
         <!-- 카테고리별 4단 레이아웃 (Kanban 보드) -->
@@ -201,12 +202,12 @@
     </main>
 
     <footer class="py-12 text-center text-xs text-zinc-400 dark:text-zinc-600 mt-12 border-t border-zinc-100 dark:border-zinc-800">
-        Powered by GitHub Actions & Gemini API
+        Powered by GitHub Actions · OpenRouter / Gemini
     </footer>
 
     <script>
         function parseSummary(markdown) {
-            const lines = markdown.split('\n');
+            const lines = (markdown || '').split('\n');
             let oneLine = "";
             let implication = "";
             let category = "뉴스";
@@ -223,14 +224,53 @@
             return { oneLine, implication, category, raw: markdown };
         }
 
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[char]);
+        }
+
+        function safeUrl(value) {
+            try {
+                const url = new URL(value);
+                return ['https:', 'http:'].includes(url.protocol) ? url.href : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
         function relativeTime(dateString) {
             const date = new Date(dateString);
+            if (Number.isNaN(date.getTime())) return '날짜 미상';
             const now = new Date();
-            const diffInSeconds = Math.floor((now - date) / 1000);
+            const diffInSeconds = Math.max(0, Math.floor((now - date) / 1000));
             
             if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}분 전`;
             if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}시간 전`;
             return `${Math.floor(diffInSeconds / 86400)}일 전`;
+        }
+
+        function renderStatus(status, data) {
+            const el = document.getElementById('feed-status');
+            const lastSuccess = status?.last_successful_run_at || null;
+            const newest = data.reduce((best, item) => {
+                const stamp = new Date(item.last_seen_at || item.fetched_at || item.published_at).getTime();
+                return Number.isFinite(stamp) ? Math.max(best, stamp) : best;
+            }, 0);
+            const stamp = lastSuccess ? new Date(lastSuccess).getTime() : newest;
+            const stale = !stamp || Date.now() - stamp > 12 * 60 * 60 * 1000;
+            const failedSources = status?.sources ? Object.entries(status.sources)
+                .filter(([name, state]) => name !== 'DCInside' && !state.ok)
+                .map(([name]) => name) : [];
+            if (status?.healthy && !stale) {
+                el.className = 'text-xs text-emerald-600 dark:text-emerald-400 mt-3';
+                const pending = status.summaries_pending ? ` · 요약 대기 ${status.summaries_pending}건` : '';
+                el.textContent = `정상 갱신 · ${relativeTime(lastSuccess)} · ${status.feed_count}건${pending}`;
+            } else {
+                el.className = 'text-xs text-amber-700 dark:text-amber-400 mt-3';
+                const reason = failedSources.length ? `수집 확인 필요: ${failedSources.join(', ')}` : '갱신 확인 필요';
+                el.textContent = `${reason} · 마지막 정상 갱신 ${stamp ? relativeTime(new Date(stamp).toISOString()) : '기록 없음'}`;
+            }
         }
 
         function renderFeed(data) {
@@ -243,11 +283,15 @@
 
             Object.values(cols).forEach(col => col.innerHTML = '');
 
-            // 핫한 순위(points) 기준으로 내림차순 정렬
+            // 같은 날짜의 GitHub 항목은 이번 주 획득 스타로 정렬한다.
             const sortedData = [...data].sort((a, b) => {
+                const dateA = new Date(a.source === 'GitHub Trending' ? (a.last_seen_at || a.fetched_at) : (a.published_at || a.fetched_at)).getTime() || 0;
+                const dateB = new Date(b.source === 'GitHub Trending' ? (b.last_seen_at || b.fetched_at) : (b.published_at || b.fetched_at)).getTime() || 0;
+                const dayDiff = Math.floor(dateB / 86400000) - Math.floor(dateA / 86400000);
+                if (dayDiff) return dayDiff;
                 const pA = parseInt(a.points) || 0;
                 const pB = parseInt(b.points) || 0;
-                return pB - pA;
+                return pB - pA || dateB - dateA;
             });
 
             // 카테고리별 순위 추적
@@ -255,49 +299,59 @@
 
             sortedData.forEach(item => {
                 const parsed = parseSummary(item.summary_md);
-                const timeAgo = relativeTime(item.published_at || item.fetched_at);
+                const category = item.category || parsed.category;
+                const oneLine = item.one_line || parsed.oneLine;
+                const implication = item.insight || parsed.implication;
+                const isGithub = item.source === 'GitHub Trending';
+                const timeAgo = isGithub ? `확인 ${relativeTime(item.last_seen_at || item.fetched_at)}` : relativeTime(item.published_at || item.fetched_at);
+                const link = safeUrl(item.url);
+                if (!link) return;
                 
                 let domain = "";
-                try { domain = new URL(item.url).hostname.replace('www.', ''); } catch(e) {}
+                try { domain = new URL(link).hostname.replace('www.', ''); } catch(e) {}
                 const sourceText = item.source ? `${item.source} · ${domain}` : domain;
                 
                 let targetKey = '뉴스'; 
-                if (parsed.category.includes('오픈소스')) targetKey = '오픈소스';
-                else if (parsed.category.includes('정보') || parsed.category.includes('꿀팁')) targetKey = '정보';
-                else if (parsed.category.includes('커뮤니티')) targetKey = '커뮤니티';
+                if (category.includes('오픈소스')) targetKey = '오픈소스';
+                else if (category.includes('정보') || category.includes('꿀팁')) targetKey = '정보';
+                else if (category.includes('커뮤니티')) targetKey = '커뮤니티';
 
                 ranks[targetKey]++;
                 const rank = ranks[targetKey];
 
                 const el = document.createElement('a');
-                el.href = item.url;
+                el.href = link;
                 el.target = "_blank";
                 el.rel = "noopener noreferrer";
                 // 카드박스(그림자, 테두리) 대신 밑줄만 남겨 가독성 극대화
                 el.className = "feed-row animate-cascade group block py-5 border-b border-zinc-100 dark:border-zinc-800/60 transition-colors -mx-3 px-3 rounded-xl sm:rounded-lg bg-white dark:bg-[#09090b]";
                 el.style.animationDelay = (rank * 0.08) + 's';
                 
-                const pointsLabel = parseInt(item.points) > 0 ? `<span class="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-[10px] font-bold whitespace-nowrap flex-shrink-0">🔥 ${item.points}</span>` : '';
+                const pointsText = isGithub && Number.isFinite(Number(item.weekly_stars))
+                    ? `⭐ +${Number(item.weekly_stars).toLocaleString()} / 주`
+                    : isGithub ? `누적 ⭐ ${Number(item.points || 0).toLocaleString()}`
+                    : Number(item.points) > 0 ? `🔥 ${Number(item.points).toLocaleString()}` : '';
+                const pointsLabel = pointsText ? `<span class="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-[10px] font-bold whitespace-nowrap flex-shrink-0">${escapeHtml(pointsText)}</span>` : '';
 
                 el.innerHTML = `
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400">
                             <span class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded tracking-wider whitespace-nowrap flex-shrink-0">TOP ${rank}</span>
-                            <span class="font-semibold text-zinc-700 dark:text-zinc-300 truncate">${sourceText}</span>
+                            <span class="font-semibold text-zinc-700 dark:text-zinc-300 truncate">${escapeHtml(sourceText)}</span>
                             <span class="flex-shrink-0">•</span>
-                            <span class="flex-shrink-0 whitespace-nowrap">${timeAgo}</span>
+                            <span class="flex-shrink-0 whitespace-nowrap">${escapeHtml(timeAgo)}</span>
                             ${pointsLabel}
                         </div>
                         
                         <h2 class="text-base font-bold leading-snug text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                            ${item.title.replace(/^\[.*?\]\s*/, '')}
+                            ${escapeHtml(String(item.title || '').replace(/^\[.*?\]\s*/, ''))}
                         </h2>
                         
-                        ${parsed.oneLine ? `<p class="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-1">${parsed.oneLine}</p>` : ''}
+                        ${oneLine ? `<p class="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-1">${escapeHtml(oneLine)}</p>` : ''}
                         
-                        ${parsed.implication ? `
+                        ${implication ? `
                         <div class="mt-3 pl-3 border-l-2 border-zinc-200 dark:border-zinc-700">
-                            <p class="text-[12px] text-zinc-500 dark:text-zinc-400 italic">" ${parsed.implication} "</p>
+                            <p class="text-[12px] text-zinc-500 dark:text-zinc-400 italic">" ${escapeHtml(implication)} "</p>
                         </div>
                         ` : ''}
                     </div>
@@ -321,10 +375,17 @@
                 
                 const data = await response.json();
                 renderFeed(data);
+                let status = null;
+                try {
+                    const statusResponse = await fetch(`data/status.json?t=${new Date().getTime()}`);
+                    if (statusResponse.ok) status = await statusResponse.json();
+                } catch (_) {}
+                renderStatus(status, data);
                 
             } catch (error) {
                 // Handle error broadly
                 document.getElementById('col-news').innerHTML = '<p class="text-red-500 text-sm mt-4">데이터를 불러오지 못했습니다.</p>';
+                document.getElementById('feed-status').textContent = '피드 데이터를 불러오지 못했습니다.';
             }
         }
 

@@ -2,8 +2,12 @@
 import os
 import json
 import datetime
+import email.utils
+import re
 import requests
 import time
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
 from openai import OpenAI
 from google import genai
 from bs4 import BeautifulSoup
@@ -25,8 +29,10 @@ gemini_client = None
 if GEMINI_API_KEY:
     gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 
-OUTPUT_FILE = "data/feed.json"
-os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+DATA_DIR = Path("data")
+OUTPUT_FILE = DATA_DIR / "feed.json"
+STATUS_FILE = DATA_DIR / "status.json"
+DATA_DIR.mkdir(exist_ok=True)
 
 def clean_text(text):
     if not text: return text
@@ -37,126 +43,134 @@ def clean_text(text):
     return text
 
 
-def filter_with_jev(items):
-    print(f"\n🕵️‍♂️ Jev 필터링 시작: 총 {len(items)}개 기사 스캔 중...")
-    try:
-        # API 키 없이 로컬에서 돌아가는 Open-Jev (오픈소스) 모델 로드
-        import open_jev
-        # GitHub Actions 환경을 고려하여 가장 가벼운 2B 모델 사용 권장
-        jev_model = open_jev.load_model("ZefanCai/Open-Jev-2B") 
-    except Exception as e:
-        print("⚠️ Open-Jev 로드 오류 (필터 패스):", e)
-        return items
-        
-    filtered = []
-    for item in items:
-        try:
-            # 로컬 메모리에서 직접 추론 (비용 $0)
-            res = jev_model.noul(
-                context=f"Title: {item['title']}\nDescription: {item.get('description', '')}",
-                question="Is this article highly relevant and useful regarding Artificial Intelligence, LLMs, Open-source tools, or Software development? Answer YES only if it's important."
-            )
-            if res.is_yes and res.probability >= 0.7:
-                print(f"✅ [PASS] {item['title']} (확신도: {res.probability:.2f})")
-                filtered.append(item)
-            else:
-                print(f"🗑️ [DROP] Jev 필터 통과 실패: {item['title']}")
-        except Exception as e:
-            print(f"⚠️ Jev 에러 (PASS 처리): {e}")
-            filtered.append(item)
-            
-    print(f"🎉 Jev 필터링 완료: {len(items)}개 중 {len(filtered)}개 생존!\n")
-    return filtered
-
 def load_feed():
-    if os.path.exists(OUTPUT_FILE):
-        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
-            try:
-                return json.load(f)
-            except:
-                return []
+    if OUTPUT_FILE.exists():
+        with OUTPUT_FILE.open("r", encoding="utf-8") as f:
+            feed = json.load(f)
+        if not isinstance(feed, list):
+            raise ValueError("feed.json must contain a JSON array")
+        return feed
     return []
 
-def save_feed(feed_data):
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(feed_data, f, ensure_ascii=False, indent=2)
+def save_json(path, data):
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with temporary.open("w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    os.replace(temporary, path)
+
+def now_iso():
+    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+def parse_date(value):
+    if not value:
+        return None
+    try:
+        parsed = datetime.datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except (ValueError, TypeError, AttributeError):
+        try:
+            parsed = email.utils.parsedate_to_datetime(value)
+        except (ValueError, TypeError, AttributeError):
+            return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=datetime.timezone.utc)
+    return parsed.astimezone(datetime.timezone.utc)
+
+def category_for(item):
+    category = item.get("category", "")
+    if not category:
+        for line in item.get("summary_md", "").splitlines():
+            if "카테고리:" in line:
+                category = line.split("카테고리:", 1)[1].strip()
+                break
+    if "오픈소스" in category:
+        return "오픈소스"
+    if "정보" in category or "꿀팁" in category:
+        return "정보"
+    if "커뮤니티" in category:
+        return "커뮤니티"
+    return "뉴스"
 
 # ---------------------------------------------------------
 # 2. 일괄 요약 (Batch Summarization) 로직
 # ---------------------------------------------------------
 def summarize_batch(items):
-    prompt = "당신은 IT 및 AI 최신 동향을 분석하는 '수석 AI 큐레이터'입니다. 불필요한 수식어를 빼고 건조하고 담백하게 핵심만 작성합니다. **영어로 된 기사나 요약도 반드시 모두 자연스러운 한국어(Korean)로 번역해서 작성해주세요.**\n\n"
-    for i, item in enumerate(items):
-        desc = item.get('description', '')
-        desc_text = f"\n- 부가 설명: {desc}" if desc else ""
-        prompt += f"[기사 {i}]\n- 기사 제목: {item['title']}\n- 원문 URL: {item['url']}\n- 출처: {item['source']}{desc_text}\n\n"
-        
-    prompt += """
-위 기사들을 각각 요약해주세요. [출력 형식]을 반드시 지키고, 각 기사의 요약은 '---' 로 구분해주세요.
+    prompt = """제목과 설명에 적힌 사실만 사용해 AI 소식을 한국어로 정리하세요.
+원문 본문을 읽지 않았으므로 정보가 부족하면 추측하지 마세요.
+JSON 배열만 출력하세요. 각 항목의 id는 입력 id와 같아야 합니다.
+형식: [{"id": 0, "category": "오픈소스", "one_line": "한 줄 요약", "insight": "활용 가치 또는 정보 부족"}]
+category는 오픈소스, 뉴스, 정보, 커뮤니티 중 하나입니다.
+GitHub 저장소는 오픈소스, 할인·무료 혜택과 절약 팁은 정보, 의견·토론은 커뮤니티입니다.
 
-[카테고리 분류 기준] (매우 엄격하게 적용할 것)
-- 오픈소스: 깃허브 레포지토리, 코드가 공개된 AI 모델, 개발자용 오픈소스 도구 (단순 도구 소개는 무조건 여기로 분류)
-- 뉴스: AI 관련 새로운 기술 소식, 기업 동향, 일반적인 정책 발표
-- 정보: 비용 절감 꿀팁(할인 정책, 토큰 절약 노하우), 무료 프로모션 혜택(예: 특정 서비스 무료 제공 이벤트), 실생활/업무에 금전적·시간적 이득을 주는 실용적 팁
-- 커뮤니티: 사람들의 의견, 토론, 후기, 질문, 자유로운 잡담
-
-[출력 형식]
-카테고리: [위 4가지 기준 중 가장 적합한 단 1개만 선택하여 작성 (예: 정보)]
-> **[🔥AI/에이전트] {기사 제목}**
-> - **한 줄 요약**: (비개발자도 이해하기 쉽게 핵심만 1줄 요약)
-> - **인사이트**: (업무 생산성 향상, 자동화 적용, 또는 기술적 레퍼런스 관점에서의 가치를 1줄로 제시)
-> - **출처**: {출처} ({원문 URL})
----
 """
-    for attempt in range(3):
-        # 1. 1순위: OpenRouter 무료 모델 로테이션 시도
-        if or_client:
-            free_models = [
-                "google/gemma-4-31b-it:free",
-                "google/gemma-4-26b-a4b-it:free",
-                "nvidia/nemotron-3.5-lightning:free",
-                "liquid/lfm-2.5-2.6b:free",
-                "cohere/north-mini-code:free"
-            ]
-            success = False
-            for model_name in free_models:
-                try:
-                    print(f"🤖 [엔진 1] OpenRouter ({model_name}) 시도 중... (Attempt {attempt+1}/3)")
-                    response = or_client.chat.completions.create(
-                        model=model_name,
-                        messages=[{"role": "user", "content": prompt}], timeout=30.0
-                    )
-                    text = response.choices[0].message.content
-                    parsed = [x.strip() for x in text.split('---') if x.strip()]
-                    if len(parsed) >= len(items):
-                        return parsed
-                    else:
-                        print(f"❌ OpenRouter ({model_name}) 구조적 오류: {len(parsed)}/{len(items)}개 출력")
-                except Exception as e:
-                    print(f"❌ OpenRouter ({model_name}) 통신 실패: {e}")
-            
-            # 모든 모델 실패 시 gemini로 넘어감
+    for i, item in enumerate(items):
+        prompt += f"id={i} | 출처={item['source']} | 제목={item['title']} | 설명={item.get('description', '')[:500]}\n"
 
-        # 2. 2순위: Google Gemini (gemini-3.6-flash) 폴백 시도
-        if gemini_client:
+    def parse_response(content):
+        if not content:
+            return {}
+        content = content.strip()
+        if content.startswith("```"):
+            content = re.sub(r"^```(?:json)?\s*|\s*```$", "", content).strip()
+        try:
+            rows = json.loads(content)
+        except json.JSONDecodeError:
             try:
-                print(f"🤖 [엔진 2] Google Gemini 시도 중... (Attempt {attempt+1}/3)")
-                response = gemini_client.models.generate_content(
-                    model='gemini-3.6-flash',
-                    contents=prompt,
+                rows = json.loads(content[content.index("["):content.rindex("]") + 1])
+            except (ValueError, json.JSONDecodeError):
+                return {}
+        if not isinstance(rows, list):
+            return {}
+        parsed = {}
+        for row in rows:
+            if not isinstance(row, dict) or type(row.get("id")) is not int:
+                continue
+            index = row["id"]
+            if index not in range(len(items)):
+                continue
+            one_line = str(row.get("one_line") or "").strip()
+            if not one_line:
+                continue
+            category = str(row.get("category") or "뉴스").strip()
+            if items[index]["source"] == "GitHub Trending":
+                category = "오픈소스"
+            if category not in ("오픈소스", "뉴스", "정보", "커뮤니티"):
+                category = "뉴스"
+            parsed[index] = {
+                "category": category,
+                "one_line": one_line[:300],
+                "insight": str(row.get("insight") or "").strip()[:300],
+            }
+        return parsed
+
+    results = {}
+    model_names = os.environ.get("OPENROUTER_MODELS", "google/gemma-4-31b-it:free,nvidia/nemotron-3.5-lightning:free,liquid/lfm-2.5-2.6b:free").split(",")
+    if or_client:
+        for model_name in (name.strip() for name in model_names if name.strip()):
+            try:
+                response = or_client.chat.completions.create(
+                    model=model_name,
+                    messages=[{"role": "user", "content": prompt}],
+                    timeout=45.0,
                 )
-                parsed = [x.strip() for x in response.text.split('---') if x.strip()]
-                if len(parsed) >= len(items):
-                    return parsed
-                else:
-                    print(f"❌ Gemini 구조적 오류: {len(parsed)}/{len(items)}개 출력")
-            except Exception as e:
-                print(f"❌ Gemini 통신 실패: {e}")
-                
-        print("⚠️ 모든 AI 엔진이 실패했습니다. 3초 후 재시도...")
-        time.sleep(3)
-        
-    return []
+                results.update(parse_response(response.choices[0].message.content))
+                print(f"OpenRouter {model_name}: {len(results)}/{len(items)}개 요약")
+                if len(results) == len(items):
+                    return results
+            except Exception as exc:
+                print(f"OpenRouter {model_name} 실패: {type(exc).__name__}")
+
+    if gemini_client and len(results) < len(items):
+        try:
+            response = gemini_client.models.generate_content(
+                model=os.environ.get("GEMINI_MODEL", "gemini-3.6-flash"),
+                contents=prompt,
+            )
+            results.update(parse_response(response.text))
+            print(f"Gemini: {len(results)}/{len(items)}개 요약")
+        except Exception as exc:
+            print(f"Gemini 실패: {type(exc).__name__}")
+    return results
 
 # ---------------------------------------------------------
 # 3. 크롤링 함수 (Hacker News + TechCrunch + GitHub Trending)
@@ -182,6 +196,7 @@ def scrape_dcinside():
         time.sleep(2)
         try:
             response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
             soup = BeautifulSoup(response.text, 'html.parser')
             
             all_posts = []
@@ -216,11 +231,12 @@ def scrape_dcinside():
 
 def scrape_hackernews():
     print("🔍 Hacker News 크롤링 시작...")
-    # 30일 이내 데이터만 추출
-    thirty_days_ago = int(time.time()) - (30 * 24 * 60 * 60)
-    url = f"https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{thirty_days_ago}"
+    seven_days_ago = int(time.time()) - (7 * 24 * 60 * 60)
+    url = f"https://hn.algolia.com/api/v1/search_by_date?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{seven_days_ago}"
     try:
-        data = requests.get(url, timeout=10).json()
+        response = requests.get(url, timeout=15)
+        response.raise_for_status()
+        data = response.json()
         results = []
         for hit in data.get('hits', []):
             results.append({
@@ -247,193 +263,228 @@ def scrape_techcrunch_ai():
         root = ET.fromstring(xml_data)
         results = []
         for item in root.findall('./channel/item')[:5]:
-            title = item.find('title').text
-            link = item.find('link').text
-            pubDate = item.find('pubDate')
-            pubDateStr = pubDate.text if pubDate is not None else datetime.datetime.now(datetime.timezone.utc).isoformat()
+            title = item.findtext('title')
+            link = item.findtext('link')
+            if not title or not link:
+                continue
+            pub_date = parse_date(item.findtext('pubDate'))
+            description = BeautifulSoup(item.findtext('description') or '', 'html.parser').get_text(' ', strip=True)
             results.append({
                 "title": title,
                 "url": link,
                 "source": "TechCrunch AI",
-                "points": 300, # 뉴스는 기본 300점으로 취급하여 중간 이상에 노출되도록 함
+                "description": description[:500],
+                "points": 0,
                 "comments": "N/A",
-                "published_at": pubDateStr
+                "published_at": pub_date.isoformat() if pub_date else now_iso()
             })
         return results
     except Exception as e:
         print(f"TechCrunch Scraping failed: {e}")
         return []
 
+def parse_github_trending(html):
+    soup = BeautifulSoup(html, "html.parser")
+    repos = soup.select("article.Box-row")
+    if not repos:
+        raise ValueError("GitHub Trending HTML에서 저장소 항목을 찾지 못했습니다")
+    results = []
+    ai_terms = re.compile(r'\b(ai|agents?|agentic|llm|gpt|mcp|model|machine learning|deep learning|diffusion|transformer|chatbot|genai|generative|openai|llama|vision|audio|tts|stt|skills?|copilot|rag|vibe|prompt)\b', re.I)
+    for repo in repos:
+        title_el = repo.select_one("h2 a[href]")
+        if not title_el:
+            continue
+        path = urlparse(urljoin("https://github.com", title_el["href"])).path.strip("/")
+        if len(path.split("/")) != 2:
+            continue
+        desc_el = repo.select_one("p")
+        description = desc_el.get_text(" ", strip=True) if desc_el else ""
+        if not ai_terms.search(path.replace("/", " ").replace("-", " ") + " " + description):
+            continue
+        weekly_match = re.search(r'([\d,]+)\s+stars?\s+this week', repo.get_text(" ", strip=True), re.I)
+        if not weekly_match:
+            print(f"주간 스타 수 누락: {path}")
+            continue
+        total_el = repo.select_one('a[href$="/stargazers"]')
+        total_match = re.search(r'[\d,]+', total_el.get_text(" ", strip=True)) if total_el else None
+        weekly_stars = int(weekly_match.group(1).replace(",", ""))
+        results.append({
+            "title": path,
+            "description": description,
+            "url": f"https://github.com/{path}",
+            "source": "GitHub Trending",
+            "points": weekly_stars,
+            "weekly_stars": weekly_stars,
+            "total_stars": int(total_match.group(0).replace(",", "")) if total_match else None,
+            "published_at": now_iso(),
+        })
+        if len(results) >= 8:
+            break
+    return results
+
 def scrape_github_trending():
     print("🚀 GitHub Trending (Weekly) 크롤링 시작...")
     url = "https://github.com/trending?since=weekly"
     headers = {"User-Agent": "Mozilla/5.0"}
     try:
-        html = requests.get(url, headers=headers, timeout=10).text
-        soup = BeautifulSoup(html, "html.parser")
-        repos = soup.select("article.Box-row")
-        results = []
-        
-        for repo in repos:
-            title_el = repo.select_one("h2 a")
-            desc_el = repo.select_one("p")
-            
-            if not title_el: continue
-            title = title_el.text.strip().replace('\n', '').replace(' ', '')
-            desc = desc_el.text.strip() if desc_el else ""
-            
-            text_for_search = (title + " " + desc).lower()
-            import re
-            is_ai = bool(re.search(r'\b(ai|agent|llm|gpt|model|machine learning|deep learning|diffusion|transformer|chatbot|genai|generative|openai|llama|vision|audio|tts|stt|skill|intelligence)\b', text_for_search))
-            
-            if not is_ai:
-                continue
-                
-            # 생성일 4개월(120일) 경과 프로젝트 필터링
-            repo_api_url = f"https://api.github.com/repos/{title}"
-            api_headers = {"User-Agent": "Mozilla/5.0"}
-            github_token = os.environ.get("GITHUB_TOKEN")
-            if github_token:
-                api_headers["Authorization"] = f"token {github_token}"
-                
-            try:
-                import datetime
-                repo_resp = requests.get(repo_api_url, headers=api_headers, timeout=10)
-                if repo_resp.status_code == 200:
-                    repo_data = repo_resp.json()
-                    created_at_str = repo_data.get("created_at")
-                    if created_at_str:
-                        created_at = datetime.datetime.fromisoformat(created_at_str.replace("Z", "+00:00"))
-                        four_months_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=120)
-                        if created_at < four_months_ago:
-                            print(f"?? 필터링됨: {title} (생성일 {created_at_str}, 4개월 경과)")
-                            continue
-            except Exception as e:
-                print(f"?? 생성일 확인 실패 {title}: {e}")
-                
-            stars_el = repo.select_one('a[href$="/stargazers"]')
-            stars = 0
-            if stars_el:
-                stars = int(stars_el.text.strip().replace(',', ''))
-                
-            results.append({
-                "title": title,
-                "description": desc,
-                "url": f"https://github.com{title_el['href']}",
-                "source": "GitHub Trending",
-                "points": stars,
-                "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
-            })
-            if len(results) >= 8: break
-            
-        return results
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+        return parse_github_trending(response.text)
     except Exception as e:
         print(f"GitHub Trending Scraping failed: {e}")
         return []
 
-# ---------------------------------------------------------
-# 4. 메인 실행 블록
-# ---------------------------------------------------------
-if __name__ == "__main__":
-    feed = load_feed()
-    
-    new_items = scrape_hackernews() + scrape_github_trending() + scrape_techcrunch_ai() + scrape_dcinside()
-    for item in new_items:
+def update_feed(feed, collected, timestamp):
+    by_url = {item["url"]: dict(item) for item in feed if item.get("url")}
+    summarize = []
+    new_count = 0
+    for raw_item in collected:
+        if not raw_item.get("title") or not raw_item.get("url"):
+            continue
+        item = dict(raw_item)
         item["title"] = clean_text(item["title"])
-        
-    items_to_summarize = []
-    
-    for item in new_items:
-        if any(f.get("url") == item["url"] for f in feed):
-            print(f"⏭️ 이미 처리됨(스킵): {item['title']}")
-        else:
-            items_to_summarize.append(item)
-            
-    # [신규] JEV를 이용한 쓰레기 기사 필터링 적용
-            
-    items_to_summarize = filter_with_jev(items_to_summarize)
-            
-    
+        old = by_url.get(item["url"])
+        if old:
+            first_seen = old.get("first_seen_at") or old.get("fetched_at") or timestamp
+            old.update({key: value for key, value in item.items() if key != "published_at"})
+            old["first_seen_at"] = first_seen
+            old["last_seen_at"] = timestamp
+            if old.get("source") == "GitHub Trending":
+                old["published_at"] = old.get("published_at") or first_seen
+            if old.get("summary_status") == "pending" or "요약 실패" in old.get("summary_md", ""):
+                old["summary_status"] = "pending"
+                old["one_line"] = "요약 대기 중 · 원문에서 내용을 확인해 주세요."
+                old["insight"] = ""
+                summarize.append(old)
+            continue
+        item.update({
+            "first_seen_at": timestamp,
+            "last_seen_at": timestamp,
+            "fetched_at": timestamp,
+            "summary_status": "pending",
+            "category": "오픈소스" if item["source"] == "GitHub Trending" else "커뮤니티" if item["source"].startswith("DCInside") else "뉴스",
+            "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+            "insight": "",
+        })
+        by_url[item["url"]] = item
+        summarize.append(item)
+        new_count += 1
+    queued_urls = {item["url"] for item in summarize}
+    for old in by_url.values():
+        if old["url"] in queued_urls:
+            continue
+        if old.get("summary_status") == "pending" or "요약 실패" in old.get("summary_md", ""):
+            old["summary_status"] = "pending"
+            old["one_line"] = "요약 대기 중 · 원문에서 내용을 확인해 주세요."
+            old["insight"] = ""
+            summarize.append(old)
+    return list(by_url.values()), summarize[:24], new_count
 
-            
-    if items_to_summarize:
-        print(f"🚀 {len(items_to_summarize)}개의 뉴스 일괄 요약 시작...")
-        
-        # 출력 토큰 제한(Max Tokens)으로 인한 짤림을 방지하기 위해 8개씩 청크로 나눔
-        summaries = []
-        for i in range(0, len(items_to_summarize), 8):
-            chunk = items_to_summarize[i:i+8]
-            print(f"📦 청크 요약 중 ({i+1}~{i+len(chunk)} / {len(items_to_summarize)})")
-            chunk_summaries = summarize_batch(chunk)
-            
-            # 실패 시 빈 문자열로 채워 길이 맞춤
-            if not chunk_summaries or len(chunk_summaries) < len(chunk):
-                chunk_summaries = [""] * len(chunk)
-            summaries.extend(chunk_summaries)
-        
-        for i, item in enumerate(items_to_summarize):
-            if i < len(summaries) and summaries[i]:
-                summary_md = clean_text(summaries[i])
-            else:
-                fallback_cat = "오픈소스" if "GitHub" in item["source"] else "뉴스"
-                summary_md = f"카테고리: {fallback_cat}\n> **[💡AI/에이전트] {item['title']}**\n> - **한줄요약**: 요약 실패 (API 통신 오류)\n> - **인사이트**: 없음\n> - **출처**: {item['source']} ({item['url']})"
-            
-            feed.insert(0, {
-                "title": item["title"],
-                "url": item["url"],
-                "source": item["source"],
-                "summary_md": summary_md,
-                "points": item.get("points", 0),
-                "published_at": item.get("published_at") or datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                "fetched_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
-            })
-            
+def make_summary_md(item):
+    return (f"카테고리: {item['category']}\n"
+            f"> **[AI/에이전트] {item['title']}**\n"
+            f"> - **한 줄 요약**: {item['one_line']}\n"
+            f"> - **인사이트**: {item['insight']}\n"
+            f"> - **출처**: {item['source']} ({item['url']})")
 
-    # 30일 경과 데이터는 삭제하여 최신 트렌드만 유지 (오픈소스 포함 전체 공통)
-    thirty_days_ago_dt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=30)
-    valid_feed = []
+def rank_key(item):
+    date = parse_date(item.get("last_seen_at") if item.get("source") == "GitHub Trending" else item.get("published_at"))
+    date = date or parse_date(item.get("fetched_at")) or datetime.datetime.min.replace(tzinfo=datetime.timezone.utc)
+    try:
+        points = int(item.get("points") or 0)
+    except (ValueError, TypeError):
+        points = 0
+    return (date.date(), points, date)
+
+def prune_feed(feed, timestamp):
+    now = parse_date(timestamp)
+    valid = []
     for item in feed:
-        pub_str = item.get("published_at") or item.get("fetched_at")
-        keep = True
-        if pub_str:
-            try:
-                pub_date = datetime.datetime.fromisoformat(pub_str.replace("Z", "+00:00"))
-                if pub_date.tzinfo is None:
-                    pub_date = pub_date.replace(tzinfo=datetime.timezone.utc)
-                if pub_date < thirty_days_ago_dt:
-                    keep = False
-            except Exception:
-                pass
-        if keep:
-            valid_feed.append(item)
-            
-    def get_points(x):
-        try: return int(x.get("points", 0))
-        except: return 0
-        
-    valid_feed.sort(key=get_points, reverse=True)
-    
-    category_counts = {}
-    new_feed = []
-    
-    for item in valid_feed:
-        cat = "뉴스"
-        summary_md = item.get("summary_md", "")
-        for line in summary_md.split("\n"):
-            if "카테고리:" in line:
-                cat = line.split("카테고리:")[1].strip()
-                break
-                
-        target = '뉴스'
-        if '오픈소스' in cat: target = '오픈소스'
-        elif '정보' in cat or '꿀팁' in cat: target = '정보'
-        elif '커뮤니티' in cat: target = '커뮤니티'
-        
-        category_counts[target] = category_counts.get(target, 0) + 1
-        if category_counts[target] <= 20:
-            new_feed.append(item)
-            
-    feed = new_feed
+        is_github = item.get("source") == "GitHub Trending"
+        last_seen = parse_date(item.get("last_seen_at") or item.get("fetched_at"))
+        published = parse_date(item.get("published_at"))
+        age_date = last_seen if is_github else published or last_seen
+        days = 7 if is_github else 30
+        if age_date and age_date >= now - datetime.timedelta(days=days):
+            valid.append(item)
+    valid.sort(key=rank_key, reverse=True)
+    counts = {}
+    result = []
+    for item in valid:
+        category = category_for(item)
+        counts[category] = counts.get(category, 0) + 1
+        if counts[category] <= 20:
+            result.append(item)
+    return result
 
-    save_feed(feed)
-    print("✅ 피드 업데이트 완료!")
+def run_pipeline():
+    timestamp = now_iso()
+    feed = load_feed()
+    previous_status = {}
+    if STATUS_FILE.exists():
+        with STATUS_FILE.open("r", encoding="utf-8") as f:
+            previous_status = json.load(f)
+    source_functions = {
+        "Hacker News": scrape_hackernews,
+        "GitHub Trending": scrape_github_trending,
+        "TechCrunch AI": scrape_techcrunch_ai,
+        "DCInside": scrape_dcinside,
+    }
+    collected = []
+    source_status = {}
+    for name, scraper in source_functions.items():
+        try:
+            items = scraper()
+        except Exception as exc:
+            print(f"{name} 수집 실패: {type(exc).__name__}: {exc}")
+            items = []
+        good = bool(items)
+        prior = previous_status.get("sources", {}).get(name, {})
+        source_status[name] = {
+            "ok": good,
+            "count": len(items),
+            "last_success_at": timestamp if good else prior.get("last_success_at"),
+        }
+        print(f"{name}: {len(items)}건 수집" + ("" if good else " (확인 필요)"))
+        collected.extend(items)
+
+    feed, summarize, new_count = update_feed(feed, collected, timestamp)
+    summarized_count = 0
+    for offset in range(0, len(summarize), 8):
+        chunk = summarize[offset:offset + 8]
+        results = summarize_batch(chunk)
+        for index, summary in results.items():
+            item = chunk[index]
+            item.update(summary)
+            item["summary_status"] = "ok"
+            item["summary_md"] = make_summary_md(item)
+            summarized_count += 1
+
+    critical_ok = all(source_status[name]["ok"] for name in ("Hacker News", "GitHub Trending", "TechCrunch AI"))
+    if critical_ok:
+        feed = prune_feed(feed, timestamp)
+    summary_ok = not summarize or summarized_count > 0
+    status = {
+        "last_run_at": timestamp,
+        "last_successful_run_at": timestamp if critical_ok and summary_ok else previous_status.get("last_successful_run_at"),
+        "healthy": critical_ok and summary_ok,
+        "sources": source_status,
+        "new_items": new_count,
+        "summaries_completed": summarized_count,
+        "summaries_pending": sum(item.get("summary_status") == "pending" for item in feed),
+        "feed_count": len(feed),
+    }
+    save_json(OUTPUT_FILE, feed)
+    save_json(STATUS_FILE, status)
+    print(f"피드 저장: {len(feed)}건, 신규 {new_count}건, 요약 {summarized_count}건, 상태 {'정상' if status['healthy'] else '확인 필요'}")
+    return status
+
+if __name__ == "__main__":
+    import sys
+    if "--check-health" in sys.argv:
+        with STATUS_FILE.open("r", encoding="utf-8") as f:
+            status = json.load(f)
+        if not status.get("healthy"):
+            raise SystemExit("AI Radar 수집/요약 상태 확인 필요: data/status.json")
+    else:
+        run_pipeline()

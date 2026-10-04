@@ -1,100 +1,35 @@
 # AI Radar
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-View_Site-success?style=for-the-badge&logo=github)](https://bin7335.github.io/ai-radar/)
+[Live site](https://bin7335.github.io/ai-radar/)
 
-A fully automated, zero-cost AI news aggregator and curator. 
-Fetches the latest AI agent, open-source, and vibe-coding trends, synthesizes them using LLMs, and deploys as a static feed.
+AI Radar collects AI and developer news from GitHub Trending, Hacker News, TechCrunch AI, and DCInside. GitHub Actions updates a static JSON feed, and GitHub Pages displays it.
 
-## Features
+## How updates work
 
-- **Open-Jev Zero-cost Filtering**: Uses the open-source `open-jev` model to locally screen and discard non-AI or low-quality articles in milliseconds before they hit the LLM APIs, saving tokens and improving feed quality.
-- **HA Fallback Synthesis**: Relies on robust LLM APIs for summarization.
+The [scraper workflow](.github/workflows/scraper.yml) runs at 00:17, 06:17, 12:17, and 18:17 KST. It can also be started with `workflow_dispatch`. It runs unit tests, collects each source, summarizes new or previously unsummarized items, commits `data/feed.json` and `data/status.json`, and checks the run's health.
 
-## Architecture & Build Pipeline
+- GitHub Trending uses the weekly page's **stars this week** as its score. Total stars are stored separately. Existing repositories keep their summary while their score and `last_seen_at` are refreshed. A repository need not be newly created to qualify. Entries unseen for seven days expire.
+- Hacker News searches recent `AI agent` stories by date. TechCrunch AI reads its RSS feed, including the article description and publication date. DCInside collects recommended posts from two galleries.
+- New items are summarized in batches with OpenRouter free models, falling back to Gemini. Model output is matched by item ID. If summarization fails, the item remains visible with `summary_status: pending` and is retried in later runs, even if it leaves the source's current top entries. At most 24 items are attempted per run. Summaries use only titles and source descriptions; they do not claim to have read the article body.
+- News and community entries expire after 30 days. The feed keeps up to 20 entries per category, prioritizing recent dates and then source scores.
+- Open-Jev is intentionally not part of the production scraper. Its evaluation can proceed separately without blocking feed updates.
 
-The project is designed to operate continuously at **$0 infrastructure cost** by leveraging serverless CI/CD and edge static hosting. It completely eliminates traditional database and backend server dependencies.
+## Monitoring and failure alerts
 
-```mermaid
-flowchart LR
-    subgraph Data Sources
-        HN[Hacker News]
-        GH[GitHub Trending]
-        TC[TechCrunch AI]
-    end
+`data/status.json` records the last run, last healthy run, source counts and last successful source times, plus pending summaries. The site shows a warning when the last healthy run is more than 12 hours old or a critical source fails. The workflow fails if GitHub Trending, Hacker News, or TechCrunch AI returns no entries, or if every attempted summary fails.
 
-    subgraph GitHub Actions [Cron: Every 6H]
-        PY[Python Scraper]
-        HA{HA Fallback}
-        LLM1[GH Models: gpt-4o-mini]
-        LLM2[Gemini 3.6 Flash]
-        PY -- Fetches --> HN & GH & TC
-        PY -- Open-Jev Filter --> HA
-        HA -- Batch Prompts --> LLM1
-        HA -- Primary --> LLM1
-        HA -- Secondary --> LLM2
-        LLM1 & LLM2 -- Synthesizes --> JSON[data/feed.json]
-    end
+On a failed workflow run, GitHub Actions opens one `AI Radar 자동 갱신 실패` issue; a later healthy run closes it. GitHub's Actions notification preferences also apply to scheduled run failures. The DCInside source is optional and does not fail the entire workflow.
 
-    subgraph GitHub Pages [Static CDN]
-        UI[index.html]
-        UI -- Render by Hotness Score --> JSON
-    end
+## Local development
+
+Use Python 3.11 or newer:
+
+```bash
+python -m venv .venv
+python -m pip install -r src/requirements.txt
+python -m unittest discover -s tests -v
 ```
 
-### 1. Data Ingestion & Synthesis (Backend)
-- **Trigger**: A GitHub Actions workflow (`scraper.yml`) runs on a CRON schedule (every 6 hours).
-- **Extraction**: Gather the hottest 25 trends from Hacker News, GitHub Trending, and TechCrunch AI RSS.
-- **Synthesis (HA LLM Batching)**: Sourced metadata is batched into a single prompt for summarization. The pipeline uses a Highly Available Multi-Model Fallback system: it attempts GitHub Models (`gpt-4o-mini`) first for free, fast inference, and falls back to Google Gemini (`gemini-3.6-flash`) if the primary endpoint fails.
-- **Strict Categorization**: The LLM is strictly instructed to differentiate between "Open Source" (tools/repos) and "Info" (money/token saving tips, free promos) to ensure high-quality curation.
-- **Persistence**: The resulting JSON payload is committed directly back to the repository's `data/feed.json`.
+Set `OPENROUTER_API_KEY` and optionally `GEMINI_API_KEY`, then run `python src/main.py` from the repository root. `OPENROUTER_MODELS` (comma-separated) and `GEMINI_MODEL` can override the model defaults. To inspect the last run's health, use `python src/main.py --check-health`. Serve `index.html` and `data/` with any local static HTTP server.
 
-### 2. Presentation (Frontend)
-- **Framework-less**: A single `index.html` file using Tailwind CSS (via CDN).
-- **Anti-Vibe-Coding UI**: Minimalist 4-column Kanban board layout (Open Source, News, Info, Community) with independent desktop column scrolling.
-- **Hotness Sorting**: Items are dynamically sorted in the client-side JavaScript based on their extracted community points (GitHub Stars, HN Upvotes), displaying a `🔥 [score]` badge.
-- **Deployment**: Hosted natively on GitHub Pages.
-
-## Tech Stack
-
-- **Compute**: GitHub Actions
-- **Language**: Python 3.11
-- **AI/LLM**: GitHub Models (`openai`), Google Gemini (`google-genai`)
-- **Frontend**: Vanilla HTML5, JavaScript (ES6+), Tailwind CSS
-- **Hosting**: GitHub Pages
-
-## Local Setup
-
-To run the pipeline locally or deploy your own instance:
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/bin7335/ai-radar.git
-   cd ai-radar
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install -r src/requirements.txt
-   ```
-
-3. **Set environment variables**
-   ```bash
-   export GH_MODELS_TOKEN="your_github_pat_here"
-   export GEMINI_API_KEY="your_gemini_key_here" # Optional fallback
-   ```
-
-4. **Execute the scraper**
-   ```bash
-   python src/main.py
-   ```
-   *This will fetch new items, summarize them, and update `data/feed.json`.*
-
-5. **Serve the frontend**
-   Open `index.html` in any web browser, or serve it locally:
-   ```bash
-   python -m http.server 8000
-   ```
-
-## License
-MIT
-
+Do not commit API keys. The workflow reads them from GitHub Actions secrets.
