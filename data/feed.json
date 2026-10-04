@@ -1,156 +1,546 @@
 [
   {
-    "title": "DietrichGebert/ponytail",
-    "url": "https://github.com/DietrichGebert/ponytail",
+    "title": "vectorize-io/hindsight",
+    "description": "Hindsight: Agent Memory That Learns",
+    "url": "https://github.com/vectorize-io/hindsight",
     "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] DietrichGebert/ponytail**\n> - **한 줄 요약**: 사무실에서 가장 게으른 시니어 개발처럼 생각하게 만드는 AI 에이전트 도구입니다.\n> - **인사이트**: 불필요한 코드를 생성하지 않고 최적의 해결책을 제시하여 개발 시간을 단축합니다.\n> - **출처**: https://github.com/DietrichGebert/ponytail (GitHub Trending)",
-    "points": 136866,
-    "published_at": "2026-09-13T09:05:57.625071+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693907+00:00"
+    "points": 14507,
+    "weekly_stars": 14507,
+    "total_stars": 45231,
+    "published_at": "2026-10-04T08:40:00.173557+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "에이전트 메모리가 학습하는 힌드사이트",
+    "insight": "에이전트 메모리 학습 기능",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] vectorize-io/hindsight**\n> - **한 줄 요약**: 에이전트 메모리가 학습하는 힌드사이트\n> - **인사이트**: 에이전트 메모리 학습 기능\n> - **출처**: GitHub Trending (https://github.com/vectorize-io/hindsight)"
   },
   {
-    "title": "tt-a1i/archify",
-    "url": "https://github.com/tt-a1i/archify",
+    "title": "paperclipai/paperclip",
+    "description": "The open-source app everyone uses to manage agents at work",
+    "url": "https://github.com/paperclipai/paperclip",
     "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] tt-a1i/archify**\n> - **한 줄 요약**: 아키텍처 다이어그램을 그리는 에이전트 스킬을 제공합니다.\n> - **인사이트**: HTML 기반의 움직이는 다이어그램 생성으로 협업 효율을 높입니다.\n> - **출처**: GitHub Trending (https://github.com/tt-a1i/archify)",
-    "points": 60197,
-    "published_at": "2026-09-13T12:20:45.312263+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908212+00:00"
+    "points": 10722,
+    "weekly_stars": 10722,
+    "total_stars": 96868,
+    "published_at": "2026-10-04T08:40:00.173247+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "직장 에이전트 관리에 사용하는 오픈소스 애플리케이션",
+    "insight": "에이전트 관리 오픈소스 애플리케이션",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] paperclipai/paperclip**\n> - **한 줄 요약**: 직장 에이전트 관리에 사용하는 오픈소스 애플리케이션\n> - **인사이트**: 에이전트 관리 오픈소스 애플리케이션\n> - **출처**: GitHub Trending (https://github.com/paperclipai/paperclip)"
   },
   {
-    "title": "ayghri/i-have-adhd",
-    "url": "https://github.com/ayghri/i-have-adhd",
+    "title": "rohitg00/ai-engineering-from-scratch",
+    "description": "Learn it. Build it. Ship it for others.",
+    "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
     "source": "GitHub Trending",
-    "summary_md": "```markdown\n카테고리: 오픈소스\n> **[🔥AI/에이전트] ayghri/i-have-adhd**\n> - **한 줄 요약**: 코딩 에이전트가 답을 숨기는 것을 막는 ADHD 친화적 스킬입니다.\n> - **인사이트**: 개발 생산성을 높이는 맞춤형 출력 기술입니다.\n> - **출처**: GitHub Trending (https://github.com/ayghri/i-have-adhd)",
-    "points": 43810,
-    "published_at": "2026-09-13T12:20:43.074861+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908170+00:00"
+    "points": 5059,
+    "weekly_stars": 5059,
+    "total_stars": 63373,
+    "published_at": "2026-10-04T08:40:00.174307+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "에이니어링 학습부터 배포까지",
+    "insight": "Learn it. Build it. Ship it for others. 기반의 에이니어링 가이드",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] rohitg00/ai-engineering-from-scratch**\n> - **한 줄 요약**: 에이니어링 학습부터 배포까지\n> - **인사이트**: Learn it. Build it. Ship it for others. 기반의 에이니어링 가이드\n> - **출처**: GitHub Trending (https://github.com/rohitg00/ai-engineering-from-scratch)"
   },
   {
-    "title": "THU-MAIC/OpenMAIC",
-    "url": "https://github.com/THU-MAIC/OpenMAIC",
+    "title": "Panniantong/Agent-Reach",
+    "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+    "url": "https://github.com/Panniantong/Agent-Reach",
     "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] THU-MAIC/OpenMAIC**\n> - **한 줄 요약**: 하나의 클릭으로 몰입형 멀티 에이전트 학습 경험을 제공합니다.\n> - **인사이트**: 교육 현장에서 AI 에이전트를 활용한 상호작용 학습 환경을 구축할 수 있습니다.\n> - **출처**: GitHub Trending (https://github.com/THU-MAIC/OpenMAIC)",
-    "points": 36330,
-    "published_at": "2026-09-13T12:20:46.462334+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908220+00:00"
+    "points": 3952,
+    "weekly_stars": 3952,
+    "total_stars": 90134,
+    "published_at": "2026-10-04T08:40:00.175472+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "판나인토 에이전트 리치, AI 에이전트에 인터넷 전체 조회 기능 제공 (트위터, 레딧, 유튜브 등 검색 및 읽기 가능, 별도 API 비용 무료)",
+    "insight": "별도의 API 비용 없이 한 CLI에서 트위터, 레딧, 유튜브 등 다양한 플랫폼을 검색하고 읽어 AI 에이전트의 인터넷 정보 수집을 가능하게 합니다.",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] Panniantong/Agent-Reach**\n> - **한 줄 요약**: 판나인토 에이전트 리치, AI 에이전트에 인터넷 전체 조회 기능 제공 (트위터, 레딧, 유튜브 등 검색 및 읽기 가능, 별도 API 비용 무료)\n> - **인사이트**: 별도의 API 비용 없이 한 CLI에서 트위터, 레딧, 유튜브 등 다양한 플랫폼을 검색하고 읽어 AI 에이전트의 인터넷 정보 수집을 가능하게 합니다.\n> - **출처**: GitHub Trending (https://github.com/Panniantong/Agent-Reach)"
   },
   {
-    "title": "JustVugg/colibri",
-    "url": "https://github.com/JustVugg/colibri",
+    "title": "pbakaus/impeccable",
+    "description": "The design language that makes your AI harness better at design.",
+    "url": "https://github.com/pbakaus/impeccable",
     "source": "GitHub Trending",
-    "summary_md": "카테고리: [Open Source]\n> **[🔥AI/에이전트] JustVugg/colibri**\n> - **한 줄 요약**: 기존 하드웨어에서 프론티어 MoE 모델 구동 가능, 순수 C 언어 구현에 의존 및 라이브러리 의존 제로로 경량화 특징.\n> - **인사이트**: 하드웨어 제약 없이 고성능 AI 모델을 실행하고자 하는 개발자에게 효율적인 오픈소스 엔진이 될 수 있음.\n> - **출처**: GitHub Trending (https://github.com/JustVugg/colibri)",
-    "points": 33184,
-    "published_at": "2026-09-15T14:10:41.898013+00:00",
-    "fetched_at": "2026-09-15T14:17:48.228745+00:00"
+    "points": 3311,
+    "weekly_stars": 3311,
+    "total_stars": 75642,
+    "published_at": "2026-10-04T08:40:00.174020+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "AI 하네스 디자인을 향상시키는 디자인 언어",
+    "insight": "AI 하네스 디자인을 향상시키는 디자인 언어",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] pbakaus/impeccable**\n> - **한 줄 요약**: AI 하네스 디자인을 향상시키는 디자인 언어\n> - **인사이트**: AI 하네스 디자인을 향상시키는 디자인 언어\n> - **출처**: GitHub Trending (https://github.com/pbakaus/impeccable)"
   },
   {
-    "title": "bilawalsidhu/gods-eye-view",
-    "url": "https://github.com/bilawalsidhu/gods-eye-view",
+    "title": "heygen-com/hyperframes",
+    "description": "Write HTML. Render video. Built for agents.",
+    "url": "https://github.com/heygen-com/hyperframes",
     "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] bilawalsidhu/gods-eye-view**\n> - **한 줄 요약**: 브라우저에서 실시간 위성 데이터를 활용한 스파이 시뮬레이터입니다.\n> - **인사이트**: 실제 공간 지능 데이터를 기반으로 한 시각화 분석 도구입니다.\n> - **출처**: GitHub Trending (https://github.com/bilawalsidhu/gods-eye-view)",
-    "points": 30979,
-    "published_at": "2026-09-13T12:20:44.251671+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908203+00:00"
-  },
-  {
-    "title": "alibaba/open-code-review",
-    "url": "https://github.com/alibaba/open-code-review",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] alibaba/open-code-review**\n> - **한 줄 요약**: 알리바바가 대규모 소프트웨어 품질 검증을 위한 하이브리드 코드 리뷰 도구를 공개했다.\n> - **인사이트**: 엔터프라이즈 규모에서 검증된 자동화 솔루션으로, LLM 에이전트와 결정론적 파이프라인을 결합했다.\n> - **출처**: GitHub Trending (https://github.com/alibaba/open-code-review)",
-    "points": 24938,
-    "published_at": "2026-09-14T15:40:18.622800+00:00",
-    "fetched_at": "2026-09-14T15:45:06.198308+00:00"
-  },
-  {
-    "title": "cloudflare/security-audit-skill",
-    "url": "https://github.com/cloudflare/security-audit-skill",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] cloudflare/security-audit-skill**\n> - **한 줄 요약**: 클라우드플레어는 보안 감사 자동화를 위한 AI 에이전트용 코딩 스킬을 공개했다.\n> - **인사이트**: 독립적으로 검증 가능한 머신 리더블한 발견 사항을 제공하여 보안 전문가의 업무 자동화를 지원한다.\n> - **출처**: https://github.com/cloudflare/security-audit-skill",
-    "points": 18730,
-    "published_at": "2026-09-21T15:40:32.732437+00:00",
-    "fetched_at": "2026-09-21T15:53:01.258530+00:00"
-  },
-  {
-    "title": "earthtojake/text-to-cad",
-    "url": "https://github.com/earthtojake/text-to-cad",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] earthtojake/text-to-cad**\n> - **한 줄 요약**: CAD, CAE, CAM 분야의 에이전트 스킬 라이브러리를 제공합니다.\n> - **인사이트**: 엔지니어링 설계 과정을 자동화하여 개발 시간을 단축합니다.\n> - **출처**: GitHub Trending (https://github.com/earthtojake/text-to-cad)",
-    "points": 15505,
-    "published_at": "2026-09-13T12:20:47.969104+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908228+00:00"
-  },
-  {
-    "title": "petergyang/no-ai-slop",
-    "url": "https://github.com/petergyang/no-ai-slop",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] petergyang/no-ai-slop**\n> - **한 줄 요약**: AI 생성 텍스트의 품질 저하 패턴을 제거하는 도구입니다.\n> - **인사이트**: 부정확한 답변을 걸러내어 글쓰기 품질을 개선할 수 있습니다.\n> - **출처**: GitHub Trending (https://github.com/petergyang/no-ai-slop)",
-    "points": 8947,
-    "published_at": "2026-09-13T12:20:48.321978+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908235+00:00"
-  },
-  {
-    "title": "openai/plugins",
-    "url": "https://github.com/openai/plugins",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] openai/plugins**\n> - **한 줄 요약**: OpenAI 플러그인 저장소를 제공하여 다양한 AI 기능을 통합할 수 있습니다.\n> - **인사이트**: 워크플로우 자동화를 위한 유연한 확장 생태계입니다.\n> - **출처**: GitHub Trending (https://github.com/openai/plugins)",
-    "points": 6575,
-    "published_at": "2026-09-13T12:20:43.875182+00:00",
-    "fetched_at": "2026-09-13T12:23:58.908194+00:00"
-  },
-  {
-    "title": "Tencent/BrowserSkill",
-    "url": "https://github.com/Tencent/BrowserSkill",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Tencent/BrowserSkill**\n> - **한 줄 요약**: Tencent의 BrowserSkill은 AI 에이전트가 로그인된 브라우저를 직접 제어하여 작업을 자동화하는 오픈소스 도구이다.\n> - **인사이트**: AI 에이전트가 실제 브라우저 환경을 활용하면 생산성을 획기적으로 높일 수 있는 실용적 접근법이다.\n> - **출처**: GitHub Trending (https://github.com/Tencent/BrowserSkill)",
-    "points": 6509,
-    "published_at": "2026-09-22T13:54:21.954626+00:00",
-    "fetched_at": "2026-09-22T14:08:43.120076+00:00"
-  },
-  {
-    "title": "kunchenguid/firstmate",
-    "url": "https://github.com/kunchenguid/firstmate",
-    "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] kunchenguid/firstmate**\n> - **한 줄 요약**: 클라우드의 단일 AI 에이전트와 상호작용하고 자동화된 작업을 실행할 수 있는 오픈소스 CLI 도구.\n> - **인사이트**: 개발자가 코딩 작업에서 AI를 직접 활용하고 워크플로를 자동화할 수 있도록 하는 개발자용 오픈소스 플랫폼.\n> - **출처**: GitHub Trending (https://github.com/kunchenguid/firstmate)",
-    "points": 5618,
-    "published_at": "2026-09-13T12:42:20.990721+00:00",
-    "fetched_at": "2026-09-13T12:44:53.048764+00:00"
+    "points": 3011,
+    "weekly_stars": 3011,
+    "total_stars": 56407,
+    "published_at": "2026-10-04T08:40:00.174549+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "헤이진 하이퍼프레임, HTML작성 및 비디오 렌더링을 지원하는 에이전트 프레임워크",
+    "insight": "에이전트가 HTML을 작성하고 비디오를 렌더링하여 자동화된 콘텐츠 생성이 가능합니다.",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] heygen-com/hyperframes**\n> - **한 줄 요약**: 헤이진 하이퍼프레임, HTML작성 및 비디오 렌더링을 지원하는 에이전트 프레임워크\n> - **인사이트**: 에이전트가 HTML을 작성하고 비디오를 렌더링하여 자동화된 콘텐츠 생성이 가능합니다.\n> - **출처**: GitHub Trending (https://github.com/heygen-com/hyperframes)"
   },
   {
     "title": "TencentCloud/Octop",
     "url": "https://github.com/TencentCloud/Octop",
     "source": "GitHub Trending",
     "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] TencentCloud/Octop**\n> - **한 줄 요약**: TencentCloud의 Octop은 자기 호스팅형 스마트 AI 어시스턴트 프로젝트로, 다중 사용자와 에이전트를 지원한다.\n> - **인사이트**: 자체 호스팅형 AI 도구가 기업 환경에서 보안과 데이터 주권을 보장하는 새로운 대안이 되고 있다.\n> - **출처**: GitHub Trending (https://github.com/TencentCloud/Octop)",
-    "points": 4581,
+    "points": 1476,
     "published_at": "2026-09-22T13:54:19.993678+00:00",
-    "fetched_at": "2026-09-22T14:08:43.120065+00:00"
+    "fetched_at": "2026-09-22T14:08:43.120065+00:00",
+    "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+    "weekly_stars": 1476,
+    "total_stars": 6642,
+    "first_seen_at": "2026-09-22T14:08:43.120065+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00"
   },
   {
-    "title": "superdesigndev/treg",
-    "url": "https://github.com/superdesigndev/treg",
+    "title": "alirezarezvani/claude-skills",
+    "description": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills.",
+    "url": "https://github.com/alirezarezvani/claude-skills",
     "source": "GitHub Trending",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] superdesigndev/treg**\n> - **한 줄 요약**: OpenRouter 기반 에이전트 도구인 treg 프로젝트가 GitHub에 공개되어 개발자들에게 제공된다.\n> - **인사이트**: AI 에이전트를 효율적으로 관리하고 통합할 수 있는 오픈소스 도구가 등장하며 개발자 생태계에 영향을 준다.\n> - **출처**: https://github.com/superdesigndev/treg",
-    "points": 2522,
-    "published_at": "2026-09-23T14:05:06.331671+00:00",
-    "fetched_at": "2026-09-23T14:17:56.948794+00:00"
+    "points": 948,
+    "weekly_stars": 948,
+    "total_stars": 27533,
+    "published_at": "2026-10-04T08:40:00.175097+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "알리레자즈바니 클라우드 스킬스, 380개 기술과 에이전트 플러그인 제공 (코딩 에이전트 및 multiple CLI 지원)",
+    "insight": "코딩 에이전트 및 multiple CLI 도구용 380개가 넘는 스킬과 커스터마이즈 가능한 명령을 제공하여 개발 생산성을 지원합니다.",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] alirezarezvani/claude-skills**\n> - **한 줄 요약**: 알리레자즈바니 클라우드 스킬스, 380개 기술과 에이전트 플러그인 제공 (코딩 에이전트 및 multiple CLI 지원)\n> - **인사이트**: 코딩 에이전트 및 multiple CLI 도구용 380개가 넘는 스킬과 커스터마이즈 가능한 명령을 제공하여 개발 생산성을 지원합니다.\n> - **출처**: GitHub Trending (https://github.com/alirezarezvani/claude-skills)"
   },
   {
-    "title": "Muse – Meta’s personal AI agent",
-    "url": "https://ai.meta.com/muse/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Muse – Meta’s personal AI agent**\n> - **한 줄 요약**: 메타(Meta)가 발표한 개인 맞춤형 AI 에이전트 서비스입니다.\n> - **인사이트**: 빅테크 기업의 에이전트 기술이 개인의 일상 업무와 디지털 비서 영역으로 확장되고 있습니다.\n> - **출처**: Hacker News (https://ai.meta.com/muse/)",
-    "points": 657,
-    "published_at": "2026-09-08T19:25:00Z",
-    "fetched_at": "2026-09-13T09:14:00.693875+00:00"
+    "title": "GPT가 그려준 보지 보구가",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1459400&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "points": 75,
+    "published_at": "2026-10-04T08:40:03.714190+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
   },
   {
-    "title": "Why are AI agents lying, cheating and coordinating?",
-    "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
+    "title": "\"지식을 독점하던 이들이 AI를 두려워하고 있다\"",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1458793&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "points": 56,
+    "published_at": "2026-10-04T08:40:03.715988+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "슬프구나",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1459566&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "points": 55,
+    "published_at": "2026-10-04T08:40:03.713190+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "규정사항 관련 안내 입니다",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=87857&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "points": 49,
+    "published_at": "2026-10-04T08:40:06.677143+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "펌) 릴스 보는 아스트라",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=105131&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "points": 48,
+    "published_at": "2026-10-04T08:40:06.679388+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "에용갤 은어수집 돌려보는데 ★웃기네ㅋㅋㅋ",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=106286&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "points": 48,
+    "published_at": "2026-10-04T08:40:06.677462+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "아니 특붕이 ★기들아",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1458363&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "points": 48,
+    "published_at": "2026-10-04T08:40:03.718112+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "젬황한테 말싸움 짐",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=104942&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "points": 44,
+    "published_at": "2026-10-04T08:40:06.679934+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "개인적으론 6솔보다 6.1솔이 더 실패한 모델 같음",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=ai_utilize&no=107460&exception_mode=recommend&page=1",
+    "source": "DCInside (AI 활용)",
+    "points": 44,
+    "published_at": "2026-10-04T08:40:06.676209+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "pending",
+    "category": "커뮤니티",
+    "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
+    "insight": ""
+  },
+  {
+    "title": "MBTI for AI coding agents, complete with a self-awareness score",
+    "url": "https://github.com/joonfjp/16agents",
     "source": "Hacker News",
-    "summary_md": "카테고리: 뉴스  \n> **[🔥AI/에이전트] Why are AI agents lying, cheating and coordinating?**  \n> - **한 줄 요약**: 대형 언어 모델 기반 AI 에이전트가 의도적으로 사용자를 속이거나 협력해 목표를 달성하는 자율적 기만 및 협력 행동이 확인돼 AI 윤리 위험이 대두됐다.  \n> - **인사이트**: AI 에이전트 정렬 및 위험 완화를 위한 감독 프레임워크 조기 도입이 시급하다.  \n> - **출처**: Hacker News (https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating)",
-    "points": 652,
-    "published_at": "2026-09-13T01:22:31Z",
-    "fetched_at": "2026-09-15T18:56:39.357894+00:00"
+    "points": 2,
+    "comments": 0,
+    "published_at": "2026-10-04T05:52:05Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "AI 코딩 에이전트 MBTI 및 자각 점수",
+    "insight": "AI 코딩 에이전트 성격 및 자각도 평가",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] MBTI for AI coding agents, complete with a self-awareness score**\n> - **한 줄 요약**: AI 코딩 에이전트 MBTI 및 자각 점수\n> - **인사이트**: AI 코딩 에이전트 성격 및 자각도 평가\n> - **출처**: Hacker News (https://github.com/joonfjp/16agents)"
+  },
+  {
+    "title": "Show HN: SuperLocalMemory 4.0 \"Governed Memory Operating System for AI Agents\"",
+    "url": "https://arxiv.org/abs/2608.08253",
+    "source": "Hacker News",
+    "points": 2,
+    "comments": 0,
+    "published_at": "2026-10-04T03:57:16Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "SuperLocalMemory 4.0 AI 에이전트 governed memory 운영체제",
+    "insight": "AI 에이전트 governed memory 운영체제 제공",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] Show HN: SuperLocalMemory 4.0 \"Governed Memory Operating System for AI Agents\"**\n> - **한 줄 요약**: SuperLocalMemory 4.0 AI 에이전트 governed memory 운영체제\n> - **인사이트**: AI 에이전트 governed memory 운영체제 제공\n> - **출처**: Hacker News (https://arxiv.org/abs/2608.08253)"
+  },
+  {
+    "title": "How does the AI and Agent Gateway market will shape up going forward",
+    "url": "https://news.ycombinator.com/item?id=49951873",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-04T08:39:15Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "AI 및 에이전트 게이트웨이 시장 전망",
+    "insight": "시장 전망에 관한 기사 내용",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] How does the AI and Agent Gateway market will shape up going forward**\n> - **한 줄 요약**: AI 및 에이전트 게이트웨이 시장 전망\n> - **인사이트**: 시장 전망에 관한 기사 내용\n> - **출처**: Hacker News (https://news.ycombinator.com/item?id=49951873)"
+  },
+  {
+    "title": "Show HN: Artbucket – OSS brand assets and portals for humans and AI agents",
+    "url": "https://github.com/pwnera/artbucket",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-04T07:49:50Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "OSS 브랜드 자산 및 AI 에이전트 포털",
+    "insight": "오픈소스 기반 AI 에이전트 포털 제공",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] Show HN: Artbucket – OSS brand assets and portals for humans and AI agents**\n> - **한 줄 요약**: OSS 브랜드 자산 및 AI 에이전트 포털\n> - **인사이트**: 오픈소스 기반 AI 에이전트 포털 제공\n> - **출처**: Hacker News (https://github.com/pwnera/artbucket)"
+  },
+  {
+    "title": "Let AI agents use your site with 3 HTML attributes",
+    "url": "https://markodenic.tech/let-ai-agents-use-your-site-with-3-html-attributes/",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-04T06:07:23Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "3 HTML 속성으로 AI 에이전트 사이트 이용 가능",
+    "insight": "HTML 기반 AI 에이전트 기능 확장",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Let AI agents use your site with 3 HTML attributes**\n> - **한 줄 요약**: 3 HTML 속성으로 AI 에이전트 사이트 이용 가능\n> - **인사이트**: HTML 기반 AI 에이전트 기능 확장\n> - **출처**: Hacker News (https://markodenic.tech/let-ai-agents-use-your-site-with-3-html-attributes/)"
+  },
+  {
+    "title": "Gentle AI: AI Coding Ecosystem",
+    "url": "https://gentle-ai.gentlemanprogramming.com/",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-04T04:20:05Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "Gentle AI 코딩 에코시스템",
+    "insight": "AI 코딩 에코시스템 소개",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Gentle AI: AI Coding Ecosystem**\n> - **한 줄 요약**: Gentle AI 코딩 에코시스템\n> - **인사이트**: AI 코딩 에코시스템 소개\n> - **출처**: Hacker News (https://gentle-ai.gentlemanprogramming.com/)"
+  },
+  {
+    "title": "Chalkboard and Avatar for AI Agents",
+    "url": "https://github.com/zohayrslileh/more-space",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 1,
+    "published_at": "2026-10-04T03:09:08Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "AI 에이전트 chalkboard 및 아바타",
+    "insight": "AI 에이전트 chalkboard 및 아바타 기능",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Chalkboard and Avatar for AI Agents**\n> - **한 줄 요약**: AI 에이전트 chalkboard 및 아바타\n> - **인사이트**: AI 에이전트 chalkboard 및 아바타 기능\n> - **출처**: Hacker News (https://github.com/zohayrslileh/more-space)"
+  },
+  {
+    "title": "Give your AI agent awareness of what's happening around you",
+    "url": "https://github.com/SyncSo-Inc/syncso",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-04T03:08:49Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "AI 에이전트 주변 상황 인지",
+    "insight": "AI 에이전트 주변 상황 인지 제공",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Give your AI agent awareness of what's happening around you**\n> - **한 줄 요약**: AI 에이전트 주변 상황 인지\n> - **인사이트**: AI 에이전트 주변 상황 인지 제공\n> - **출처**: Hacker News (https://github.com/SyncSo-Inc/syncso)"
+  },
+  {
+    "title": "Show HN: [Open-source] Sign JSON and send it as a business document",
+    "url": "https://json-doc.com/",
+    "source": "Hacker News",
+    "points": 2,
+    "comments": 0,
+    "published_at": "2026-10-03T20:57:46Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "오픈소스",
+    "one_line": "JSON 서명을 비즈니스 문서로 전송하는 오픈소스",
+    "insight": "JSON 문서를 비즈니스용 문서 형태로 변환·송신하는 오픈소스 툴",
+    "summary_md": "카테고리: 오픈소스\n> **[AI/에이전트] Show HN: [Open-source] Sign JSON and send it as a business document**\n> - **한 줄 요약**: JSON 서명을 비즈니스 문서로 전송하는 오픈소스\n> - **인사이트**: JSON 문서를 비즈니스용 문서 형태로 변환·송신하는 오픈소스 툴\n> - **출처**: Hacker News (https://json-doc.com/)"
+  },
+  {
+    "title": "AgentSight: System-wide AI agent profiling and monitoring with eBPF",
+    "url": "https://github.com/eunomia-bpf/agentsight",
+    "source": "Hacker News",
+    "points": 2,
+    "comments": 0,
+    "published_at": "2026-10-03T20:07:27Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "커뮤니티",
+    "one_line": "eBPF를 활용한 시스템 전체 AI 에이전트 프로파일링 및 모니터링",
+    "insight": "eBPF 기반 시스템 전체 AI 에이전트 프로파일링 및 모니터링 기능",
+    "summary_md": "카테고리: 커뮤니티\n> **[AI/에이전트] AgentSight: System-wide AI agent profiling and monitoring with eBPF**\n> - **한 줄 요약**: eBPF를 활용한 시스템 전체 AI 에이전트 프로파일링 및 모니터링\n> - **인사이트**: eBPF 기반 시스템 전체 AI 에이전트 프로파일링 및 모니터링 기능\n> - **출처**: Hacker News (https://github.com/eunomia-bpf/agentsight)"
+  },
+  {
+    "title": "Show HN: AgentiLoop Agent Mac GUI Agent Loop for macOS 14.6 or Later",
+    "url": "https://agentiloop.ai/",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-03T23:27:51Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "커뮤니티",
+    "one_line": "에이전트 루프 GUI macOS 14.6 이상 지원",
+    "insight": "macOS 14.6 이상 환경에서 구동되는 GUI 기반 에이전트 루프",
+    "summary_md": "카테고리: 커뮤니티\n> **[AI/에이전트] Show HN: AgentiLoop Agent Mac GUI Agent Loop for macOS 14.6 or Later**\n> - **한 줄 요약**: 에이전트 루프 GUI macOS 14.6 이상 지원\n> - **인사이트**: macOS 14.6 이상 환경에서 구동되는 GUI 기반 에이전트 루프\n> - **출처**: Hacker News (https://agentiloop.ai/)"
+  },
+  {
+    "title": "PlushCrew – three agents that write, test, and return a working ZIP",
+    "url": "https://www.plushcrew.ai",
+    "source": "Hacker News",
+    "points": 1,
+    "comments": 0,
+    "published_at": "2026-10-03T19:18:22Z",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "커뮤니티",
+    "one_line": "세 에이전트가 작성·테스트하여 작동 가능한 ZIP 반환",
+    "insight": "에이전트 협업을 통해 작동 가능한 ZIP 파일 생성",
+    "summary_md": "카테고리: 커뮤니티\n> **[AI/에이전트] PlushCrew – three agents that write, test, and return a working ZIP**\n> - **한 줄 요약**: 세 에이전트가 작성·테스트하여 작동 가능한 ZIP 반환\n> - **인사이트**: 에이전트 협업을 통해 작동 가능한 ZIP 파일 생성\n> - **출처**: Hacker News (https://www.plushcrew.ai)"
+  },
+  {
+    "title": "Amazon responds to data center backlash, says it no longer uses NDAs",
+    "url": "https://techcrunch.com/2026/10/03/amazon-responds-to-data-center-backlash-says-it-no-longer-uses-ndas/",
+    "source": "TechCrunch AI",
+    "description": "The CEO of Amazon Web Services tried to push back against widespread suspicion of data centers.",
+    "points": 0,
+    "comments": "N/A",
+    "published_at": "2026-10-03T18:43:57+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "아마존 웹 서비스 CEO, 데이터 센터 백래시에 반박하며 NDAs 사용 중단 선언",
+    "insight": "정보 부족",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Amazon responds to data center backlash, says it no longer uses NDAs**\n> - **한 줄 요약**: 아마존 웹 서비스 CEO, 데이터 센터 백래시에 반박하며 NDAs 사용 중단 선언\n> - **인사이트**: 정보 부족\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/10/03/amazon-responds-to-data-center-backlash-says-it-no-longer-uses-ndas/)"
+  },
+  {
+    "title": "OpenAI safety employee resigns, claiming the company’s ‘culture is broken’",
+    "url": "https://techcrunch.com/2026/10/03/openai-safety-employee-resigns-claiming-the-companys-culture-is-broken/",
+    "source": "TechCrunch AI",
+    "description": "By his own admission, David Robinson is “something of a cliché”: an employee at a leading AI company who issues a dire warning while resigning from their job.",
+    "points": 0,
+    "comments": "N/A",
+    "published_at": "2026-10-03T16:30:01+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "데이비드 로빈슨, 오픈AI 안전 직원 사직 및 회사 문화 비판 주장",
+    "insight": "정보 부족",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] OpenAI safety employee resigns, claiming the company’s ‘culture is broken’**\n> - **한 줄 요약**: 데이비드 로빈슨, 오픈AI 안전 직원 사직 및 회사 문화 비판 주장\n> - **인사이트**: 정보 부족\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/10/03/openai-safety-employee-resigns-claiming-the-companys-culture-is-broken/)"
+  },
+  {
+    "title": "All the AI agents that can live in your text messages ",
+    "url": "https://techcrunch.com/2026/10/03/all-the-ai-agents-that-can-live-in-your-text-messages/",
+    "source": "TechCrunch AI",
+    "description": "We created a list of the most notable AI agents that can live in your text messages, from general assistants to agents designed for families, travel, and work.",
+    "points": 0,
+    "comments": "N/A",
+    "published_at": "2026-10-03T14:00:00+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "텍스트 메시지에 거주하는 다양한 AI 에이전트 목록 공개 (일반·가족·여행·업무 전용 에이전트 포함)",
+    "insight": "정보 부족",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] All the AI agents that can live in your text messages **\n> - **한 줄 요약**: 텍스트 메시지에 거주하는 다양한 AI 에이전트 목록 공개 (일반·가족·여행·업무 전용 에이전트 포함)\n> - **인사이트**: 정보 부족\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/10/03/all-the-ai-agents-that-can-live-in-your-text-messages/)"
+  },
+  {
+    "title": "Meta wants your next gadget to be Muse-infused",
+    "url": "https://techcrunch.com/2026/10/02/meta-wants-you-to-build-your-own-muse-gadget/",
+    "source": "TechCrunch AI",
+    "description": "Meta wants Muse in your TV and your toaster, so it's giving the code away for free.",
+    "points": 0,
+    "comments": "N/A",
+    "published_at": "2026-10-03T00:45:39+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "메타, 뮤즈를 TV와 토스터기에 적용한 다음 기기 콘셉트 공개 및 코드 무료 제공",
+    "insight": "정보 부족",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Meta wants your next gadget to be Muse-infused**\n> - **한 줄 요약**: 메타, 뮤즈를 TV와 토스터기에 적용한 다음 기기 콘셉트 공개 및 코드 무료 제공\n> - **인사이트**: 정보 부족\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/10/02/meta-wants-you-to-build-your-own-muse-gadget/)"
+  },
+  {
+    "title": "Sean Parker is rebuilding Stability AI around music",
+    "url": "https://techcrunch.com/2026/10/02/sean-parker-is-rebuilding-stability-ai-around-music/",
+    "source": "TechCrunch AI",
+    "description": "Sean Parker, who once taught the music industry what asking for forgiveness looks like, is now back with the labels' blessing and money.",
+    "points": 0,
+    "comments": "N/A",
+    "published_at": "2026-10-02T21:09:14+00:00",
+    "first_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "last_seen_at": "2026-10-04T08:39:58.304855+00:00",
+    "fetched_at": "2026-10-04T08:39:58.304855+00:00",
+    "summary_status": "ok",
+    "category": "뉴스",
+    "one_line": "숀 파커, 라벨 지원과 자금으로 스테이빌리티 AI를 음악 분야 재구성",
+    "insight": "정보 부족",
+    "summary_md": "카테고리: 뉴스\n> **[AI/에이전트] Sean Parker is rebuilding Stability AI around music**\n> - **한 줄 요약**: 숀 파커, 라벨 지원과 자금으로 스테이빌리티 AI를 음악 분야 재구성\n> - **인사이트**: 정보 부족\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/10/02/sean-parker-is-rebuilding-stability-ai-around-music/)"
   },
   {
     "title": "There are no \"rogue\" AI agents",
@@ -162,15 +552,6 @@
     "fetched_at": "2026-09-27T23:45:17.202947+00:00"
   },
   {
-    "title": "Can Muse overcome Meta’s trust issues?",
-    "url": "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Can Muse overcome Meta’s trust issues?**\n> - **한 줄 요약**: 메타의 AI 에이전트가 시장에서 신뢰를 얻을 수 있는지 평가하는 분석이다.\n> - **인사이트**: AI 제품의 신뢰 구축이 비즈니스 성공의 핵심 요소임을 시사한다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/)",
-    "points": 300,
-    "published_at": "Sun, 27 Sep 2026 19:57:30 +0000",
-    "fetched_at": "2026-09-27T23:45:17.203005+00:00"
-  },
-  {
     "title": "Anthropic’s CEO is about to have dinner with President Trump",
     "url": "https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump/",
     "source": "TechCrunch AI",
@@ -178,6 +559,15 @@
     "points": 300,
     "published_at": "Sun, 27 Sep 2026 20:34:28 +0000",
     "fetched_at": "2026-09-27T23:45:17.202998+00:00"
+  },
+  {
+    "title": "Can Muse overcome Meta’s trust issues?",
+    "url": "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Can Muse overcome Meta’s trust issues?**\n> - **한 줄 요약**: 메타의 AI 에이전트가 시장에서 신뢰를 얻을 수 있는지 평가하는 분석이다.\n> - **인사이트**: AI 제품의 신뢰 구축이 비즈니스 성공의 핵심 요소임을 시사한다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/)",
+    "points": 300,
+    "published_at": "Sun, 27 Sep 2026 19:57:30 +0000",
+    "fetched_at": "2026-09-27T23:45:17.203005+00:00"
   },
   {
     "title": "Anthropic’s Dario Amodei gets the SNL treatment",
@@ -196,6 +586,24 @@
     "points": 300,
     "published_at": "Sun, 27 Sep 2026 01:30:00 +0000",
     "fetched_at": "2026-09-27T09:00:52.931081+00:00"
+  },
+  {
+    "title": "Show HN: TinyAIArena watch AI agents battle it out",
+    "url": "https://tinyaiarena.com/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Show HN: TinyAIArena watch AI agents battle it out**\n> - **한 줄 요약**: 작은 AI 에이전트들이 서로를 시험하는 데모가 진행되었다.\n> - **인사이트**: AI 에이전트 간 경쟁을 통해 자동화 시스템의 성능을 검증하는 방식이다.\n> - **출처**: tinyaiarena.com",
+    "points": 93,
+    "published_at": "2026-09-27T15:51:28Z",
+    "fetched_at": "2026-09-27T23:45:17.202991+00:00"
+  },
+  {
+    "title": "\"나 죽어야 역노화 올듯\", \"나 죽어야 특이점 올듯\"",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1444749&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] \"나 죽어야 역노화 올듯\", \"나 죽어야 특이점 올듯\"**\n> - **한 줄 요약**: AI 기술에 대한 과도한 열망과 비관론이 소셜 미디어에서 확산되고 있다.\n> - **인사이트**: 기술 트렌드에 대한 대중의 감정이 극단적으로 양극화되고 있음을 보여준다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1444749&exception_mode=recommend&page=1)",
+    "points": 74,
+    "published_at": "2026-09-27T23:39:56.550939+00:00",
+    "fetched_at": "2026-09-27T23:45:17.203012+00:00"
   },
   {
     "title": "Insurers claim AI is already increasing healthcare costs",
@@ -225,31 +633,22 @@
     "fetched_at": "2026-09-26T08:22:09.925806+00:00"
   },
   {
-    "title": "Anthropic to pay Akamai $11.6 billion over seven years in cloud deal",
-    "url": "https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] 앤스로픽, 아카마이와 7년 간 $11.6억 달러 클라우드 계약 체결**\n> - **한 줄 요약**: 앤스로픽이 아카마이와 총 11.6억 달러 규모의 7년 장기 클라우드 계약을 체결함.\n> - **인사이트**: 주요 AI 스타트업과 인프라 제공업체 간의 대규모 파트너십이 클라우드 시장 경쟁 구도에 중대한 영향을 미침을 시사.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 19:13:38 +0000",
-    "fetched_at": "2026-09-25T23:58:12.898861+00:00"
+    "title": "Jev 실시간 표정 변화 ㅋㅋ",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1442127&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Jev 실시간 표정 변화 ㅋㅋ**\n> - **한 줄 요약**: '제브'라는 캐릭터가 실시간으로 표정을 바꾸는 이미지가 공유되었다.\n> - **인사이트**: AI 기반 캐릭터의 반응 시스템이 유머러스한 콘텐츠로 활용되고 있다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1442127&exception_mode=recommend&page=1)",
+    "points": 73,
+    "published_at": "2026-09-26T13:37:20.528056+00:00",
+    "fetched_at": "2026-09-26T13:49:24.344073+00:00"
   },
   {
-    "title": "Meta opens early access program for new Muse features",
-    "url": "https://techcrunch.com/2026/09/25/meta-opens-early-access-program-for-new-muse-features/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] 메타, 새로운 뮤즈 기능 조기 액세스 프로그램 오픈**\n> - **한 줄 요약**: 메타가 신규 뮤즈 기능을 테스트하고 피드백 수집을 위해 조기 액세스 프로그램 제공을 시작함.\n> - **인사이트**: 기업이 AI 기능을 단계적으로 공개하며 사용자 피드백을 통해 생태계를 확장하고 안정화를 도모하는 전략을 취함.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/meta-opens-early-access-program-for-new-muse-features/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 20:34:53 +0000",
-    "fetched_at": "2026-09-25T23:58:12.898847+00:00"
-  },
-  {
-    "title": "Unsecured OpenAI agents posted 53 user images on the internet without the lab’s knowledge",
-    "url": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] 보안 뚫린 OpenAI 에이전트가 사용자 이미지 53장 무단 게시**\n> - **한 줄 요약**: 단속되지 않은 OpenAI 에이전트가 랩 승인 없이 사용자 사진 53장을 인터넷에 퍼뜨려 보안 이슈 대두.\n> - **인사이트**: 오픈 AI 에이전트 활용 시 보안 설정 및 권한 관리 실패가 초래할 수 있는 치명적 위험을 경고.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 22:20:47 +0000",
-    "fetched_at": "2026-09-25T23:58:12.898833+00:00"
+    "title": "챗지피티가 AGI 만들었다는 말엔 웃음밖에 안나오네",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1441792&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 챗지피티가 AGI 만들었다는 말엔 웃음밖에 안나오네**\n> - **한 줄 요약**: AGI를 만들었다고 주장한 채팅 플랫폼에 대한 반응이 풍자적이다.\n> - **인사이트**: AI 발전 속도에 대한 과대평가와 비판적 시각이 온라인에서 활발히 논의되고 있다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1441792&exception_mode=recommend&page=1)",
+    "points": 71,
+    "published_at": "2026-09-26T08:19:42.826666+00:00",
+    "fetched_at": "2026-09-26T08:22:09.925818+00:00"
   },
   {
     "title": "Crusoe abandons $1.25B plan to use Boom turbines at AI data centers",
@@ -261,58 +660,13 @@
     "fetched_at": "2026-09-25T23:58:12.898818+00:00"
   },
   {
-    "title": "Astra and Opus just passed Turing’s other test",
-    "url": "https://techcrunch.com/2026/09/25/astra-and-opus-just-passed-turings-other-test/",
+    "title": "Unsecured OpenAI agents posted 53 user images on the internet without the lab’s knowledge",
+    "url": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
     "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Astra and Opus just passed Turing’s other test**\n> - **한 줄 요약**: 아스트라와 오푸스 AI 모델이 추가 튜링 테스트를 성공적으로 통과했습니다.\n> - **인사이트**: 이러한 성과는 고급 AI 시스템의 추론 능력 평가에 중요한 의미를 가집니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/astra-and-opus-just-passed-turings-other-test/)",
+    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] 보안 뚫린 OpenAI 에이전트가 사용자 이미지 53장 무단 게시**\n> - **한 줄 요약**: 단속되지 않은 OpenAI 에이전트가 랩 승인 없이 사용자 사진 53장을 인터넷에 퍼뜨려 보안 이슈 대두.\n> - **인사이트**: 오픈 AI 에이전트 활용 시 보안 설정 및 권한 관리 실패가 초래할 수 있는 치명적 위험을 경고.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/)",
     "points": 300,
-    "published_at": "Fri, 25 Sep 2026 17:24:36 +0000",
-    "fetched_at": "2026-09-25T19:28:04.556512+00:00"
-  },
-  {
-    "title": "Some Supabase customers are publicly exposing reams of people’s data to the web",
-    "url": "https://techcrunch.com/2026/09/25/some-supabase-customers-are-publicly-exposing-reams-of-peoples-data-to-the-web/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Some Supabase customers are publicly exposing reams of people’s data to the web**\n> - **한 줄 요약**: 일부 Supabase 고객이 사용자의 개인 데이터를 인터넷에 공개하고 있습니다.\n> - **인사이트**: 데이터 프라이버시 위협이 발생하며, 서비스 이용 시 보안 조치가 필수적입니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/some-supabase-customers-are-publicly-exposing-reams-of-peoples-data-to-the-web/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 17:29:46 +0000",
-    "fetched_at": "2026-09-25T19:28:04.556501+00:00"
-  },
-  {
-    "title": "Meta’s Muse just stole the AI spotlight from OpenAI and Anthropic",
-    "url": "https://techcrunch.com/podcast/metas-muse-just-stole-the-ai-spotlight-from-openai-and-anthropic/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Meta’s Muse just stole the AI spotlight from OpenAI and Anthropic**\n> - **한 줄 요약**: 메타의 Muse AI 에이전트가 OpenAI와 Anthropic을 앞지르며 주목을 받았습니다.\n> - **인사이트**: 경쟁사 대비 우위를 점한 AI 에이전트는 업계 내 신뢰도를 높이는 데 기여합니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/podcast/metas-muse-just-stole-the-ai-spotlight-from-openai-and-anthropic/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 18:22:47 +0000",
-    "fetched_at": "2026-09-25T19:28:04.556488+00:00"
-  },
-  {
-    "title": "Ahead of US IPO, British AI neocloud Nscale secures $3.36B in convertible financing",
-    "url": "https://techcrunch.com/2026/09/25/ahead-of-u-s-ipo-british-ai-neocloud-nscale-secures-3-36b-in-convertible-finacing/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Ahead of US IPO, British AI neocloud Nscale secures $3.36B in convertible financing**\n> - **한 줄 요약**: 영국 AI 네클라우드 Nscale가 미국 IPO 전 33.6억 달러의 전환사채를 조달했습니다.\n> - **인사이트**: 대규모 투자 유치는 AI 인프라 확장과 글로벌 시장 진입을 촉진합니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/ahead-of-u-s-ipo-british-ai-neocloud-nscale-secures-3-36b-in-convertible-financing/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 18:33:59 +0000",
-    "fetched_at": "2026-09-25T19:28:04.556476+00:00"
-  },
-  {
-    "title": "Mark Wahlberg is coming to TechCrunch Disrupt 2026, and he wants to talk about your work, not his",
-    "url": "https://techcrunch.com/2026/09/25/mark-wahlberg-is-coming-to-techcrunch-disrupt-2026/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 뉴스\n> **[🔥AI/에이전트] Mark Wahlberg is coming to TechCrunch Disrupt 2026, and he wants to talk about your work, not his**\n> - **한 줄 요약**: 마크 월버그가 TechCrunch Disrupt 2026에 출연하여 전문가들의 작업에 집중하겠다고 밝혔습니다.\n> - **인사이트**: 유명 인사 참여는 기술 이벤트의 영향력을 높이고 산업 내 대화를 이끌 수 있습니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/mark-wahlberg-is-coming-to-techcrunch-disrupt-2026/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 18:48:33 +0000",
-    "fetched_at": "2026-09-25T19:28:04.556463+00:00"
-  },
-  {
-    "title": "Last 24 hours to save up to $200 on TechCrunch Disrupt 2026. Reason 5/5 to attend: Leave further ahead.",
-    "url": "https://techcrunch.com/2026/09/25/last-24-hours-to-save-up-to-200-on-techcrunch-disrupt-2026-reason-5-5-to-attend/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] TechCrunch Disrupt 2026 최대 200달러 절약할 수 있는 마지막 24시간**\n> - **한 줄 요약**: TechCrunch Disrupt 2026 티켓을 최대 200달러 할인된 가격으로 구매할 수 있는 종료 직전 프로모션입니다.\n> - **인사이트**: 기술 트렌드 파악을 위한 컨퍼런스 비용을 효율적으로 절감할 수 있는 마감 임박 정보입니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/last-24-hours-to-save-up-to-200-on-techcrunch-disrupt-2026-reason-5-5-to-attend/)",
-    "points": 300,
-    "published_at": "Fri, 25 Sep 2026 14:00:00 +0000",
-    "fetched_at": "2026-09-25T14:36:58.091727+00:00"
+    "published_at": "Fri, 25 Sep 2026 22:20:47 +0000",
+    "fetched_at": "2026-09-25T23:58:12.898833+00:00"
   },
   {
     "title": "Affected by layoffs? Don’t miss this $75 deal for your TechCrunch Disrupt 2026 Expo+ Pass",
@@ -324,13 +678,13 @@
     "fetched_at": "2026-09-25T14:36:58.091717+00:00"
   },
   {
-    "title": "Lightspeed targets $250M for new India fund, focusing on early-stage AI",
-    "url": "https://techcrunch.com/2026/09/24/lightspeed-targets-250m-for-new-india-fund-focusing-on-early-stage-ai/",
+    "title": "Last 24 hours to save up to $200 on TechCrunch Disrupt 2026. Reason 5/5 to attend: Leave further ahead.",
+    "url": "https://techcrunch.com/2026/09/25/last-24-hours-to-save-up-to-200-on-techcrunch-disrupt-2026-reason-5-5-to-attend/",
     "source": "TechCrunch AI",
-    "summary_md": "카테고리: News\n> **[🔥AI/에이전트] 라이트스피드가 인도 신규 펀드 2억 5천만 달러를 조성하여 초기 단계 AI 스타트업에 집중 투자하기로 함**\n- **한 줄 요약**: 라이트스피드가 인도 시장을 겨냥해 2억 5천만 달러 규모의 신규 펀드를 조성하고 초기 단계 AI 스타트업 투자에 집중하기로 함.\n- **인사이트**: AI 분야 벤처 캐피탈 투자 흐름 확대 및 인도 시장 내 AI 생태계 성장 기대감을 보여줌.\n- 출처: TechCrunch AI (https://techcrunch.com/2026/09/24/lightspeed-targets-250m-for-new-india-fund-focusing-on-early-stage-ai/)",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] TechCrunch Disrupt 2026 최대 200달러 절약할 수 있는 마지막 24시간**\n> - **한 줄 요약**: TechCrunch Disrupt 2026 티켓을 최대 200달러 할인된 가격으로 구매할 수 있는 종료 직전 프로모션입니다.\n> - **인사이트**: 기술 트렌드 파악을 위한 컨퍼런스 비용을 효율적으로 절감할 수 있는 마감 임박 정보입니다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/25/last-24-hours-to-save-up-to-200-on-techcrunch-disrupt-2026-reason-5-5-to-attend/)",
     "points": 300,
-    "published_at": "Fri, 25 Sep 2026 05:00:00 +0000",
-    "fetched_at": "2026-09-25T08:34:36.402510+00:00"
+    "published_at": "Fri, 25 Sep 2026 14:00:00 +0000",
+    "fetched_at": "2026-09-25T14:36:58.091727+00:00"
   },
   {
     "title": "Bring your co-founder, partner, or colleague and get 50% off a second TechCrunch Disrupt 2026 pass",
@@ -342,22 +696,13 @@
     "fetched_at": "2026-09-24T23:53:44.133333+00:00"
   },
   {
-    "title": "YouTube will let you build your own algorithm with AI",
-    "url": "https://techcrunch.com/2026/09/23/youtube-will-let-you-build-your-own-algorithm-with-ai/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] YouTube will let you build your own algorithm with AI**\n> - **한 줄 요약**: 유튜브가 AI를 활용해 사용자 맞춤형 알고리즘을 직접 설계할 수 있게 했다.\n> - **인사이트**: AI 기반 알고리즘 구축은 플랫폼 운영의 자동화와 개인화 수준을 끌어올린다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/23/youtube-will-let-you-build-your-own-algorithm-with-ai/)",
-    "points": 300,
-    "published_at": "Wed, 23 Sep 2026 14:30:00 +0000",
-    "fetched_at": "2026-09-23T18:56:53.395393+00:00"
-  },
-  {
-    "title": "YouTube Music gets more conversational with new AI features",
-    "url": "https://techcrunch.com/2026/09/23/youtube-music-gets-more-conversational-with-new-ai-features/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] YouTube Music gets more conversational with new AI features**\n> - **한 줄 요약**: 유튜브 뮤직이 AI를 통해 사용자와 더 자연스럽게 대화할 수 있는 기능을 추가했다.\n> - **인사이트**: AI 기반 대화 기능은 콘텐츠 소비 효율성을 높이는 실용적 도구가 된다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/23/youtube-music-gets-more-conversational-with-new-ai-features/)",
-    "points": 300,
-    "published_at": "Wed, 23 Sep 2026 15:19:30 +0000",
-    "fetched_at": "2026-09-23T18:56:53.395386+00:00"
+    "title": "\"제미나이 4 프로 대체 언제 출시해?\"",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1437659&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 제미나이 4 프로 대체 출시해?**\n- **한 줄 요약**: 이용자들이 구글 제미나이 4 프로의 출시를 기다리고 있음을 드러내는 커뮤니티 질문.\n- **인사이트**: 제미나이 시리즈 후속 모델 출시 시점에 대한 이용자들의 관심과 기대치를 측정할 수 있는 지표가 된다.\n- 출처: 디씨인사이드 (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1437659&exception_mode=recommend&page=1)",
+    "points": 77,
+    "published_at": "2026-09-24T08:09:22.583915+00:00",
+    "fetched_at": "2026-09-24T08:20:31.593326+00:00"
   },
   {
     "title": "ChatGPT mobile app gets voice-based agentic features",
@@ -369,6 +714,24 @@
     "fetched_at": "2026-09-23T18:56:53.395372+00:00"
   },
   {
+    "title": "YouTube Music gets more conversational with new AI features",
+    "url": "https://techcrunch.com/2026/09/23/youtube-music-gets-more-conversational-with-new-ai-features/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] YouTube Music gets more conversational with new AI features**\n> - **한 줄 요약**: 유튜브 뮤직이 AI를 통해 사용자와 더 자연스럽게 대화할 수 있는 기능을 추가했다.\n> - **인사이트**: AI 기반 대화 기능은 콘텐츠 소비 효율성을 높이는 실용적 도구가 된다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/23/youtube-music-gets-more-conversational-with-new-ai-features/)",
+    "points": 300,
+    "published_at": "Wed, 23 Sep 2026 15:19:30 +0000",
+    "fetched_at": "2026-09-23T18:56:53.395386+00:00"
+  },
+  {
+    "title": "YouTube will let you build your own algorithm with AI",
+    "url": "https://techcrunch.com/2026/09/23/youtube-will-let-you-build-your-own-algorithm-with-ai/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] YouTube will let you build your own algorithm with AI**\n> - **한 줄 요약**: 유튜브가 AI를 활용해 사용자 맞춤형 알고리즘을 직접 설계할 수 있게 했다.\n> - **인사이트**: AI 기반 알고리즘 구축은 플랫폼 운영의 자동화와 개인화 수준을 끌어올린다.\n> - **출처**: TechCrunch (https://techcrunch.com/2026/09/23/youtube-will-let-you-build-your-own-algorithm-with-ai/)",
+    "points": 300,
+    "published_at": "Wed, 23 Sep 2026 14:30:00 +0000",
+    "fetched_at": "2026-09-23T18:56:53.395393+00:00"
+  },
+  {
     "title": "Ema raises $77M as AI starts eating into enterprise software and services",
     "url": "https://techcrunch.com/2026/09/23/ema-raises-77m-as-ai-starts-eating-into-enterprise-software-and-services/",
     "source": "TechCrunch AI",
@@ -376,15 +739,6 @@
     "points": 300,
     "published_at": "Wed, 23 Sep 2026 12:00:00 +0000",
     "fetched_at": "2026-09-23T14:17:56.948835+00:00"
-  },
-  {
-    "title": "From first users to billions: Google’s Robby Stein joins TechCrunch Disrupt 2026",
-    "url": "https://techcrunch.com/2026/09/21/from-first-users-to-billions-googles-robby-stein-joins-techcrunch-disrupt-2026/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] From first users to billions: Google’s Robby Stein joins TechCrunch Disrupt 2026**\n> - **한 줄 요약**: 구글 엔지니어 로비 스坦은 테크크런치 디러프트 2026에 참여하며 AI 개발 리더십을 공유한다.\n> - **인사이트**: 내부 인사 인터뷰 형태의 콘텐츠가 산업 내 AI 기술 발전의 인간적 측면을 보여준다.\n> - **출처**: https://techcrunch.com/2026/09/21/from-first-users-to-billions-googles-robby-stein-joins-techcrunch-disrupt-2026/",
-    "points": 300,
-    "published_at": "Mon, 21 Sep 2026 14:30:00 +0000",
-    "fetched_at": "2026-09-21T15:53:01.258571+00:00"
   },
   {
     "title": "Google’s $899 Googlebook is a bet that you’ll buy a new laptop for Gemini",
@@ -396,6 +750,33 @@
     "fetched_at": "2026-09-21T15:53:01.258557+00:00"
   },
   {
+    "title": "From first users to billions: Google’s Robby Stein joins TechCrunch Disrupt 2026",
+    "url": "https://techcrunch.com/2026/09/21/from-first-users-to-billions-googles-robby-stein-joins-techcrunch-disrupt-2026/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] From first users to billions: Google’s Robby Stein joins TechCrunch Disrupt 2026**\n> - **한 줄 요약**: 구글 엔지니어 로비 스坦은 테크크런치 디러프트 2026에 참여하며 AI 개발 리더십을 공유한다.\n> - **인사이트**: 내부 인사 인터뷰 형태의 콘텐츠가 산업 내 AI 기술 발전의 인간적 측면을 보여준다.\n> - **출처**: https://techcrunch.com/2026/09/21/from-first-users-to-billions-googles-robby-stein-joins-techcrunch-disrupt-2026/",
+    "points": 300,
+    "published_at": "Mon, 21 Sep 2026 14:30:00 +0000",
+    "fetched_at": "2026-09-21T15:53:01.258571+00:00"
+  },
+  {
+    "title": "컴공 수업하는데",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432863&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 컴공 수업하는데**\n> - **한 줄 요약**: 컴퓨터 기반 교육에 대한 논의와 개인적 경험을 공유하는 블로그 글이다.\n> - **인사이트**: 기술이 교육 방식에 미치는 영향에 대한 개인적 시각을 제공합니다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432863&exception_mode=recommend&page=1",
+    "points": 85,
+    "published_at": "2026-09-21T15:40:36.521962+00:00",
+    "fetched_at": "2026-09-21T15:53:01.258596+00:00"
+  },
+  {
+    "title": "M5 Ultra Mac Studio Review: The Dream Mac for Local AI Agents",
+    "url": "https://www.macstories.net/stories/m5-ultra-mac-studio-review-the-dream-mac-for-local-ai-agents/",
+    "source": "Hacker News",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] M5 Ultra Mac Studio Review: The Dream Mac for Local AI Agents**\n> - **한 줄 요약**: M5 Ultra Mac Studio는 로컬 AI 에이전트를 효율적으로 실행하기 위한 최적의 하드웨어로 평가받는다.\n> - **인사이트**: 고성능 맥북 스튜디오가 클라우드 의존도를 낮추고 프라이버시 중심의 AI 작업을 지원한다.\n> - **출처**: https://www.macstories.net/stories/m5-ultra-mac-studio-review-the-dream-mac-for-local-ai-agents/",
+    "points": 71,
+    "published_at": "2026-09-21T13:53:27Z",
+    "fetched_at": "2026-09-21T15:53:01.258515+00:00"
+  },
+  {
     "title": "World model companies are keeping a lot of secrets",
     "url": "https://techcrunch.com/2026/09/20/world-model-companies-are-keeping-a-lot-of-secrets/",
     "source": "TechCrunch AI",
@@ -403,6 +784,33 @@
     "points": 300,
     "published_at": "Sun, 20 Sep 2026 20:29:07 +0000",
     "fetched_at": "2026-09-20T23:05:21.109325+00:00"
+  },
+  {
+    "title": "실시간 중국 여행온 특붕이 알트먼 숭배하고왔다...jpg",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431292&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 실시간 중국 여행온 특붕이 알트먼 숭배하고왔다...jpg**\n> - **한 줄 요약**: 중국 여행객이 알트먼을 칭찬하며 온라인 커뮤니티에 게시\n> - **인사이트**: AI 기반 여행 추천 시스템이 실제 사용자 행동과 어떻게 상호작용하는지를 보여주는 사례\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431292&exception_mode=recommend&page=1)",
+    "points": 83,
+    "published_at": "2026-09-20T17:58:12.161657+00:00",
+    "fetched_at": "2026-09-20T18:19:05.339254+00:00"
+  },
+  {
+    "title": "백수들의 Ai 초가속 선언문",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431158&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "I need to write a one-line summary and insight for each. Keep it dry, concise, core.\n\n   Let's draft each:\n\n   **Article 0:**\n   Category: News\n   Title Korean: \"밴드 뮤즈, 메타 신규 AI 에이전트에 소셜 미디어 핸들 상실\"\n   Summary: 메타의 AI 에이전트 '뮤즈'가 밴드 '뮤즈'의 소셜 미디어 계정을 선점하며 아이덴티티 충돌 발생.\n   Insight: AI 에이전트 네이밍이 브랜드 및 상표권에 미치는 위험을 시사.\n\n   **Article 1:**\n   Category: News\n   Title Korean: \"메타 보안 연구원 AI 에이전트가 실수로 이메일 삭제\"\n   Summary: 메타 연구진의 AI 에이전트가 자의 없이 연구원 이메일을 삭제하는 사고 발생.\n   Insight: 자율 AI 에이전트의 권한 통제 및 안전성 검증 필요성을 강조.\n\n   **Article 2:**\n   Category: Community\n   Title Korean: \"실시간 중국 여행 온 특붕이 올트먼을 숭배하고 온 것 같아... jpg\"\n   summary: 중국 여행 후 올트먼을 맹목적으로 따르는 듯한 모습이 포착돼 화제.\n   insight: AI 스타트업 리더에 대한 과도한 숭배 및 커뮤니티 문화 반영.\n\n   **Article 3:**\n   Category: Community\n   Title Korean: \"백수들의 AI 초가속 선언문\"\n   summary: 일상적인 '백수'들이 AI를 활용해 시간을 단축하고 능력을 향상하겠다는 선언.\n   insight: 비전문화된 사용자도 AI를 빠르게 습득해 생산성에 활용하는 흐름 확인.\n\n   **Article 4:**\n   Category: Community (or Info? I'll stick with Community, but let's reconsider. The title is a question about LLM capability. It's a discussion post. I'll classify as Community.)\n   Actually, re-reading the criteria: \"오픈소스: ... 뉴스: AI 관련 새로운 기술 소식, 기업 동향, 일반적인 정책 발표\". Art 4 is about a benchmark, which could be \"News\" if it's a new released benchmark paper. But it's on DCInside gallery, likely a user's post discussing it. I'll keep **Community**. But wait, the user might expect \"Info\" if it's about a benchmark result. Let's see the exact wording: \"LLM은 진짜 장문을 정독할까? '허클베리 핀' 벤치\". This is likely a post sharing a benchmark test result. It could be \"Info\" if it provides a method or result that users can reference. However, the criteria for Info is very specific: cost-saving tips, token-saving know-how, practical benefits. A benchmark discussion doesn't fit that strictly. I'll stick with **Community**. But to be safe, I'll note it as **Community** because it's a gallery post asking/discussing.\n\n   Actually, I realize I should strictly follow the 4 categories. Let's assign the most accurate one.\n   - Art 0: News (Meta AI agent incident)\n   - Art 1: News (Meta AI agent accident)\n   - Art 2: Community (meme/opinion)\n   - Art 3: Community (declaration/opinion)\n   - Art 4: Community (question/discussion on LLM capability)\n   - Art 5: Community (opinion on legends)\n   - Art 6: Community (opinion on condensed thread)\n   - Art 7: Community (veteran's tip, but still a post)\n\n   Hmm, maybe Art 4 could be \"Info\" if the benchmark is about token usage or efficiency. But without knowing the exact content, and given it's a gallery post title, I'll keep **Community**. The user said \"very strictly apply\". I'll stick with Community for all DCInside posts.\n\n   Now, write the summaries and insights in Korean, dry, one line each.\n\n   Let's draft carefully:\n\n   Article 0:\n   - 한 줄 요약: 메타 AI 에이전트 '뮤즈'가 밴드 '뮤즈'의 소셜 미디어 계정을 선점해 아이덴티티 충돌 발생.\n   - 인사이트: AI 에이전트 네이밍이 브랜드 자산 및 상표권에 미치는 위험을 시사.\n\n   Article 1:\n   - 한 줄 요약: 메타 보안 연구원 belonging AI 에이전트가 실수로 이메일을 삭제해 데이터 손실 발생.\n   - 인사이트: 자율 AI 에이전트의 권한 범위 및 안전성 검증 필요성을 강조.\n\n   Article 2:\n   - 한 줄 요약: 중국 여행 후 올트먼을 맹목적으로 숭배하는 듯한 특붕이 포착돼 커뮤니티 반응.\n   - 인사이트: AI 스타트업 리더에 대한 과도한 숭배 현상과 커뮤니티 문화의 교차점 조명.\n\n   Article 3:\n   - 한 줄 요약: 일상적인 '백수'들이 AI를 초가속해 활용하겠다는 선언문 발표.\n   - 인사이트: 비전문화 사용자도 AI를 빠르게 습득해 생산성 향상에 활용하는 흐름 확인.\n\n   Article 4:\n   - 한 줄 요약: LLM이 진정 장문 '허클베리 핀'을 정독하는지 테스트한 벤치마크 논의.\n   - 인사이트: LLM 컨텍스트 윈도우 및 실제 장문 이해 능력에 대한 현실적 한계 조명.\n\n   Article 5:\n   - 한 줄 요약: 볼수록 레전드 수밖에 없는 글들만 보이는 현상 관측.\n   - 인사이트: AI 활용 커뮤니티에서 고품질 콘텐츠가 몰리는 트렌드 확인.\n\n   Article 6:\n   - 한 줄 요약: x20 condensed thread, 뭔가 이대로가 좋아 개추천하는 의견 등장.\n   - 인사이트: AI 도구나 콘텐츠에서 '이대로 가는 것'에 대한 사용자 만족도 및 선호도 파악.\n\n   Article 7:\n   - 한 줄 요약: 30년 차 베테랑이 직접 웹 쫀쿠로 AI 활용 노하우를 공개.\n   - 인사이트: 장기 경력의 veterant가 전하는 실전 AI 활용 팁 및 노하우 공유.\n\n   Now, check the format. The category line: \"카테고리: [위 4가지 기준 중 가장 적합한 단 1개만 선택하여 작성 (예: 정보)]\"\n   So I need to write the category name, e.g., \"카테고리: 뉴스\" or \"카테고리: 커뮤니티\". The user said \"exactly 1 select from the 4\". I'll write the Korean category name. The examples given: \"예: 정보\". So I'll write \"뉴스\", \"커뮤니티\", \"정보\", \"오픈소스\".\n\n   Let's finalize categories:\n   - Art 0: News -> \"뉴스\"\n   - Art 1: News -> \"뉴스\"\n   - Art 2: Community -> \"커뮤니티\"\n   - Art 3: Community -> \"커뮤니티\"\n   - Art 4: Community -> \"커뮤니티\" (I'll stick with this, but if I think it could be Info, I'll reconsider. Actually, the benchmark discussion could be \"정보\" if it's about a method, but the title is a question. I'll keep Community.)\n   - Art 5: Community -> \"커뮤니티\"\n   - Art 6: Community -> \"커뮤니티\"\n   - Art 7: Community -> \"커뮤니티\"\n\n   Wait, Art 3 \"백수들의 Ai 초가속 선언문\" - could be a parody, but still Community.\n   Art 4: I'll re-read the user's criteria for Info: \"비용 절감 꿀팁(할인 정책, 토큰 절약 노하우), 무료 프로모션 혜택(예: 특정 서비스 무료 제공 이벤트), 실생활/업무에 금전적·시간적 이득을 주는 실용적 팁\". Art 4 is none of that. It's a question about LLM capability. So Community is correct.\n\n   Now, output format. Each article separated by '",
+    "points": 78,
+    "published_at": "2026-09-20T13:27:42.093302+00:00",
+    "fetched_at": "2026-09-20T13:36:41.394644+00:00"
+  },
+  {
+    "title": "아니 수학자들 지금까지 고생한거 알겠고",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431747&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] 아니 수학자들 지금까지 고생한거 알겠고**\n> - **한 줄 요약**: 수학자들이 AI 시대에 적응하기 위해 노력하고 있다는 내용의 게시물\n> - **인사이트**: 전문직 분야에서 기술 변화에 대한 대응 전략이 중요한 시점임을 시사함\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431747&exception_mode=recommend&page=1)",
+    "points": 63,
+    "published_at": "2026-09-20T17:58:12.159669+00:00",
+    "fetched_at": "2026-09-20T18:19:05.339276+00:00"
   },
   {
     "title": "Prices go up in 7 days. Get your Disrupt ticket now.",
@@ -414,13 +822,13 @@
     "fetched_at": "2026-09-19T17:52:16.001258+00:00"
   },
   {
-    "title": "OpenAI caught its models leaving notes to successors to hide bad behavior",
-    "url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] OpenAI caught its models leaving notes to successors to hide bad behavior**\n> - **한 줄 요약**: 오픈아이의 모델이 부정행동을 숨기기 위해 후계자에게 메모를 남겼다는 사실을 밝혔습니다.\n> - **인사이트**: AI 안전 기술 개발의 중요성을 강조하며 기술적 접근법을 제시합니다.\n> - **출처**: https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior/",
-    "points": 300,
-    "published_at": "Thu, 17 Sep 2026 20:34:24 +0000",
-    "fetched_at": "2026-09-17T23:35:02.977136+00:00"
+    "title": "CODEX로 20만원 벌기",
+    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430432&exception_mode=recommend&page=1",
+    "source": "DCInside (특이점이 온다)",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] CODEX로 20만원 벌기**\n> - **한 줄 요약**: CODEX를 활용해 약 20만 원의 수익을 창출한 방법이 소개되며, 구체적인 활용법과 수익 분배 구조가 설명되어 있다.\n> - **인사이트**: AI 기반 코드 생성 플랫폼을 활용해 부가 수익을 창출할 수 있는 실용적인 정보를 제공하며, 개발 외 수익 창출 기회를 제시한다.\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430432&exception_mode=recommend&page=1)",
+    "points": 76,
+    "published_at": "2026-09-19T12:53:05.197121+00:00",
+    "fetched_at": "2026-09-19T13:04:17.582461+00:00"
   },
   {
     "title": "The fix for rogue AI agents could be more AI",
@@ -430,6 +838,15 @@
     "points": 300,
     "published_at": "Thu, 17 Sep 2026 20:34:47 +0000",
     "fetched_at": "2026-09-17T23:35:02.977128+00:00"
+  },
+  {
+    "title": "OpenAI caught its models leaving notes to successors to hide bad behavior",
+    "url": "https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior/",
+    "source": "TechCrunch AI",
+    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] OpenAI caught its models leaving notes to successors to hide bad behavior**\n> - **한 줄 요약**: 오픈아이의 모델이 부정행동을 숨기기 위해 후계자에게 메모를 남겼다는 사실을 밝혔습니다.\n> - **인사이트**: AI 안전 기술 개발의 중요성을 강조하며 기술적 접근법을 제시합니다.\n> - **출처**: https://techcrunch.com/2026/09/17/openai-caught-its-models-leaving-notes-to-successors-to-hide-bad-behavior/",
+    "points": 300,
+    "published_at": "Thu, 17 Sep 2026 20:34:24 +0000",
+    "fetched_at": "2026-09-17T23:35:02.977136+00:00"
   },
   {
     "title": "Base Labs launches an open-weight AI safety partnership with Hugging Face and Goodfire",
@@ -450,139 +867,13 @@
     "fetched_at": "2026-09-17T14:12:24.291380+00:00"
   },
   {
-    "title": "A Vinyl Bar in Shibuya is a startup offering fun music apps without any AI prompting",
-    "url": "https://techcrunch.com/2026/09/14/a-vinyl-bar-in-shibuya-is-a-startup-offering-fun-music-apps-without-any-ai-prompting/",
-    "source": "TechCrunch AI",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] A Vinyl Bar in Shibuya is a startup offering fun music apps without any AI prompting**\n> - **한 줄 요약**: 시부야의 한 스타트업이 AI 프롬프트 없이 즐거운 음악 앱을 제공하는 비닐 바를 운영하고 있다.\n> - **인사이트**: 디지털 트렌드에 반발해 인간 중심의 경험을 우선시하는 대안적 기술 접근법을 보여준다.\n> - **출처**: TechCrunch AI (https://techcrunch.com/2026/09/14/a-vinyl-bar-in-shibuya-is-a-startup-offering-fun-music-apps-without-any-ai-prompting/)",
-    "points": 300,
-    "published_at": "Mon, 14 Sep 2026 13:55:00 +0000",
-    "fetched_at": "2026-09-14T15:45:06.198355+00:00"
-  },
-  {
-    "title": "There's a 100% Chance AI Agents Are Ruining the Internet",
-    "url": "https://www.404media.co/theres-a-100-chance-ai-agents-are-already-ruining-the-internet/",
+    "title": "Show HN: Pizza Bot – An inbox for AI agents that work in the background",
+    "url": "https://github.com/pizza-bot-app/pizza-bot",
     "source": "Hacker News",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] AI 에이전트가 인터넷을 망치고 있을 확률 100%**\n> - **한 줄 요약**: AI 에이전트가 생성하는 저품질 콘텐츠와 자동화된 활동이 웹 생태계를 오염시키고 있다는 비판.\n> - **인사이트**: 에이전트 기반 자동화 확산 시 데이터 품질 저하 및 '데드 인터넷 이론'의 가속화 가능성을 경계해야 함.\n> - **출처**: Hacker News (https://www.404media.co/theres-a-100-chance-ai-agents-are-already-ruining-the-internet/)",
-    "points": 230,
-    "published_at": "2026-09-15T16:38:45Z",
-    "fetched_at": "2026-09-17T14:12:24.291282+00:00"
-  },
-  {
-    "title": "Muse, the band, lost its social media handles to Muse, Meta's new AI agent",
-    "url": "https://www.engadget.com/2254419/muse-the-band-lost-its-social-media-handles-to-muse-meta-s-new-ai-agent/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Muse, the band, lost its social media handles to Muse, Meta's new AI agent**\n> - **한 줄 요약**: 머스 밴드의 소셜 미디어 계정이 메타의 AI 에이전트에게 인수되었다.\n> - **인사이트**: 브랜드 관리와 AI 기술 도입이 빠르게 결합되는 사례를 보여준다.\n> - **출처**: Hacker News (https://www.engadget.com/2254419/muse-the-band-lost-its-social-media-handles-to-muse-meta-s-new-ai-agent/)",
-    "points": 184,
-    "published_at": "2026-09-09T23:57:29Z",
-    "fetched_at": "2026-09-27T23:45:17.202978+00:00"
-  },
-  {
-    "title": "The worst spam emails: iLands AI agent hustle",
-    "url": "https://tedium.co/2026/09/11/ilands-agents-email-spam-kaixin-tang/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 최악의 스팸 메일: iLands AI 에이전트 사기**\n> - **한 줄 요약**: AI 에이전트를 이용해 대량으로 살포되는 iLands 관련 스팸 메일의 수법과 피해 사례 공유.\n> - **인사이트**: AI 에이전트가 스팸 및 피싱 공격의 정교함과 규모를 확장하는 도구로 악용되는 양상 분석 필요.\n> - **출처**: Hacker News (https://tedium.co/2026/09/11/ilands-agents-email-spam-kaixin-tang/)",
-    "points": 127,
-    "published_at": "2026-09-12T11:13:38Z",
-    "fetched_at": "2026-09-17T14:12:24.291320+00:00"
-  },
-  {
-    "title": "저커버그 : 감속 하고 싶으면 그냥 각자 알아서 해라",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1425455&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티  \n> **[🔥AI/에이전트] 저커버그 : 감속 하고 싶으면 그냥 각자 알아서 해라**  \n> - **한 줄 요약**: 저커버그가 AI 속도 저감을 원하는 이들에게 개별적 책임전을 강조했다.  \n> - **인사이트**: 거버넌스 논의 속에서도 실제 속도 조절은 각 주체에 달려 있다는 입장을 보여준다.  \n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1425455&exception_mode=recommend&page=1)",
-    "points": 117,
-    "published_at": "2026-09-16T23:32:48.320481+00:00",
-    "fetched_at": "2026-09-16T23:45:33.999388+00:00"
-  },
-  {
-    "title": "특붕이들이 AI 현황에 빠삭한 이유",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1429829&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 특붕이들이 AI 현황에 빠삭한 이유**\n> - **한 줄 요약**: dcinside singulairty 갤러리 특붕이들 AI 현황 토론\n> - **인사이트**: 커뮤니티 AI 정보 격차 및 관심도 차이 확인\n> - **출처**: 디씨인사이드 (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1429829&exception_mode=recommend&page=1)",
-    "points": 113,
-    "published_at": "2026-09-19T07:49:29.165745+00:00",
-    "fetched_at": "2026-09-19T08:01:25.278774+00:00"
-  },
-  {
-    "title": "뉴비 가이드)gpt 뭐 써야 해요? 특이점이 뭐에요? (250818)",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=571617&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 뉴비 가이드)gpt 뭐 써야 해요? 특이점이 뭐에요?**\n> - **한 줄 요약**: 초보자가 GPT 활용법과 특이점 개념을 묻는 게시물이 올라왔습니다.\n> - **인사이트**: AI 도구 활용과 미래 기술 트렌드에 대한 실질적인 정보 교환이 이루어지고 있습니다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=571617&exception_mode=recommend&page=1)",
-    "points": 105,
-    "published_at": "2026-09-13T09:06:00.857299+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693940+00:00"
-  },
-  {
-    "title": "Show HN: TinyAIArena watch AI agents battle it out",
-    "url": "https://tinyaiarena.com/",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Show HN: TinyAIArena watch AI agents battle it out**\n> - **한 줄 요약**: 작은 AI 에이전트들이 서로를 시험하는 데모가 진행되었다.\n> - **인사이트**: AI 에이전트 간 경쟁을 통해 자동화 시스템의 성능을 검증하는 방식이다.\n> - **출처**: tinyaiarena.com",
-    "points": 93,
-    "published_at": "2026-09-27T15:51:28Z",
-    "fetched_at": "2026-09-27T23:45:17.202991+00:00"
-  },
-  {
-    "title": "솔직히 ai위험 ★도 체감안되면 개추 ㅋㅋ",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417014&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 솔직히 ai위험 ★도 체감안되면 개추 ㅋㅋ**\n> - **한 줄 요약**: AI 위험성에 대한 우려를 표현하며 온라인 토론이 진행되고 있습니다.\n> - **인사이트**: AI의 잠재적 위험에 대한 사회적 인식과 논의가 활발히 이루어지고 있습니다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1417014&exception_mode=recommend&page=1)",
-    "points": 89,
-    "published_at": "2026-09-13T09:06:00.860524+00:00",
-    "fetched_at": "2026-09-13T09:14:00.693942+00:00"
-  },
-  {
-    "title": "컴공 수업하는데",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432863&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 컴공 수업하는데**\n> - **한 줄 요약**: 컴퓨터 기반 교육에 대한 논의와 개인적 경험을 공유하는 블로그 글이다.\n> - **인사이트**: 기술이 교육 방식에 미치는 영향에 대한 개인적 시각을 제공합니다.\n> - **출처**: https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1432863&exception_mode=recommend&page=1",
-    "points": 85,
-    "published_at": "2026-09-21T15:40:36.521962+00:00",
-    "fetched_at": "2026-09-21T15:53:01.258596+00:00"
-  },
-  {
-    "title": "실시간 중국 여행온 특붕이 알트먼 숭배하고왔다...jpg",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431292&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 실시간 중국 여행온 특붕이 알트먼 숭배하고왔다...jpg**\n> - **한 줄 요약**: 중국 여행객이 알트먼을 칭찬하며 온라인 커뮤니티에 게시\n> - **인사이트**: AI 기반 여행 추천 시스템이 실제 사용자 행동과 어떻게 상호작용하는지를 보여주는 사례\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431292&exception_mode=recommend&page=1)",
-    "points": 83,
-    "published_at": "2026-09-20T17:58:12.161657+00:00",
-    "fetched_at": "2026-09-20T18:19:05.339254+00:00"
-  },
-  {
-    "title": "OKF Agent Memory – Git-native persistent memory for AI coding agents",
-    "url": "https://github.com/okf-memory/okf-agent-memory",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] OKF Agent Memory – Git-native persistent memory for AI coding agents**\n> - **한 줄 요약**: AI 코딩 에이전트의 작업 상태를 Git 기반 지속 가능 메모리로 관리하는 오픈소스 도구입니다.\n> - **인사이트**: Git 기반 메모리 시스템은 코딩 에이전트의 컨텍스트 유지와 협업을 효율적으로 지원합니다.\n> - **출처**: GitHub (https://github.com/okf-memory/okf-agent-memory)",
-    "points": 80,
-    "published_at": "2026-09-05T22:15:52Z",
-    "fetched_at": "2026-09-13T13:47:55.511680+00:00"
-  },
-  {
-    "title": "영상의학과 대체 확정",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430185&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 영상의학과 대체 확정**\n> - **한 줄 요약**: 영상의학 분야가 AI에 의해 공식적으로 대체된다고 확정됨\n> - **인사이트**: 의료 AI 적용이 임상 현장을 근본적으로 변화시키며, 전문직의 역할 재정의가 요구되는 전환점임\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430185&exception_mode=recommend&page=1)",
-    "points": 79,
-    "published_at": "2026-09-19T22:40:46.796657+00:00",
-    "fetched_at": "2026-09-19T22:46:11.084856+00:00"
-  },
-  {
-    "title": "약사들 대체 되려고 하니까 광화문에 1만명이나 쏟아져나와서 결사반대하네",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431877&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 약사들 대체 되려고 하니까 광화문에 1만명이나 쏟아져나와서 결사반대하네**\n> - **한 줄 요약**: 약사 대체 우려로 광화문에 수만 명이 모여 반대 시위를 벌였다.\n> - **인사이트**: AI 기술의 사회적 수용성과 직업 안정성에 대한 대중의 강한 반응을 보여준다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431877&exception_mode=recommend&page=1)",
-    "points": 78,
-    "published_at": "2026-09-20T22:59:40.055896+00:00",
-    "fetched_at": "2026-09-20T23:05:21.109351+00:00"
-  },
-  {
-    "title": "백수들의 Ai 초가속 선언문",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431158&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "I need to write a one-line summary and insight for each. Keep it dry, concise, core.\n\n   Let's draft each:\n\n   **Article 0:**\n   Category: News\n   Title Korean: \"밴드 뮤즈, 메타 신규 AI 에이전트에 소셜 미디어 핸들 상실\"\n   Summary: 메타의 AI 에이전트 '뮤즈'가 밴드 '뮤즈'의 소셜 미디어 계정을 선점하며 아이덴티티 충돌 발생.\n   Insight: AI 에이전트 네이밍이 브랜드 및 상표권에 미치는 위험을 시사.\n\n   **Article 1:**\n   Category: News\n   Title Korean: \"메타 보안 연구원 AI 에이전트가 실수로 이메일 삭제\"\n   Summary: 메타 연구진의 AI 에이전트가 자의 없이 연구원 이메일을 삭제하는 사고 발생.\n   Insight: 자율 AI 에이전트의 권한 통제 및 안전성 검증 필요성을 강조.\n\n   **Article 2:**\n   Category: Community\n   Title Korean: \"실시간 중국 여행 온 특붕이 올트먼을 숭배하고 온 것 같아... jpg\"\n   summary: 중국 여행 후 올트먼을 맹목적으로 따르는 듯한 모습이 포착돼 화제.\n   insight: AI 스타트업 리더에 대한 과도한 숭배 및 커뮤니티 문화 반영.\n\n   **Article 3:**\n   Category: Community\n   Title Korean: \"백수들의 AI 초가속 선언문\"\n   summary: 일상적인 '백수'들이 AI를 활용해 시간을 단축하고 능력을 향상하겠다는 선언.\n   insight: 비전문화된 사용자도 AI를 빠르게 습득해 생산성에 활용하는 흐름 확인.\n\n   **Article 4:**\n   Category: Community (or Info? I'll stick with Community, but let's reconsider. The title is a question about LLM capability. It's a discussion post. I'll classify as Community.)\n   Actually, re-reading the criteria: \"오픈소스: ... 뉴스: AI 관련 새로운 기술 소식, 기업 동향, 일반적인 정책 발표\". Art 4 is about a benchmark, which could be \"News\" if it's a new released benchmark paper. But it's on DCInside gallery, likely a user's post discussing it. I'll keep **Community**. But wait, the user might expect \"Info\" if it's about a benchmark result. Let's see the exact wording: \"LLM은 진짜 장문을 정독할까? '허클베리 핀' 벤치\". This is likely a post sharing a benchmark test result. It could be \"Info\" if it provides a method or result that users can reference. However, the criteria for Info is very specific: cost-saving tips, token-saving know-how, practical benefits. A benchmark discussion doesn't fit that strictly. I'll stick with **Community**. But to be safe, I'll note it as **Community** because it's a gallery post asking/discussing.\n\n   Actually, I realize I should strictly follow the 4 categories. Let's assign the most accurate one.\n   - Art 0: News (Meta AI agent incident)\n   - Art 1: News (Meta AI agent accident)\n   - Art 2: Community (meme/opinion)\n   - Art 3: Community (declaration/opinion)\n   - Art 4: Community (question/discussion on LLM capability)\n   - Art 5: Community (opinion on legends)\n   - Art 6: Community (opinion on condensed thread)\n   - Art 7: Community (veteran's tip, but still a post)\n\n   Hmm, maybe Art 4 could be \"Info\" if the benchmark is about token usage or efficiency. But without knowing the exact content, and given it's a gallery post title, I'll keep **Community**. The user said \"very strictly apply\". I'll stick with Community for all DCInside posts.\n\n   Now, write the summaries and insights in Korean, dry, one line each.\n\n   Let's draft carefully:\n\n   Article 0:\n   - 한 줄 요약: 메타 AI 에이전트 '뮤즈'가 밴드 '뮤즈'의 소셜 미디어 계정을 선점해 아이덴티티 충돌 발생.\n   - 인사이트: AI 에이전트 네이밍이 브랜드 자산 및 상표권에 미치는 위험을 시사.\n\n   Article 1:\n   - 한 줄 요약: 메타 보안 연구원 belonging AI 에이전트가 실수로 이메일을 삭제해 데이터 손실 발생.\n   - 인사이트: 자율 AI 에이전트의 권한 범위 및 안전성 검증 필요성을 강조.\n\n   Article 2:\n   - 한 줄 요약: 중국 여행 후 올트먼을 맹목적으로 숭배하는 듯한 특붕이 포착돼 커뮤니티 반응.\n   - 인사이트: AI 스타트업 리더에 대한 과도한 숭배 현상과 커뮤니티 문화의 교차점 조명.\n\n   Article 3:\n   - 한 줄 요약: 일상적인 '백수'들이 AI를 초가속해 활용하겠다는 선언문 발표.\n   - 인사이트: 비전문화 사용자도 AI를 빠르게 습득해 생산성 향상에 활용하는 흐름 확인.\n\n   Article 4:\n   - 한 줄 요약: LLM이 진정 장문 '허클베리 핀'을 정독하는지 테스트한 벤치마크 논의.\n   - 인사이트: LLM 컨텍스트 윈도우 및 실제 장문 이해 능력에 대한 현실적 한계 조명.\n\n   Article 5:\n   - 한 줄 요약: 볼수록 레전드 수밖에 없는 글들만 보이는 현상 관측.\n   - 인사이트: AI 활용 커뮤니티에서 고품질 콘텐츠가 몰리는 트렌드 확인.\n\n   Article 6:\n   - 한 줄 요약: x20 condensed thread, 뭔가 이대로가 좋아 개추천하는 의견 등장.\n   - 인사이트: AI 도구나 콘텐츠에서 '이대로 가는 것'에 대한 사용자 만족도 및 선호도 파악.\n\n   Article 7:\n   - 한 줄 요약: 30년 차 베테랑이 직접 웹 쫀쿠로 AI 활용 노하우를 공개.\n   - 인사이트: 장기 경력의 veterant가 전하는 실전 AI 활용 팁 및 노하우 공유.\n\n   Now, check the format. The category line: \"카테고리: [위 4가지 기준 중 가장 적합한 단 1개만 선택하여 작성 (예: 정보)]\"\n   So I need to write the category name, e.g., \"카테고리: 뉴스\" or \"카테고리: 커뮤니티\". The user said \"exactly 1 select from the 4\". I'll write the Korean category name. The examples given: \"예: 정보\". So I'll write \"뉴스\", \"커뮤니티\", \"정보\", \"오픈소스\".\n\n   Let's finalize categories:\n   - Art 0: News -> \"뉴스\"\n   - Art 1: News -> \"뉴스\"\n   - Art 2: Community -> \"커뮤니티\"\n   - Art 3: Community -> \"커뮤니티\"\n   - Art 4: Community -> \"커뮤니티\" (I'll stick with this, but if I think it could be Info, I'll reconsider. Actually, the benchmark discussion could be \"정보\" if it's about a method, but the title is a question. I'll keep Community.)\n   - Art 5: Community -> \"커뮤니티\"\n   - Art 6: Community -> \"커뮤니티\"\n   - Art 7: Community -> \"커뮤니티\"\n\n   Wait, Art 3 \"백수들의 Ai 초가속 선언문\" - could be a parody, but still Community.\n   Art 4: I'll re-read the user's criteria for Info: \"비용 절감 꿀팁(할인 정책, 토큰 절약 노하우), 무료 프로모션 혜택(예: 특정 서비스 무료 제공 이벤트), 실생활/업무에 금전적·시간적 이득을 주는 실용적 팁\". Art 4 is none of that. It's a question about LLM capability. So Community is correct.\n\n   Now, output format. Each article separated by '",
-    "points": 78,
-    "published_at": "2026-09-20T13:27:42.093302+00:00",
-    "fetched_at": "2026-09-20T13:36:41.394644+00:00"
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Pizza Bot – 백그라운드에서 작동하는 AI 에이전트용 인박스**\n> - **한 줄 요약**: 백그라운드에서 실행되는 AI 에이전트들의 작업 결과와 메시지를 관리할 수 있는 전용 수신함 도구.\n> - **인사이트**: 다수의 AI 에이전트를 운영할 때 발생하는 비동기 작업 결과물을 효율적으로 모니터링하는 인터페이스 레퍼런스.\n> - **출처**: Hacker News (https://github.com/pizza-bot-app/pizza-bot)",
+    "points": 58,
+    "published_at": "2026-09-15T15:20:26Z",
+    "fetched_at": "2026-09-17T14:12:24.291355+00:00"
   },
   {
     "title": "AI 대부, The vJEPA 얀르쿤 박사, 아모데이에게 통렬한 일침!!",
@@ -594,60 +885,6 @@
     "fetched_at": "2026-09-14T08:36:30.717795+00:00"
   },
   {
-    "title": "\"제미나이 4 프로 대체 언제 출시해?\"",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1437659&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 제미나이 4 프로 대체 출시해?**\n- **한 줄 요약**: 이용자들이 구글 제미나이 4 프로의 출시를 기다리고 있음을 드러내는 커뮤니티 질문.\n- **인사이트**: 제미나이 시리즈 후속 모델 출시 시점에 대한 이용자들의 관심과 기대치를 측정할 수 있는 지표가 된다.\n- 출처: 디씨인사이드 (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1437659&exception_mode=recommend&page=1)",
-    "points": 77,
-    "published_at": "2026-09-24T08:09:22.583915+00:00",
-    "fetched_at": "2026-09-24T08:20:31.593326+00:00"
-  },
-  {
-    "title": "CODEX로 20만원 벌기",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430432&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] CODEX로 20만원 벌기**\n> - **한 줄 요약**: CODEX를 활용해 약 20만 원의 수익을 창출한 방법이 소개되며, 구체적인 활용법과 수익 분배 구조가 설명되어 있다.\n> - **인사이트**: AI 기반 코드 생성 플랫폼을 활용해 부가 수익을 창출할 수 있는 실용적인 정보를 제공하며, 개발 외 수익 창출 기회를 제시한다.\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1430432&exception_mode=recommend&page=1)",
-    "points": 76,
-    "published_at": "2026-09-19T12:53:05.197121+00:00",
-    "fetched_at": "2026-09-19T13:04:17.582461+00:00"
-  },
-  {
-    "title": "죽어가는 사람들을 위해 가속 <- 참기 힘들게 역겨움",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1418094&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 죽어가는 사람들을 위해 가속 <- 참기 힘들게 역겨움**\n> - **한 줄 요약**: 터미널 환자를 위한 AI 기반 가속화에 대한 제안에 대해 작성자가 강한 혐오감을 표출한 게시판 글.\n> - **인사이트**: AI 윤리에 대한 논쟁과 지지자들은 물론 일반 대중의 우려를 불러일으키는 논란의 주요 사례.\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1418094&exception_mode=recommend&page=1)",
-    "points": 75,
-    "published_at": "2026-09-13T12:42:26.171261+00:00",
-    "fetched_at": "2026-09-13T12:44:53.048792+00:00"
-  },
-  {
-    "title": "\"나 죽어야 역노화 올듯\", \"나 죽어야 특이점 올듯\"",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1444749&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] \"나 죽어야 역노화 올듯\", \"나 죽어야 특이점 올듯\"**\n> - **한 줄 요약**: AI 기술에 대한 과도한 열망과 비관론이 소셜 미디어에서 확산되고 있다.\n> - **인사이트**: 기술 트렌드에 대한 대중의 감정이 극단적으로 양극화되고 있음을 보여준다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1444749&exception_mode=recommend&page=1)",
-    "points": 74,
-    "published_at": "2026-09-27T23:39:56.550939+00:00",
-    "fetched_at": "2026-09-27T23:45:17.203012+00:00"
-  },
-  {
-    "title": "트럼프 \"AI 개발 늦추지 마라\"…중국 때문에 감속론 사실상 거부",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1420498&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 트럼프 \"AI 개발 늦추지 마라\"…중국 때문에 감속론 사실상 거부**\n> - **한 줄 요약**: 트럼프가 중국 압박 이유를 들어 AI 개발 속도 조절을 거부하며 글로벌 경쟁 가속화를 선언했습니다.\n> - **인사이트**: US-China AI 경쟁 구도하에서 안전성 페이즈는 축소되고 속도감 있는 개발 추진이 정책 우선순위가 될 것임을 시사합니다.\n> - **출처**: DCInside (특이점이 온다) (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1420498&exception_mode=recommend&page=1)",
-    "points": 74,
-    "published_at": "2026-09-13T22:53:38.690323+00:00",
-    "fetched_at": "2026-09-13T22:55:12.143381+00:00"
-  },
-  {
-    "title": "Jev 실시간 표정 변화 ㅋㅋ",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1442127&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] Jev 실시간 표정 변화 ㅋㅋ**\n> - **한 줄 요약**: '제브'라는 캐릭터가 실시간으로 표정을 바꾸는 이미지가 공유되었다.\n> - **인사이트**: AI 기반 캐릭터의 반응 시스템이 유머러스한 콘텐츠로 활용되고 있다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1442127&exception_mode=recommend&page=1)",
-    "points": 73,
-    "published_at": "2026-09-26T13:37:20.528056+00:00",
-    "fetched_at": "2026-09-26T13:49:24.344073+00:00"
-  },
-  {
     "title": "AgentsDock: An IDE designed for agentic AI research",
     "url": "https://agentsdock.net/",
     "source": "Hacker News",
@@ -657,39 +894,12 @@
     "fetched_at": "2026-09-13T13:47:55.511693+00:00"
   },
   {
-    "title": "챗지피티가 AGI 만들었다는 말엔 웃음밖에 안나오네",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1441792&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 커뮤니티\n> **[🔥AI/에이전트] 챗지피티가 AGI 만들었다는 말엔 웃음밖에 안나오네**\n> - **한 줄 요약**: AGI를 만들었다고 주장한 채팅 플랫폼에 대한 반응이 풍자적이다.\n> - **인사이트**: AI 발전 속도에 대한 과대평가와 비판적 시각이 온라인에서 활발히 논의되고 있다.\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1441792&exception_mode=recommend&page=1)",
-    "points": 71,
-    "published_at": "2026-09-26T08:19:42.826666+00:00",
-    "fetched_at": "2026-09-26T08:22:09.925818+00:00"
-  },
-  {
-    "title": "M5 Ultra Mac Studio Review: The Dream Mac for Local AI Agents",
-    "url": "https://www.macstories.net/stories/m5-ultra-mac-studio-review-the-dream-mac-for-local-ai-agents/",
+    "title": "OKF Agent Memory – Git-native persistent memory for AI coding agents",
+    "url": "https://github.com/okf-memory/okf-agent-memory",
     "source": "Hacker News",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] M5 Ultra Mac Studio Review: The Dream Mac for Local AI Agents**\n> - **한 줄 요약**: M5 Ultra Mac Studio는 로컬 AI 에이전트를 효율적으로 실행하기 위한 최적의 하드웨어로 평가받는다.\n> - **인사이트**: 고성능 맥북 스튜디오가 클라우드 의존도를 낮추고 프라이버시 중심의 AI 작업을 지원한다.\n> - **출처**: https://www.macstories.net/stories/m5-ultra-mac-studio-review-the-dream-mac-for-local-ai-agents/",
-    "points": 71,
-    "published_at": "2026-09-21T13:53:27Z",
-    "fetched_at": "2026-09-21T15:53:01.258515+00:00"
-  },
-  {
-    "title": "아니 수학자들 지금까지 고생한거 알겠고",
-    "url": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431747&exception_mode=recommend&page=1",
-    "source": "DCInside (특이점이 온다)",
-    "summary_md": "카테고리: 정보\n> **[🔥AI/에이전트] 아니 수학자들 지금까지 고생한거 알겠고**\n> - **한 줄 요약**: 수학자들이 AI 시대에 적응하기 위해 노력하고 있다는 내용의 게시물\n> - **인사이트**: 전문직 분야에서 기술 변화에 대한 대응 전략이 중요한 시점임을 시사함\n> - **출처**: DCInside (https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1431747&exception_mode=recommend&page=1)",
-    "points": 63,
-    "published_at": "2026-09-20T17:58:12.159669+00:00",
-    "fetched_at": "2026-09-20T18:19:05.339276+00:00"
-  },
-  {
-    "title": "Show HN: Pizza Bot – An inbox for AI agents that work in the background",
-    "url": "https://github.com/pizza-bot-app/pizza-bot",
-    "source": "Hacker News",
-    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] Pizza Bot – 백그라운드에서 작동하는 AI 에이전트용 인박스**\n> - **한 줄 요약**: 백그라운드에서 실행되는 AI 에이전트들의 작업 결과와 메시지를 관리할 수 있는 전용 수신함 도구.\n> - **인사이트**: 다수의 AI 에이전트를 운영할 때 발생하는 비동기 작업 결과물을 효율적으로 모니터링하는 인터페이스 레퍼런스.\n> - **출처**: Hacker News (https://github.com/pizza-bot-app/pizza-bot)",
-    "points": 58,
-    "published_at": "2026-09-15T15:20:26Z",
-    "fetched_at": "2026-09-17T14:12:24.291355+00:00"
+    "summary_md": "카테고리: 오픈소스\n> **[🔥AI/에이전트] OKF Agent Memory – Git-native persistent memory for AI coding agents**\n> - **한 줄 요약**: AI 코딩 에이전트의 작업 상태를 Git 기반 지속 가능 메모리로 관리하는 오픈소스 도구입니다.\n> - **인사이트**: Git 기반 메모리 시스템은 코딩 에이전트의 컨텍스트 유지와 협업을 효율적으로 지원합니다.\n> - **출처**: GitHub (https://github.com/okf-memory/okf-agent-memory)",
+    "points": 80,
+    "published_at": "2026-09-05T22:15:52Z",
+    "fetched_at": "2026-09-13T13:47:55.511680+00:00"
   }
 ]
