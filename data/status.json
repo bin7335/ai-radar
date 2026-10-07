@@ -1,32 +1,32 @@
 {
-  "last_run_at": "2026-10-06T20:22:09.578786+00:00",
-  "last_successful_run_at": "2026-10-06T20:22:09.578786+00:00",
+  "last_run_at": "2026-10-07T00:45:58.276517+00:00",
+  "last_successful_run_at": "2026-10-07T00:45:58.276517+00:00",
   "healthy": true,
   "sources": {
     "Hacker News": {
       "ok": true,
       "count": 12,
-      "last_success_at": "2026-10-06T20:22:09.578786+00:00"
+      "last_success_at": "2026-10-07T00:45:58.276517+00:00"
     },
     "GitHub Trending": {
       "ok": true,
       "count": 7,
-      "last_success_at": "2026-10-06T20:22:09.578786+00:00"
+      "last_success_at": "2026-10-07T00:45:58.276517+00:00"
     },
     "TechCrunch AI": {
       "ok": true,
       "count": 5,
-      "last_success_at": "2026-10-06T20:22:09.578786+00:00"
+      "last_success_at": "2026-10-07T00:45:58.276517+00:00"
     },
     "DCInside": {
       "ok": true,
       "count": 10,
-      "last_success_at": "2026-10-06T20:22:09.578786+00:00"
+      "last_success_at": "2026-10-07T00:45:58.276517+00:00"
     }
   },
-  "new_items": 26,
-  "summaries_completed": 18,
-  "quality_rejected": 6,
-  "summaries_pending": 1,
-  "feed_count": 76
+  "new_items": 13,
+  "summaries_completed": 5,
+  "quality_rejected": 10,
+  "summaries_pending": 0,
+  "feed_count": 77
 }
