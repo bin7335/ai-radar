@@ -1,17 +1,17 @@
 {
-  "last_run_at": "2026-11-19T22:41:05.365276+00:00",
+  "last_run_at": "2026-11-20T11:47:33.109587+00:00",
   "last_successful_run_at": "2026-11-17T11:58:09.326130+00:00",
   "healthy": false,
   "sources": {
     "Hacker News": {
       "ok": true,
       "count": 12,
-      "last_success_at": "2026-11-19T22:41:05.365276+00:00"
+      "last_success_at": "2026-11-20T11:47:33.109587+00:00"
     },
     "GitHub Trending": {
       "ok": true,
       "count": 8,
-      "last_success_at": "2026-11-19T22:41:05.365276+00:00"
+      "last_success_at": "2026-11-20T11:47:33.109587+00:00"
     },
     "TechCrunch AI": {
       "ok": false,
@@ -21,7 +21,7 @@
     "DCInside": {
       "ok": true,
       "count": 10,
-      "last_success_at": "2026-11-19T22:41:05.365276+00:00"
+      "last_success_at": "2026-11-20T11:47:33.109587+00:00"
     }
   },
   "new_items": 19,
