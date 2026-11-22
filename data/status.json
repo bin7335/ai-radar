@@ -1,32 +1,48 @@
 {
-  "last_run_at": "2026-11-22T11:32:18.834252+00:00",
-  "last_successful_run_at": "2026-11-22T11:32:18.834252+00:00",
+  "last_run_at": "2026-11-22T12:17:36.744560+00:00",
+  "last_successful_run_at": "2026-11-22T12:17:36.744560+00:00",
   "healthy": true,
   "sources": {
     "Hacker News": {
       "ok": true,
       "count": 12,
-      "last_success_at": "2026-11-22T11:32:18.834252+00:00"
+      "last_success_at": "2026-11-22T12:17:36.744560+00:00",
+      "optional": false
     },
     "GitHub Trending": {
       "ok": true,
       "count": 8,
-      "last_success_at": "2026-11-22T11:32:18.834252+00:00"
+      "last_success_at": "2026-11-22T12:17:36.744560+00:00",
+      "optional": false
     },
     "TechCrunch AI": {
       "ok": true,
       "count": 5,
-      "last_success_at": "2026-11-22T11:32:18.834252+00:00"
+      "last_success_at": "2026-11-22T12:17:36.744560+00:00",
+      "optional": false
     },
     "DCInside": {
       "ok": true,
       "count": 10,
-      "last_success_at": "2026-11-22T11:32:18.834252+00:00"
+      "last_success_at": "2026-11-22T12:17:36.744560+00:00",
+      "optional": true
+    },
+    "Reddit AI": {
+      "ok": true,
+      "count": 6,
+      "last_success_at": "2026-11-22T12:17:36.744560+00:00",
+      "optional": true
+    },
+    "Polymarket AI": {
+      "ok": true,
+      "count": 4,
+      "last_success_at": "2026-11-22T12:17:36.744560+00:00",
+      "optional": true
     }
   },
-  "new_items": 8,
-  "summaries_completed": 3,
-  "quality_rejected": 5,
+  "new_items": 23,
+  "summaries_completed": 17,
+  "quality_rejected": 6,
   "summaries_pending": 0,
   "feed_count": 80
 }
