@@ -96,6 +96,18 @@ class QualityTests(unittest.TestCase):
         self.assertTrue(all(post['title'] == '비교 실험' for post in posts))
         self.assertFalse(any('no=1' in url for url in urls))
 
+    def test_non_community_exclude_decision_is_ignored(self):
+        items = [
+            dict(title='HN AI Agent', url='https://example.com/hn', source='Hacker News'),
+            community('잡담'),
+        ]
+        result = self.summarize(
+            [dict(id=0, decision='exclude'), dict(id=1, decision='exclude')],
+            items,
+        )
+        self.assertNotIn(0, result)
+        self.assertIsNone(result[1])
+
 
 if __name__ == '__main__':
     unittest.main()

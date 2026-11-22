@@ -2,7 +2,10 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
+
+import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import main
@@ -135,6 +138,56 @@ class PipelineTests(unittest.TestCase):
                 self.assertTrue(second["healthy"])
                 self.assertEqual(second["new_items"], 0)
                 self.assertEqual(summarize.call_count, 1)
+
+    def test_scrape_techcrunch_ai_uses_rss_and_falls_back_to_wp_api(self):
+        rss_xml = b"""<?xml version="1.0" encoding="UTF-8"?>
+        <rss version="2.0"><channel>
+          <item>
+            <title>Agent SDK Launch</title>
+            <link>https://techcrunch.com/2026/11/21/agent-sdk/</link>
+            <pubDate>Sat, 21 Nov 2026 21:37:10 +0000</pubDate>
+            <description><![CDATA[<p>New agent SDK released.</p>]]></description>
+          </item>
+        </channel></rss>"""
+        seen_headers = []
+
+        def fake_rss_get(url, headers=None, timeout=None):
+            seen_headers.append(headers or {})
+            return SimpleNamespace(content=rss_xml, raise_for_status=lambda: None)
+
+        with patch.object(main.requests, "get", side_effect=fake_rss_get):
+            items = main.scrape_techcrunch_ai()
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["title"], "Agent SDK Launch")
+        self.assertEqual(items[0]["description"], "New agent SDK released.")
+        self.assertEqual(items[0]["published_at"], "2026-11-21T21:37:10+00:00")
+        self.assertTrue(seen_headers[0].get("User-Agent", "").startswith("AI-Radar/"))
+
+        wp_posts = [
+            {
+                "date_gmt": "2026-11-21T20:00:00",
+                "link": "https://techcrunch.com/2026/11/21/fallback-post/",
+                "title": {"rendered": "Company&#8217;s AI update"},
+                "excerpt": {"rendered": "<p>Fallback <b>summary</b> text.</p>"},
+            }
+        ]
+        calls = []
+
+        def fake_fallback_get(url, headers=None, timeout=None):
+            calls.append(url)
+            if "feed" in url:
+                raise requests.HTTPError("403 Forbidden")
+            return SimpleNamespace(json=lambda: wp_posts, raise_for_status=lambda: None)
+
+        with patch.object(main.requests, "get", side_effect=fake_fallback_get):
+            fallback_items = main.scrape_techcrunch_ai()
+
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(len(fallback_items), 1)
+        self.assertEqual(fallback_items[0]["title"], "Company’s AI update")
+        self.assertEqual(fallback_items[0]["description"], "Fallback summary text.")
+        self.assertEqual(fallback_items[0]["published_at"], "2026-11-21T20:00:00+00:00")
 
 
 if __name__ == "__main__":

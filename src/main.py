@@ -35,6 +35,16 @@ OUTPUT_FILE = DATA_DIR / "feed.json"
 STATUS_FILE = DATA_DIR / "status.json"
 DATA_DIR.mkdir(exist_ok=True)
 
+USER_AGENT = "AI-Radar/1.0 (+https://github.com/bin7335/ai-radar)"
+RSS_HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8",
+}
+API_HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "application/json",
+}
+
 def clean_text(text):
     if not text: return text
     import re
@@ -103,6 +113,8 @@ JSON 배열만 출력하세요. 각 항목의 id는 입력 id와 같아야 합�
 형식: [{"id": 0, "decision": "keep", "category": "오픈소스", "one_line": "한 줄 요약", "insight": "활용 가치 또는 정보 부족", "evidence": "본문의 실제 정보 문장"}]
 category는 오픈소스, 뉴스, 정보, 커뮤니티 중 하나입니다.
 GitHub 저장소는 오픈소스, 할인·무료 혜택과 절약 팁은 정보, 의견·토론은 커뮤니티입니다.
+비커뮤니티 출처(Hacker News, GitHub Trending, TechCrunch AI)는 설명이 비어 있거나 짧아도 절대 제외하지 말고 반드시 "decision": "keep"으로 두고 제목·설명 기준으로 요약하세요.
+"decision": "exclude"는 커뮤니티 출처(DCInside 등)에만 사용하세요.
 
 커뮤니티 출처(특히 DCInside)는 카테고리와 무관하게 엄격하게 심사하세요.
 - 유지: 구체적인 AI 활용 절차, 재현 가능한 문제 해결, 조건/결과가 있는 비교·후기,
@@ -110,7 +122,7 @@ GitHub 저장소는 오픈소스, 할인·무료 혜택과 절약 팁은 정보,
 - 제외: 성적 낚시·음란 이미지 자랑, 밈/짤 감상, 추천 구걸, 조롱·진영 싸움,
   근거 없는 예측/감탄/불평, 답변 없는 단순 질문, 내용 없는 홍보, AI와 무관한 잡담.
 - AI/GPT라는 단어나 추천수는 정보 가치의 근거가 아닙니다.
-- 본문이 없거나 구체적 정보를 확인할 수 없으면 제외합니다.
+- 커뮤니티 글 중 본문이 없거나 구체적 정보를 확인할 수 없으면 제외합니다.
 - 유지하는 커뮤니티 글은 evidence에 유용한 사실/방법/결과를 담은 본문의 연속된
   15자 이상을 그대로 인용하세요. 일반론을 붙여 가치가 있는 글처럼 포장하지 마세요.
 - 안전 정책/음란물 차단 기능에 관한 실질적인 기술 논의 자체는 제외 사유가 아닙니다.
@@ -147,7 +159,8 @@ GitHub 저장소는 오픈소스, 할인·무료 혜택과 절약 팁은 정보,
                 return {}  # Ambiguous IDs must not attach a verdict to the wrong item.
             seen.add(index)
             if row.get("decision") == "exclude":
-                parsed[index] = None
+                if is_community(items[index]):
+                    parsed[index] = None
                 continue
             if is_community(items[index]) and not valid_evidence(row, items[index]):
                 continue
@@ -169,7 +182,7 @@ GitHub 저장소는 오픈소스, 할인·무료 혜택과 절약 팁은 정보,
         return parsed
 
     results = {}
-    model_names = os.environ.get("OPENROUTER_MODELS", "google/gemma-4-31b-it:free,nvidia/nemotron-3.5-lightning:free,liquid/lfm-2.5-2.6b:free").split(",")
+    model_names = os.environ.get("OPENROUTER_MODELS", "google/gemma-4-31b-it:free,google/gemma-4-26b-a4b-it:free,nvidia/nemotron-3.5-lightning:free,liquid/lfm-3-1.7b:free").split(",")
     if or_client:
         for model_name in (name.strip() for name in model_names if name.strip()):
             try:
@@ -300,33 +313,89 @@ def scrape_hackernews():
         print(f"HN Scraping failed: {e}")
         return []
 
-def scrape_techcrunch_ai():
-    print("🔍 TechCrunch AI 크롤링 시작...")
+def _make_techcrunch_item(title, link, raw_description, pub_date):
+    """Build a normalized TechCrunch AI feed item."""
+    description = BeautifulSoup(raw_description or "", "html.parser").get_text(" ", strip=True)
+    return {
+        "title": title,
+        "url": link,
+        "source": "TechCrunch AI",
+        "description": description[:500],
+        "points": 0,
+        "comments": "N/A",
+        "published_at": pub_date.isoformat() if pub_date else now_iso(),
+    }
+
+
+def parse_techcrunch_rss(xml_data):
+    """Parse TechCrunch AI RSS XML payload into feed items."""
     import xml.etree.ElementTree as ET
-    import urllib.request
-    url = "https://techcrunch.com/category/artificial-intelligence/feed/"
+
+    root = ET.fromstring(xml_data)
+    results = []
+    for item in root.findall("./channel/item")[:5]:
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        if not title or not link:
+            continue
+        results.append(
+            _make_techcrunch_item(
+                title=title,
+                link=link,
+                raw_description=item.findtext("description") or "",
+                pub_date=parse_date(item.findtext("pubDate")),
+            )
+        )
+    return results
+
+
+def parse_techcrunch_wp_posts(posts):
+    """Parse TechCrunch WordPress REST API posts JSON into feed items."""
+    if not isinstance(posts, list):
+        return []
+    results = []
+    for post in posts[:5]:
+        if not isinstance(post, dict):
+            continue
+        title = BeautifulSoup(
+            (post.get("title") or {}).get("rendered", ""), "html.parser"
+        ).get_text(" ", strip=True)
+        link = (post.get("link") or "").strip()
+        if not title or not link:
+            continue
+        results.append(
+            _make_techcrunch_item(
+                title=title,
+                link=link,
+                raw_description=(post.get("excerpt") or {}).get("rendered", ""),
+                pub_date=parse_date(post.get("date_gmt") or post.get("date")),
+            )
+        )
+    return results
+
+
+def scrape_techcrunch_ai():
+    """Fetch TechCrunch AI posts from RSS with WordPress REST API fallback."""
+    print("🔍 TechCrunch AI 크롤링 시작...")
+    rss_url = "https://techcrunch.com/category/artificial-intelligence/feed/"
+    wp_url = (
+        "https://techcrunch.com/wp-json/wp/v2/posts"
+        "?categories=577047203&per_page=5&_fields=date_gmt,link,title,excerpt"
+    )
     try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        xml_data = urllib.request.urlopen(req, timeout=10).read()
-        root = ET.fromstring(xml_data)
-        results = []
-        for item in root.findall('./channel/item')[:5]:
-            title = item.findtext('title')
-            link = item.findtext('link')
-            if not title or not link:
-                continue
-            pub_date = parse_date(item.findtext('pubDate'))
-            description = BeautifulSoup(item.findtext('description') or '', 'html.parser').get_text(' ', strip=True)
-            results.append({
-                "title": title,
-                "url": link,
-                "source": "TechCrunch AI",
-                "description": description[:500],
-                "points": 0,
-                "comments": "N/A",
-                "published_at": pub_date.isoformat() if pub_date else now_iso()
-            })
-        return results
+        response = requests.get(rss_url, headers=RSS_HEADERS, timeout=15)
+        response.raise_for_status()
+        items = parse_techcrunch_rss(response.content)
+        if items:
+            return items
+        print("TechCrunch RSS 수집 결과가 비어 있어 WordPress API 폴백 시도")
+    except Exception as e:
+        print(f"TechCrunch RSS 수집 실패, WordPress API 폴백 시도: {e}")
+
+    try:
+        response = requests.get(wp_url, headers=API_HEADERS, timeout=15)
+        response.raise_for_status()
+        return parse_techcrunch_wp_posts(response.json())
     except Exception as e:
         print(f"TechCrunch Scraping failed: {e}")
         return []
@@ -373,7 +442,7 @@ def parse_github_trending(html):
 def scrape_github_trending():
     print("🚀 GitHub Trending (Weekly) 크롤링 시작...")
     url = "https://github.com/trending?since=weekly"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"User-Agent": USER_AGENT}
     try:
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
