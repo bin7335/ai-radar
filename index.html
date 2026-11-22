@@ -260,7 +260,7 @@
             const stamp = lastSuccess ? new Date(lastSuccess).getTime() : newest;
             const stale = !stamp || Date.now() - stamp > 12 * 60 * 60 * 1000;
             const failedSources = status?.sources ? Object.entries(status.sources)
-                .filter(([name, state]) => name !== 'DCInside' && !state.ok)
+                .filter(([name, state]) => !state.optional && name !== 'DCInside' && !state.ok)
                 .map(([name]) => name) : [];
             if (status?.healthy && !stale) {
                 el.className = 'text-xs text-emerald-600 dark:text-emerald-400 mt-3';
@@ -283,10 +283,10 @@
 
             Object.values(cols).forEach(col => col.innerHTML = '');
 
-            // 같은 날짜의 GitHub 항목은 이번 주 획득 스타로 정렬한다.
+            // 같은 날짜의 실시간 항목(GitHub/Polymarket)은 최근 확인일과 지표로 정렬한다.
             const sortedData = [...data].sort((a, b) => {
-                const dateA = new Date(a.source === 'GitHub Trending' ? (a.last_seen_at || a.fetched_at) : (a.published_at || a.fetched_at)).getTime() || 0;
-                const dateB = new Date(b.source === 'GitHub Trending' ? (b.last_seen_at || b.fetched_at) : (b.published_at || b.fetched_at)).getTime() || 0;
+                const dateA = new Date((a.source === 'GitHub Trending' || a.source === 'Polymarket AI') ? (a.last_seen_at || a.fetched_at) : (a.published_at || a.fetched_at)).getTime() || 0;
+                const dateB = new Date((b.source === 'GitHub Trending' || b.source === 'Polymarket AI') ? (b.last_seen_at || b.fetched_at) : (b.published_at || b.fetched_at)).getTime() || 0;
                 const dayDiff = Math.floor(dateB / 86400000) - Math.floor(dateA / 86400000);
                 if (dayDiff) return dayDiff;
                 const pA = parseInt(a.points) || 0;
@@ -303,7 +303,8 @@
                 const oneLine = item.one_line || parsed.oneLine;
                 const implication = item.insight || parsed.implication;
                 const isGithub = item.source === 'GitHub Trending';
-                const timeAgo = isGithub ? `확인 ${relativeTime(item.last_seen_at || item.fetched_at)}` : relativeTime(item.published_at || item.fetched_at);
+                const isLiveSource = isGithub || item.source === 'Polymarket AI';
+                const timeAgo = isLiveSource ? `확인 ${relativeTime(item.last_seen_at || item.fetched_at)}` : relativeTime(item.published_at || item.fetched_at);
                 const link = safeUrl(item.url);
                 if (!link) return;
                 
@@ -330,6 +331,8 @@
                 const pointsText = isGithub && Number.isFinite(Number(item.weekly_stars))
                     ? `⭐ +${Number(item.weekly_stars).toLocaleString()} / 주`
                     : isGithub ? `누적 ⭐ ${Number(item.points || 0).toLocaleString()}`
+                    : item.source === 'Polymarket AI' && Number(item.volume_24h) > 0
+                    ? `📊 24h $${Math.round(Number(item.volume_24h) / 1000).toLocaleString()}K`
                     : Number(item.points) > 0 ? `🔥 ${Number(item.points).toLocaleString()}` : '';
                 const pointsLabel = pointsText ? `<span class="px-1.5 py-0.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded text-[10px] font-bold whitespace-nowrap flex-shrink-0">${escapeHtml(pointsText)}</span>` : '';
 

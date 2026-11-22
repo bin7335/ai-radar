@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 import main
-from content_quality import filter_feed, rejection_reason
+from content_quality import filter_feed, is_community, rejection_reason, valid_evidence
 
 
 def community(title, **fields):
@@ -71,6 +71,8 @@ class QualityTests(unittest.TestCase):
                      patch.object(main, 'scrape_github_trending', return_value=[]), \
                      patch.object(main, 'scrape_techcrunch_ai', return_value=[]), \
                      patch.object(main, 'scrape_dcinside', return_value=[community('비교 실험')]), \
+                     patch.object(main, 'scrape_reddit_ai', return_value=[]), \
+                     patch.object(main, 'scrape_polymarket_ai', return_value=[]), \
                      patch.object(main, 'summarize_batch', return_value=results):
                     main.save_json(main.OUTPUT_FILE, [community('추천 개추')])
                     main.run_pipeline()
@@ -107,6 +109,19 @@ class QualityTests(unittest.TestCase):
         )
         self.assertNotIn(0, result)
         self.assertIsNone(result[1])
+
+    def test_reddit_is_treated_as_community_and_whitespace_normalized_evidence(self):
+        reddit_item = {
+            'title': 'Inkling 2 Mini local benchmark',
+            'url': 'https://www.reddit.com/r/LocalLLaMA/comments/abc/test/',
+            'source': 'Reddit (r/LocalLLaMA)',
+            'description': 'Line one details.\n\nMeasured 200 tok/s decode on\n  a single RTX 5090.',
+        }
+        self.assertTrue(is_community(reddit_item))
+        self.assertTrue(valid_evidence(
+            {'decision': 'keep', 'evidence': 'Measured 200 tok/s decode on a single RTX 5090.'},
+            reddit_item,
+        ))
 
 
 if __name__ == '__main__':

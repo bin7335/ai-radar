@@ -5,10 +5,12 @@ from urllib.parse import parse_qs, urlparse
 
 
 def is_community(item):
+    source = item.get("source", "").lower()
     host = (urlparse(item.get("url", "")).hostname or "").lower()
     return (
-        "dcinside" in item.get("source", "").lower()
-        or host == "gall.dcinside.com"
+        "dcinside" in source
+        or "reddit" in source
+        or host in ("gall.dcinside.com", "www.reddit.com", "reddit.com", "old.reddit.com")
         or item.get("category") == "커뮤니티"
         or bool(re.search(r"카테고리\**\s*:\s*커뮤니티", item.get("summary_md", "")))
     )
@@ -44,6 +46,8 @@ def filter_feed(items):
 
 def valid_evidence(row, item):
     evidence = row.get("evidence")
-    return (row.get("decision") == "keep" and isinstance(evidence, str)
-            and len(evidence.strip()) >= 15
-            and evidence.strip() in item.get("description", "")[:5000])
+    if row.get("decision") != "keep" or not isinstance(evidence, str):
+        return False
+    norm_evidence = re.sub(r"\s+", " ", evidence).strip()
+    norm_desc = re.sub(r"\s+", " ", item.get("description", "")[:5000])
+    return len(norm_evidence) >= 15 and norm_evidence in norm_desc

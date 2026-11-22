@@ -123,6 +123,8 @@ class PipelineTests(unittest.TestCase):
                  patch.object(main, "scrape_github_trending", return_value=[github_item]), \
                  patch.object(main, "scrape_techcrunch_ai", return_value=[tc_item]), \
                  patch.object(main, "scrape_dcinside", return_value=[]), \
+                 patch.object(main, "scrape_reddit_ai", return_value=[]), \
+                 patch.object(main, "scrape_polymarket_ai", return_value=[]), \
                  patch.object(main, "now_iso", return_value="2026-10-04T03:00:00+00:00"), \
                  patch.object(main, "summarize_batch", return_value={
                      0: {"category": "뉴스", "one_line": "확인된 내용", "insight": "검토 가능"},
@@ -131,6 +133,7 @@ class PipelineTests(unittest.TestCase):
                  }) as summarize:
                 first = main.run_pipeline()
                 self.assertTrue(first["healthy"])
+                self.assertTrue(first["sources"]["Reddit AI"]["optional"])
                 self.assertEqual(first["new_items"], 3)
                 self.assertEqual(first["summaries_pending"], 0)
                 self.assertEqual(first["feed_count"], 3)
@@ -188,6 +191,103 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(fallback_items[0]["title"], "Company’s AI update")
         self.assertEqual(fallback_items[0]["description"], "Fallback summary text.")
         self.assertEqual(fallback_items[0]["published_at"], "2026-11-21T20:00:00+00:00")
+
+    def test_scrape_hackernews_enriches_top_comments_via_firebase(self):
+        def fake_get(url, headers=None, timeout=None):
+            if "hn.algolia.com/api/v1/search?" in url:
+                payload = {
+                    "hits": [
+                        {
+                            "objectID": "101",
+                            "title": "AI Coding Agents Benchmark",
+                            "url": "https://example.com/hn-101",
+                            "points": 210,
+                            "num_comments": 45,
+                            "created_at": "2026-11-21T10:00:00Z",
+                            "story_text": "<p>We tested <b>five</b> agents.</p>",
+                        }
+                    ]
+                }
+            elif "hn.algolia.com/api/v1/search_by_date" in url:
+                payload = {"hits": []}
+            elif url.endswith("/item/101.json"):
+                payload = {"id": 101, "kids": [201, 202, 203]}
+            elif url.endswith("/item/201.json"):
+                payload = {"id": 201, "deleted": True, "text": "deleted"}
+            elif url.endswith("/item/202.json"):
+                payload = {"id": 202, "text": "Latency dropped by 40% &amp; quality improved."}
+            elif url.endswith("/item/203.json"):
+                payload = {"id": 203, "text": "<p>Works well on local repos.</p>"}
+            else:
+                payload = {}
+            return SimpleNamespace(json=lambda: payload, raise_for_status=lambda: None)
+
+        with patch.object(main.requests, "get", side_effect=fake_get):
+            items = main.scrape_hackernews()
+
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["points"], 210)
+        self.assertEqual(items[0]["comments"], 45)
+        self.assertNotIn("_object_id", items[0])
+        self.assertIn("We tested five agents.", items[0]["description"])
+        self.assertIn("Latency dropped by 40% & quality improved.", items[0]["description"])
+        self.assertIn("Works well on local repos.", items[0]["description"])
+        self.assertNotIn("deleted", items[0]["description"])
+
+    def test_parse_reddit_arctic_posts_filters_noise_and_short_body(self):
+        long_body = "We measured inference throughput across 4 quantizations on a single GPU and observed 2.4x speedup."
+        posts = [
+            {"title": "Low score", "permalink": "/r/LocalLLaMA/comments/1/low/", "score": 10, "num_comments": 2, "selftext": long_body, "created_utc": 1795200000},
+            {"title": "Short body", "permalink": "/r/LocalLLaMA/comments/2/short/", "score": 200, "num_comments": 5, "selftext": "too short", "created_utc": 1795200000},
+            {"title": "Removed", "permalink": "/r/LocalLLaMA/comments/3/rem/", "score": 300, "num_comments": 9, "selftext": "[removed] " + long_body, "created_utc": 1795200000},
+            {"title": "NSFW", "permalink": "/r/LocalLLaMA/comments/4/nsfw/", "score": 400, "num_comments": 1, "selftext": long_body, "over_18": True, "created_utc": 1795200000},
+            {"title": "Good A", "permalink": "/r/LocalLLaMA/comments/5/a/", "score": 90, "num_comments": 12, "selftext": long_body, "created_utc": 1795200000},
+            {"title": "Good B", "permalink": "/r/LocalLLaMA/comments/6/b/", "score": 150, "num_comments": 30, "selftext": long_body, "created_utc": 1795200000},
+            {"title": "Good C", "permalink": "/r/LocalLLaMA/comments/7/c/", "score": 60, "num_comments": 8, "selftext": long_body, "created_utc": 1795200000},
+        ]
+        items = main.parse_reddit_arctic_posts(posts, "LocalLLaMA")
+        self.assertEqual([item["title"] for item in items], ["Good B", "Good A"])
+        self.assertEqual(items[0]["source"], "Reddit (r/LocalLLaMA)")
+        self.assertEqual(items[0]["url"], "https://www.reddit.com/r/LocalLLaMA/comments/6/b/")
+
+    def test_parse_polymarket_events_extracts_live_odds_and_filters_settled(self):
+        events = [
+            {
+                "title": "Low volume market",
+                "slug": "low-vol",
+                "volume24hr": 1200,
+                "volume": 3000,
+                "markets": [{"groupItemTitle": "Yes", "outcomePrices": ["0.5", "0.5"], "closed": False}],
+            },
+            {
+                "title": "Settled market",
+                "slug": "settled",
+                "volume24hr": 50000,
+                "volume": 100000,
+                "markets": [{"groupItemTitle": "Done", "outcomePrices": ["0.99", "0.01"], "closed": False}],
+            },
+            {
+                "title": "Best AI model end of 2026?",
+                "slug": "best-ai-2026",
+                "volume24hr": 48843,
+                "volume": 4669203,
+                "description": "<p>Resolves by benchmark.</p>",
+                "markets": [
+                    {"groupItemTitle": "Google", "outcomePrices": '["0.86", "0.14"]', "closed": False},
+                    {"groupItemTitle": "Anthropic", "outcomePrices": '["0.10", "0.90"]', "closed": False},
+                    {"groupItemTitle": "OpenAI", "outcomePrices": '["0.02", "0.98"]', "closed": False},
+                ],
+            },
+        ]
+        items = main.parse_polymarket_events(events)
+        self.assertEqual(len(items), 1)
+        item = items[0]
+        self.assertEqual(item["source"], "Polymarket AI")
+        self.assertEqual(item["url"], "https://polymarket.com/event/best-ai-2026")
+        self.assertEqual(item["volume_24h"], 48843)
+        self.assertEqual(item["points"], 49)
+        self.assertIn("Google 86% / Anthropic 10% / OpenAI 2%", item["description"])
+        self.assertIn("Resolves by benchmark.", item["description"])
 
 
 if __name__ == "__main__":

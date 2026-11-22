@@ -3,9 +3,11 @@ import os
 import json
 import datetime
 import email.utils
+import html
 import re
 import requests
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from openai import OpenAI
@@ -44,6 +46,8 @@ API_HEADERS = {
     "User-Agent": USER_AGENT,
     "Accept": "application/json",
 }
+CRITICAL_SOURCES = ("Hacker News", "GitHub Trending", "TechCrunch AI")
+LIVE_SOURCES = ("GitHub Trending", "Polymarket AI")
 
 def clean_text(text):
     if not text: return text
@@ -113,18 +117,18 @@ JSON 배열만 출력하세요. 각 항목의 id는 입력 id와 같아야 합�
 형식: [{"id": 0, "decision": "keep", "category": "오픈소스", "one_line": "한 줄 요약", "insight": "활용 가치 또는 정보 부족", "evidence": "본문의 실제 정보 문장"}]
 category는 오픈소스, 뉴스, 정보, 커뮤니티 중 하나입니다.
 GitHub 저장소는 오픈소스, 할인·무료 혜택과 절약 팁은 정보, 의견·토론은 커뮤니티입니다.
-비커뮤니티 출처(Hacker News, GitHub Trending, TechCrunch AI)는 설명이 비어 있거나 짧아도 절대 제외하지 말고 반드시 "decision": "keep"으로 두고 제목·설명 기준으로 요약하세요.
-"decision": "exclude"는 커뮤니티 출처(DCInside 등)에만 사용하세요.
+Polymarket AI 예측 시장은 뉴스 또는 정보로 분류하고 핵심 확률과 거래량을 요약에 반영하세요.
+비커뮤니티 출처(Hacker News, GitHub Trending, TechCrunch AI, Polymarket AI)는 설명이 비어 있거나 짧아도 절대 제외하지 말고 반드시 "decision": "keep"으로 두고 제목·설명 기준으로 요약하세요.
+"decision": "exclude"는 커뮤니티 출처(DCInside, Reddit 등)에만 사용하세요.
 
-커뮤니티 출처(특히 DCInside)는 카테고리와 무관하게 엄격하게 심사하세요.
+커뮤니티 출처(DCInside, Reddit 등)는 카테고리와 무관하게 엄격하게 심사하세요.
 - 유지: 구체적인 AI 활용 절차, 재현 가능한 문제 해결, 조건/결과가 있는 비교·후기,
   실제 출시/업데이트, 출처가 명시된 소식, 조건을 확인할 수 있는 할인/무료 혜택.
 - 제외: 성적 낚시·음란 이미지 자랑, 밈/짤 감상, 추천 구걸, 조롱·진영 싸움,
   근거 없는 예측/감탄/불평, 답변 없는 단순 질문, 내용 없는 홍보, AI와 무관한 잡담.
 - AI/GPT라는 단어나 추천수는 정보 가치의 근거가 아닙니다.
 - 커뮤니티 글 중 본문이 없거나 구체적 정보를 확인할 수 없으면 제외합니다.
-- 유지하는 커뮤니티 글은 evidence에 유용한 사실/방법/결과를 담은 본문의 연속된
-  15자 이상을 그대로 인용하세요. 일반론을 붙여 가치가 있는 글처럼 포장하지 마세요.
+- 유지하는 커뮤니티 글은 evidence에 유용한 사실/방법/결과를 담은 원문 본문(영어 글이면 번역하지 말고 영어 원문 그대로)의 연속된 15자 이상을 그대로 인용하세요. 일반론을 붙여 가치가 있는 글처럼 포장하지 마세요.
 - 안전 정책/음란물 차단 기능에 관한 실질적인 기술 논의 자체는 제외 사유가 아닙니다.
 - 제외도 결과에서 생략하지 말고 {"id": 입력번호, "decision": "exclude"}로 출력하세요.
 
@@ -290,28 +294,121 @@ def scrape_dcinside():
             
     return final_posts
 
+def _clean_html_text(raw_html):
+    """Unescape HTML entities and extract plain normalized text."""
+    if not raw_html:
+        return ""
+    return BeautifulSoup(html.unescape(raw_html), "html.parser").get_text(" ", strip=True)
+
+
+def _fetch_hn_top_comments(story_id, max_comments=3):
+    """Fetch up to max_comments top-level Hacker News comments via Firebase API."""
+    base_url = "https://hacker-news.firebaseio.com/v0/item"
+    try:
+        resp = requests.get(f"{base_url}/{story_id}.json", headers=API_HEADERS, timeout=8)
+        resp.raise_for_status()
+        story = resp.json() or {}
+    except Exception:
+        return []
+
+    comments = []
+    for kid in (story.get("kids") or [])[:5]:
+        if len(comments) >= max_comments:
+            break
+        try:
+            c_resp = requests.get(f"{base_url}/{kid}.json", headers=API_HEADERS, timeout=6)
+            c_resp.raise_for_status()
+            comment = c_resp.json() or {}
+        except Exception:
+            continue
+        if comment.get("deleted") or comment.get("dead") or not comment.get("text"):
+            continue
+        text = _clean_html_text(comment["text"])[:280]
+        if text:
+            comments.append(text)
+    return comments
+
+
 def scrape_hackernews():
+    """Fetch popular and recent AI agent stories from HN Algolia and enrich top comments."""
     print("🔍 Hacker News 크롤링 시작...")
     seven_days_ago = int(time.time()) - (7 * 24 * 60 * 60)
-    url = f"https://hn.algolia.com/api/v1/search_by_date?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{seven_days_ago}"
+    urls = [
+        f"https://hn.algolia.com/api/v1/search?query=AI+agent&tags=story&hitsPerPage=8&numericFilters=created_at_i>{seven_days_ago},points>=10",
+        f"https://hn.algolia.com/api/v1/search_by_date?query=AI+agent&tags=story&hitsPerPage=6&numericFilters=created_at_i>{seven_days_ago},points>=3",
+    ]
+    hits = []
+    seen_ids = set()
+
+    def _collect_hits(url):
+        resp = requests.get(url, headers=API_HEADERS, timeout=15)
+        resp.raise_for_status()
+        for hit in (resp.json() or {}).get("hits", []):
+            oid = str(hit.get("objectID") or "").strip()
+            if not oid or oid in seen_ids:
+                continue
+            seen_ids.add(oid)
+            hits.append(hit)
+
     try:
-        response = requests.get(url, timeout=15)
-        response.raise_for_status()
-        data = response.json()
-        results = []
-        for hit in data.get('hits', []):
-            results.append({
-                "title": hit.get("title"),
-                "url": hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}",
-                "source": "Hacker News",
-                "points": hit.get("points") or 0,
-                "comments": hit.get("num_comments") or 0,
-                "published_at": hit.get("created_at") or datetime.datetime.now(datetime.timezone.utc).isoformat()
-            })
-        return results
+        for url in urls:
+            try:
+                _collect_hits(url)
+            except Exception as exc:
+                print(f"HN query failed: {exc}")
+        if not hits:
+            fallback_url = (
+                "https://hn.algolia.com/api/v1/search_by_date"
+                f"?query=AI+agent&tags=story&hitsPerPage=12&numericFilters=created_at_i>{seven_days_ago}"
+            )
+            _collect_hits(fallback_url)
     except Exception as e:
         print(f"HN Scraping failed: {e}")
         return []
+
+    results = []
+    story_ids = []
+    for hit in hits[:12]:
+        oid = str(hit.get("objectID") or "").strip()
+        story_text = _clean_html_text(hit.get("story_text") or "")[:600]
+        item = {
+            "title": hit.get("title"),
+            "url": hit.get("url") or f"https://news.ycombinator.com/item?id={oid}",
+            "source": "Hacker News",
+            "points": hit.get("points") or 0,
+            "comments": hit.get("num_comments") or 0,
+            "published_at": hit.get("created_at") or now_iso(),
+        }
+        if story_text:
+            item["description"] = story_text
+        results.append(item)
+        story_ids.append(oid)
+
+    enrich_indices = sorted(
+        (idx for idx, item in enumerate(results) if (item.get("comments") or 0) > 0 and story_ids[idx]),
+        key=lambda idx: results[idx].get("points") or 0,
+        reverse=True,
+    )[:8]
+
+    if enrich_indices:
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {
+                executor.submit(_fetch_hn_top_comments, story_ids[idx], 3): idx
+                for idx in enrich_indices
+            }
+            for future in as_completed(futures):
+                idx = futures[future]
+                try:
+                    top_comments = future.result(timeout=15)
+                except Exception:
+                    top_comments = []
+                if top_comments:
+                    comment_block = "상위 댓글 반응: " + " | ".join(top_comments)
+                    existing = results[idx].get("description", "")
+                    merged = f"{existing}\n{comment_block}" if existing else comment_block
+                    results[idx]["description"] = merged[:1500]
+
+    return results
 
 def _make_techcrunch_item(title, link, raw_description, pub_date):
     """Build a normalized TechCrunch AI feed item."""
@@ -451,6 +548,158 @@ def scrape_github_trending():
         print(f"GitHub Trending Scraping failed: {e}")
         return []
 
+
+def parse_reddit_arctic_posts(posts, subreddit, limit=2, min_score=25, min_body_len=80):
+    """Filter and normalize Arctic Shift Reddit posts for a single subreddit."""
+    if not isinstance(posts, list):
+        return []
+    candidates = []
+    for post in posts:
+        if not isinstance(post, dict):
+            continue
+        score = int(post.get("score") or 0)
+        if score < min_score or post.get("over_18") or post.get("removed_by_category"):
+            continue
+        selftext = (post.get("selftext") or "").strip()
+        lowered = selftext.lower()
+        if len(selftext) < min_body_len or "[removed]" in lowered or "[deleted]" in lowered:
+            continue
+        title = (post.get("title") or "").strip()
+        permalink = (post.get("permalink") or "").strip()
+        if not title or not permalink:
+            continue
+        created_utc = post.get("created_utc")
+        published_at = (
+            datetime.datetime.fromtimestamp(float(created_utc), tz=datetime.timezone.utc).isoformat()
+            if created_utc
+            else now_iso()
+        )
+        candidates.append({
+            "title": title,
+            "url": urljoin("https://www.reddit.com", permalink),
+            "source": f"Reddit (r/{subreddit})",
+            "description": selftext[:2500],
+            "points": score,
+            "comments": int(post.get("num_comments") or 0),
+            "published_at": published_at,
+        })
+    candidates.sort(key=lambda item: item["points"], reverse=True)
+    return candidates[:limit]
+
+
+def scrape_reddit_ai():
+    """Fetch top recent AI community discussions from Reddit via Arctic Shift."""
+    print("👽 Reddit AI (Arctic Shift) 크롤링 시작...")
+    subreddits = ("LocalLLaMA", "ClaudeAI", "OpenAI")
+    now_ts = int(time.time())
+    after = now_ts - 3 * 86400
+    before = now_ts - 2 * 3600
+    collected = []
+
+    for idx, subreddit in enumerate(subreddits):
+        if idx > 0:
+            time.sleep(0.4)
+        url = (
+            "https://arctic-shift.photon-reddit.com/api/posts/search"
+            f"?subreddit={subreddit}&after={after}&before={before}&limit=100&sort=desc"
+        )
+        try:
+            response = requests.get(url, headers=API_HEADERS, timeout=15)
+            if response.status_code == 422:
+                print(f"Reddit r/{subreddit} 속도 제한(422), 건너뜀")
+                continue
+            response.raise_for_status()
+            posts = (response.json() or {}).get("data", [])
+            collected.extend(parse_reddit_arctic_posts(posts, subreddit))
+        except Exception as exc:
+            print(f"Reddit r/{subreddit} 수집 실패: {exc}")
+
+    return filter_feed(collected)
+
+
+def parse_polymarket_events(events, limit=4, min_volume_24h=5000):
+    """Parse active Polymarket AI events into normalized feed items."""
+    if not isinstance(events, list):
+        return []
+    results = []
+    for ev in events:
+        if not isinstance(ev, dict):
+            continue
+        title = (ev.get("title") or "").strip()
+        slug = (ev.get("slug") or "").strip()
+        try:
+            vol24 = float(ev.get("volume24hr") or 0)
+            total_vol = float(ev.get("volume") or 0)
+        except (TypeError, ValueError):
+            continue
+        if not title or not slug or vol24 < min_volume_24h:
+            continue
+
+        active_outcomes = []
+        for market in ev.get("markets") or []:
+            if not isinstance(market, dict) or market.get("closed"):
+                continue
+            prices = market.get("outcomePrices")
+            if isinstance(prices, str):
+                try:
+                    prices = json.loads(prices)
+                except ValueError:
+                    continue
+            if not isinstance(prices, list) or not prices:
+                continue
+            try:
+                yes_prob = float(prices[0])
+            except (TypeError, ValueError):
+                continue
+            label = (market.get("groupItemTitle") or market.get("question") or "").strip()
+            if label:
+                active_outcomes.append((yes_prob, label))
+
+        if not any(0.03 <= prob <= 0.97 for prob, _ in active_outcomes):
+            continue
+
+        active_outcomes.sort(key=lambda pair: pair[0], reverse=True)
+        odds_text = " / ".join(
+            f"{label} {round(prob * 100)}%" for prob, label in active_outcomes[:4]
+        )
+        description = (
+            f"현재 시장 예측 확률: {odds_text} · 24시간 거래량 ${int(round(vol24)):,} "
+            f"(누적 ${int(round(total_vol)):,})"
+        )
+        clean_desc = _clean_html_text(ev.get("description") or "")
+        if clean_desc:
+            description += f" | {clean_desc[:260]}"
+
+        results.append({
+            "title": title,
+            "url": f"https://polymarket.com/event/{slug}",
+            "source": "Polymarket AI",
+            "description": description[:600],
+            "points": max(1, int(round(vol24 / 1000))),
+            "volume_24h": int(round(vol24)),
+            "comments": "N/A",
+            "published_at": now_iso(),
+        })
+
+    results.sort(key=lambda item: item["volume_24h"], reverse=True)
+    return results[:limit]
+
+
+def scrape_polymarket_ai():
+    """Fetch high-volume active AI prediction markets from Polymarket Gamma API."""
+    print("📈 Polymarket AI 예측 시장 크롤링 시작...")
+    url = (
+        "https://gamma-api.polymarket.com/events"
+        "?tag_slug=ai&active=true&closed=false&order=volume24hr&ascending=false&limit=10"
+    )
+    try:
+        response = requests.get(url, headers=API_HEADERS, timeout=15)
+        response.raise_for_status()
+        return parse_polymarket_events(response.json())
+    except Exception as e:
+        print(f"Polymarket Scraping failed: {e}")
+        return []
+
 def update_feed(feed, collected, timestamp):
     by_url = {item["url"]: dict(item) for item in filter_feed(feed) if item.get("url")}
     summarize = []
@@ -467,7 +716,7 @@ def update_feed(feed, collected, timestamp):
             old.update({key: value for key, value in item.items() if key != "published_at"})
             old["first_seen_at"] = first_seen
             old["last_seen_at"] = timestamp
-            if old.get("source") == "GitHub Trending":
+            if old.get("source") in LIVE_SOURCES:
                 old["published_at"] = old.get("published_at") or first_seen
             if old.get("summary_status") == "pending" or "요약 실패" in old.get("summary_md", "") or (is_community(old) and not old.get("quality_reviewed")):
                 old["summary_status"] = "pending"
@@ -480,7 +729,13 @@ def update_feed(feed, collected, timestamp):
             "last_seen_at": timestamp,
             "fetched_at": timestamp,
             "summary_status": "pending",
-            "category": "오픈소스" if item["source"] == "GitHub Trending" else "커뮤니티" if item["source"].startswith("DCInside") else "뉴스",
+            "category": (
+                "오픈소스"
+                if item["source"] == "GitHub Trending"
+                else "커뮤니티"
+                if item["source"].startswith(("DCInside", "Reddit"))
+                else "뉴스"
+            ),
             "one_line": "요약 대기 중 · 원문에서 내용을 확인해 주세요.",
             "insight": "",
         })
@@ -496,7 +751,7 @@ def update_feed(feed, collected, timestamp):
             old["one_line"] = "요약 대기 중 · 원문에서 내용을 확인해 주세요."
             old["insight"] = ""
             summarize.append(old)
-    return list(by_url.values()), summarize[:24], new_count
+    return list(by_url.values()), summarize[:32], new_count
 
 def make_summary_md(item):
     return (f"카테고리: {item['category']}\n"
@@ -506,7 +761,7 @@ def make_summary_md(item):
             f"> - **출처**: {item['source']} ({item['url']})")
 
 def rank_key(item):
-    date = parse_date(item.get("last_seen_at") if item.get("source") == "GitHub Trending" else item.get("published_at"))
+    date = parse_date(item.get("last_seen_at") if item.get("source") in LIVE_SOURCES else item.get("published_at"))
     date = date or parse_date(item.get("fetched_at")) or datetime.datetime.min.replace(tzinfo=datetime.timezone.utc)
     try:
         points = int(item.get("points") or 0)
@@ -518,11 +773,11 @@ def prune_feed(feed, timestamp):
     now = parse_date(timestamp)
     valid = []
     for item in feed:
-        is_github = item.get("source") == "GitHub Trending"
+        is_live = item.get("source") in LIVE_SOURCES
         last_seen = parse_date(item.get("last_seen_at") or item.get("fetched_at"))
         published = parse_date(item.get("published_at"))
-        age_date = last_seen if is_github else published or last_seen
-        days = 7 if is_github else 30
+        age_date = last_seen if is_live else published or last_seen
+        days = 7 if is_live else 30
         if age_date and age_date >= now - datetime.timedelta(days=days):
             valid.append(item)
     valid.sort(key=rank_key, reverse=True)
@@ -547,6 +802,8 @@ def run_pipeline():
         "GitHub Trending": scrape_github_trending,
         "TechCrunch AI": scrape_techcrunch_ai,
         "DCInside": scrape_dcinside,
+        "Reddit AI": scrape_reddit_ai,
+        "Polymarket AI": scrape_polymarket_ai,
     }
     collected = []
     source_status = {}
@@ -562,6 +819,7 @@ def run_pipeline():
             "ok": good,
             "count": len(items),
             "last_success_at": timestamp if good else prior.get("last_success_at"),
+            "optional": name not in CRITICAL_SOURCES,
         }
         print(f"{name}: {len(items)}건 수집" + ("" if good else " (확인 필요)"))
         collected.extend(items)
@@ -585,7 +843,7 @@ def run_pipeline():
     feed = [item for item in filter_feed(feed) if item['url'] not in rejected_urls
             and not (is_community(item) and item.get('summary_status') == 'pending')]
 
-    critical_ok = all(source_status[name]["ok"] for name in ("Hacker News", "GitHub Trending", "TechCrunch AI"))
+    critical_ok = all(source_status[name]["ok"] for name in CRITICAL_SOURCES)
     if critical_ok:
         feed = prune_feed(feed, timestamp)
     summary_ok = not summarize or summarized_count > 0 or bool(rejected_urls)
